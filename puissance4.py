@@ -1,1 +1,0 @@
-print("Puissance 4")

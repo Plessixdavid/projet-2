@@ -1,1 +1,0 @@
-print("Cécilia's part")
