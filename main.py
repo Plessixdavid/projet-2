@@ -1,7 +1,9 @@
-print("TEST !")
-mots = "Bilouute"
+# coding: utf-8
+
+
+
 def main() :
-    print("Hello world")
+    pass
 
 if __name__ == "__main__":
     main()
