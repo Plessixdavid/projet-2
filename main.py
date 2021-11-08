@@ -1,5 +1,5 @@
 print("TEST !")
-mots = "Biloute"
+mots = "Bilouute"
 def main() :
     print("Hello world")
 
