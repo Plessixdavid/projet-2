@@ -1,0 +1,1 @@
+print("Puissance 4")
