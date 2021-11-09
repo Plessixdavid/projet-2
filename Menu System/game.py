@@ -24,4 +24,5 @@ class Game():
         self.display = pygame.surface(self.display_width_min, self.display_height_min)
         self.window = pygame.display.set_mode(self.display_width_min, self.display_height_min)
 
-       
+        # Font for the menu :
+        self.font_name = '8-BIT WONDER.TTF'
