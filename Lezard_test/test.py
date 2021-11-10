@@ -20,10 +20,18 @@ while run_is_game:
 
     screen.blit(game.player.image,game.player.rect)
 
-    if game.pressed.get(pygame.K_RIGHT) and game.player.rect.x +game.player.rect.width < screen.get_width():
+    if game.pressed.get(pygame.K_RIGHT) and game.player.rect.x + game.player.rect.width < screen.get_width():
         game.player.move_right()
+
     if game.pressed.get(pygame.K_LEFT) and game.player.rect.x > 0:
         game.player.move_left()
+
+    if game.pressed.get(pygame.K_UP) and game.player.rect.y > 0:
+        game.player.move_up()
+
+    if game.pressed.get(pygame.K_DOWN) and game.player.rect.y + game.player.rect.height < screen.get_height():
+        game.player.move_down()
+
 
     pygame.display.flip()
 
