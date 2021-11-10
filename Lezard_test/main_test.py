@@ -6,7 +6,7 @@ pygame.init()
 
 
 pygame.display.set_caption("test pygame")
-screen = pygame.display.set_mode((800,720))
+screen = pygame.display.set_mode((800,780))
 
 background_screen = pygame.image.load("Lezard_test/algatia.png")
 
@@ -16,7 +16,7 @@ run_is_game = True
 
 while run_is_game:
 
-    screen.blit(background_screen,(0,0))
+    screen.blit(background_screen,(-970,-450))
 
     screen.blit(game.player.image,game.player.rect)
 

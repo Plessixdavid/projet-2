@@ -10,8 +10,8 @@ class Player(pygame.sprite.Sprite):
         self.velocity = 1
         self.image = pygame.image.load("Lezard_test/test_icon_player.png")
         self.rect = self.image.get_rect()
-        self.rect.x = 200
-        self.rect.y = 200
+        self.rect.x = 375
+        self.rect.y = 365
 
     def move_right(self):
         self.rect.x += self.velocity
