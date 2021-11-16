@@ -4,7 +4,7 @@
 import pygame 
 
 # Creation of the class Game.
-class Game():
+class game():
     def __init__(self):
 
         # To have all the fonctionnalities of pygame.
@@ -49,7 +49,6 @@ class Game():
             # Reset keys :
             self.reset_keys()
 
-
     # New function : actions of the player :
     def check_events(self):
         # Loop about all the things that the player could do on the computer.
@@ -78,3 +77,6 @@ class Game():
         self.down_key = False
         self.start_key = False
         self.back_key = False
+
+    # New function : write on the screen :
+    def draw_text(self):
