@@ -46,3 +46,6 @@ class Game():
                     self.down_key = True
                 elif event.type == pygame.k_up:
                     self.up_key = True
+
+    # New function : reset actions of the player :
+    def reset_keys(self):
