@@ -31,7 +31,14 @@ class Game():
 
     # New function : loop for the game :
     def game_loop(self):
-        pass
+        while self.playing:
+            # Verify what the player do :
+            self.check_events()
+            # If the player clicks on the start key :
+            if self.start_key:
+                self.playing = False
+
+
 
     # New function : actions of the player :
     def check_events(self):
