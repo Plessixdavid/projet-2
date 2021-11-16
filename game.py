@@ -148,15 +148,31 @@ class Game:
 
         @sio.on("GET")
         def test(data):
-            players = data
+            players.clear()
+            players.extend(data)
 
         while running:
             sio.emit("GET")
 
             self.player.save_location()
             self.handle_input()
+            
+            if (self.player.old_position != self.player.position):
+                sio.emit("UPDATE POS", {
+                    'pos': self.player.position
+                })
+
             self.update()
             self.group.center(self.player.rect.center)
+
+            for player in players:
+                if player['id'] == my_sid:
+                    continue
+
+                mul_player = Player(player['pos'][0],player['pos'][1])
+                mul_player.update()
+                self.group.add(mul_player, layer=99)
+
             self.group.draw(self.screen)
             pygame.display.flip()
 
@@ -165,11 +181,8 @@ class Game:
                     sio.disconnect()
                     running = False
 
-            for player in players:
-                # if player['id'] == my_sid:
-                #     continue
+            self.group.remove_sprites_of_layer(99)
 
-                self.screen.blit(self.player.sprite_sheet, (player['pos'][0], player["pos"][1]))
             clock.tick(60)
 
         pygame.quit()
