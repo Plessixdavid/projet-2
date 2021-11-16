@@ -86,3 +86,6 @@ class game():
         
         # Dimensions :
         text_rect = text_surface.get_rect()
+
+        # Positions of the text :
+        text_rect.center = (x, y)
