@@ -31,3 +31,18 @@ class Game():
 
     # New function : actions of the player :
     def check_events(self):
+        # Loop about all the things that the player could do on the computer.
+        for event in pygame.event.get():
+            if event.type == pygame.quit :   # If the player clicks on the 'x' in the up of the window.
+                # Stop the loop :
+                self.running = False
+                self.playing = False
+            elif event.type == pygame.keydown:   # 'Keydown' is the touch 'Enter'.
+                if event.type == pygame.k_return:   
+                    self.start_key = True
+                elif event.type == pygame.k_backspace:
+                    self.back_key = True
+                elif event.type == pygame.k_down:    
+                    self.down_key = True
+                elif event.type == pygame.k_up:
+                    self.up_key = True
