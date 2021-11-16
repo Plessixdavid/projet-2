@@ -28,3 +28,6 @@ class Game():
         # Colors (RGB) of the font :
         self.black = (0, 0, 0)
         self.white = (255, 255, 255)
+
+    # New function : actions of the player :
+    def check_events(self):
