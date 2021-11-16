@@ -49,3 +49,7 @@ class Game():
 
     # New function : reset actions of the player :
     def reset_keys(self):
+        self.up_key = False
+        self.down_key = False
+        self.start_key = False
+        self.back_key = False
