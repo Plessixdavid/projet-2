@@ -42,7 +42,9 @@ class Game():
             # Reset the canevas :
             self.display.fill(self.black)
             self.window.blit(self.display, (0, 0))       # x and y of the window.
-            
+
+            # Our screen :
+            pygame.display.update()
 
 
     # New function : actions of the player :
