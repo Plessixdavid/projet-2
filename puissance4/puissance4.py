@@ -35,9 +35,9 @@ def trouver_Ligne_Vide(plateau,colonne):
     """
         quelle est la ligne libre dans la colonne choisie    
     """
-    for r in range(NBligne):
-        if plateau[r][colonne]==0:
-            return r
+    for row in range(NBligne):
+        if plateau[row][colonne] == 0:
+            return row
 
 
 def LacherJeton(plateau, ligne, colonne, jeton) :
@@ -53,27 +53,33 @@ def coup_gagnant(plateau, jeton):
     """
     
     #test de toutes les positions horizontales
-    for c in range (NBcolon-3):
-        for r in range (NBligne):
-            if plateau[r][c]== jeton and plateau[r][c+1]== jeton and plateau[r][c+2]== jeton and plateau[r][c+3]== jeton:
+    for colon in range (NBcolon-3):
+        for row in range (NBligne):
+            if plateau[row][colon]== jeton and plateau[row][colon+1]== jeton and plateau[row][colon+2]== jeton and plateau[row][colon+3]== jeton:
                 return True
 
     #test de toutes les positions verticales
-    for c in range (NBcolon):
-        for r in range (NBligne-3):
-            if plateau[r][c]== jeton and plateau[r+1][c]== jeton and plateau[r+2][c]== jeton and plateau[r+3][c]== jeton:
+    for colon in range (NBcolon):
+        for row in range (NBligne-3):
+            if plateau[row][colon]== jeton and plateau[row+1][colon]== jeton and plateau[row+2][colon]== jeton and plateau[row+3][colon]== jeton:
                 return True
 
     #test de toutes les positions diagonales orientées vers la droite
-    for c in range (NBcolon-3):
-        for r in range (NBligne-3):
-            if plateau[r][c]== jeton and plateau[r+1][c+1]== jeton and plateau[r+2][c+2]== jeton and plateau[r+3][c+3]== jeton:
+    for colon in range (NBcolon-3):
+        for row in range (NBligne-3):
+            if plateau[row][colon]== jeton and plateau[row+1][colon+1]== jeton and plateau[row+2][colon+2]== jeton and plateau[row+3][colon+3]== jeton:
                 return True
 
     #test de toutes les positions diagonales orientées vers la gauche
-    for c in range (NBcolon-3):
-        for r in range (3,NBligne):
-            if plateau[r][c]== jeton and plateau[r-1][c+1]== jeton and plateau[r-2][c+2]== jeton and plateau[r-3][c+3]== jeton:
+    for colon in range (NBcolon-3):
+        for row in range (3,NBligne):
+            if plateau[row][colon]== jeton and plateau[row-1][colon+1]== jeton and plateau[row-2][colon+2]== jeton and plateau[row-3][colon+3]== jeton:
                 return True
    
 
+def Partienulle(plateau):
+    for colon in range (NBcolon):
+        for row in range(NBligne):
+            if plateau[row][colon] == 0:
+                return False
+    return True

@@ -24,7 +24,7 @@ while not game_over:
     #trouver la ligne libre dans la colonne choisie
         ligne = puissance4.trouver_Ligne_Vide(plateau,colonne)
     #mettre dans la matrice la valeur 1 dans la ligne, colonne
-        puissance4.LacherJeton(plateau, ligne, colonne,1)
+        puissance4.LacherJeton(plateau, ligne, colonne,jeton = 1)
     #tester si le joueur 1 a gagné
         if puissance4.coup_gagnant(plateau,1):
             print("Le joueur 1 a gagné!!! Bravo")
@@ -35,7 +35,7 @@ while not game_over:
 
     #joueur 2
 
-#choix du numéro de colonne par le joueur 1
+#choix du numéro de colonne par le joueur 23
     correct = False
     
     while not correct:
@@ -56,3 +56,6 @@ while not game_over:
             game_over = True
 
     puissance4.afficherPlateau(plateau)
+    if puissance4.Partienulle(plateau):
+        print("Partie nulle")
+        game_over = True
