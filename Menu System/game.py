@@ -36,8 +36,10 @@ class Game():
             self.check_events()
             # If the player clicks on the start key :
             if self.start_key:
-                self.playing = False
+                self.playing = False     # Stop the loop without stop the game.
 
+            # Reset the canevas :
+            self.display.fill(self.black)  
 
 
     # New function : actions of the player :
@@ -48,14 +50,18 @@ class Game():
                 # Stop the loop :
                 self.running = False
                 self.playing = False
-            elif event.type == pygame.keydown:   # 'Keydown' is the touch 'Enter'.
+            
+            if event.type == pygame.keydown:   # 'Keydown' is the touch 'Enter'.
                 if event.type == pygame.k_return:   
                     self.start_key = True
-                elif event.type == pygame.k_backspace:
+                
+                if event.type == pygame.k_backspace:
                     self.back_key = True
-                elif event.type == pygame.k_down:    
+                
+                if event.type == pygame.k_down:    
                     self.down_key = True
-                elif event.type == pygame.k_up:
+                
+                if event.type == pygame.k_up:
                     self.up_key = True
 
     # New function : reset actions of the player :
