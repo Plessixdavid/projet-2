@@ -79,4 +79,10 @@ class game():
         self.back_key = False
 
     # New function : write on the screen :
-    def draw_text(self):
+    def draw_text(self, text, size, x, y ):
+        # Font:
+        font = pygame.font.Font(self.font_name, size)
+        text_surface = font.render(text, True, self.white)
+        
+        # Dimensions :
+        text_rect = text_surface.get_rect()
