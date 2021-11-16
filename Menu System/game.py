@@ -29,6 +29,10 @@ class Game():
         self.black = (0, 0, 0)
         self.white = (255, 255, 255)
 
+    # New function : loop for the game :
+    def game_loop(self):
+        pass
+
     # New function : actions of the player :
     def check_events(self):
         # Loop about all the things that the player could do on the computer.
