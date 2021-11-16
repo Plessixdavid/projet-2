@@ -46,15 +46,15 @@ class Game:
             self.player.move_up()
             self.player.change_animation("up")
 
-        elif pressed[pygame.K_DOWN]:
+        if pressed[pygame.K_DOWN]:
             self.player.move_down()
             self.player.change_animation("down")
 
-        elif pressed[pygame.K_RIGHT]:
+        if pressed[pygame.K_RIGHT]:
             self.player.move_right()
             self.player.change_animation("right")
 
-        elif pressed[pygame.K_LEFT]:
+        if pressed[pygame.K_LEFT]:
             self.player.move_left()
             self.player.change_animation("left")
 
@@ -131,15 +131,27 @@ class Game:
             if sprite.feet.collidelist(self.walls) > -1:
                 self.player.move_back()
 
-    def run(self):
+    def run(self, sio):
 
+        sio.emit("JOIN", {
+            'pos': self.player.position
+            })
         # gerer les FPS
         clock = pygame.time.Clock()
         
         # boucle du jeu
         running = True
 
+        my_sid = sio.get_sid()
+
+        players = []
+
+        @sio.on("GET")
+        def test(data):
+            players = data
+
         while running:
+            sio.emit("GET")
 
             self.player.save_location()
             self.handle_input()
@@ -150,8 +162,14 @@ class Game:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    sio.disconnect()
                     running = False
 
+            for player in players:
+                # if player['id'] == my_sid:
+                #     continue
+
+                self.screen.blit(self.player.sprite_sheet, (player['pos'][0], player["pos"][1]))
             clock.tick(60)
 
         pygame.quit()
