@@ -41,7 +41,8 @@ class game():
 
             # Reset the canevas :
             self.display.fill(self.black)
-            self.window.blit(self.display, (0, 0))       # x and y of the window.
+            self.drax_text('Thanx for playing', 20, self.display_width/2, self.display_height/2)     # self.display/2 : operation to put the text in the center.
+            self.window.blit(self.display, (0, 0, ))       # x and y of the window.
 
             # Our screen :
             pygame.display.update()
@@ -89,3 +90,4 @@ class game():
 
         # Positions of the text :
         text_rect.center = (x, y)
+        self.display.blit(text_surface, text_rect)
