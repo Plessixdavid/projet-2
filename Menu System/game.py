@@ -46,6 +46,9 @@ class Game():
             # Our screen :
             pygame.display.update()
 
+            # Reset keys :
+            self.reset_keys()
+
 
     # New function : actions of the player :
     def check_events(self):
