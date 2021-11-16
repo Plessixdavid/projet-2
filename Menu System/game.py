@@ -24,3 +24,7 @@ class Game():
 
         # Font for the menu :
         self.font_name = '8-BIT WONDER.TTF'
+        # self.font_name = pygame.font.get_default_font()
+        # Colors (RGB) of the font :
+        self.black = (0, 0, 0)
+        self.white = (255, 255, 255)
