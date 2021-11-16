@@ -34,12 +34,15 @@ class Game():
         while self.playing:
             # Verify what the player do :
             self.check_events()
+
             # If the player clicks on the start key :
             if self.start_key:
                 self.playing = False     # Stop the loop without stop the game.
 
             # Reset the canevas :
-            self.display.fill(self.black)  
+            self.display.fill(self.black)
+            self.window.blit(self.display, (0, 0))       # x and y of the window.
+            
 
 
     # New function : actions of the player :
