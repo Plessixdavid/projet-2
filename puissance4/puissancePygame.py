@@ -48,16 +48,33 @@ plateau = puissance4.createboard()
 Dessinerplateau(plateau)    
 game_over = False
 tour = 0
+myfont = pygame.font.SysFont("comicsansms", 40)
 while not game_over :
     
     for event in pygame.event.get():
         
+        #on déplace le jeton avec la souris
+        if event.type == pygame.MOUSEMOTION:
+            #effacer la première ligne du plateau
+            pygame.draw.rect(ecran,NOIR,(0,0,largeur,LARGEUR_CASE))
+            #position de la souris
+            posx = event.pos[0]
+            #si joueur 1 on affiche un jeton rouge, à la position x de la souris
+            if tour==0:
+                pygame.draw.circle(ecran,ROUGE,(posx,int(LARGEUR_CASE/2)),RAYON)
+                #si joueur 2 on affiche un jeton jaune, à la position x de la souris
+            else:
+                pygame.draw.circle(ecran,JAUNE,(posx,int(LARGEUR_CASE/2)),RAYON)
+                #on met l'écran à jour
+            pygame.display.update()
+
         if event.type==pygame.QUIT:
             game_over = True
             pygame.quit() 
 
 # player 1 choice of position jeton
         if event.type == pygame.MOUSEBUTTONDOWN :
+            #effacer la première ligne du plateau 
             if tour == 0 :
                 posx = event.pos[0] # position du de la souris au moment du click
                 colonne = int(math.floor(posx/LARGEUR_CASE))
@@ -69,13 +86,17 @@ while not game_over :
                     puissance4.LacherJeton(plateau, ligne, colonne,1)
                     #tester si le joueur 1 a gagné
                     if puissance4.coup_gagnant(plateau,1):
-                        print("Le joueur 1 a gagné!!! Bravo")
+                        texte_image = myfont.render("Le joueur 1 a gagné", True, ROUGE)
+                        ecran.blit(texte_image, [50, 10])
                         game_over = True
                 tour = 1
                 Dessinerplateau(plateau)
 
+
             # player 2 choice of position jeton
             else :
+                #effacer la première ligne du plateau
+                pygame.draw.rect(ecran,NOIR,(0,0,largeur,LARGEUR_CASE))
                 posx = event.pos[0] # position du de la souris au moment du click
                 colonne = int(math.floor(posx/LARGEUR_CASE))
                 if puissance4.validemplacement(plateau,colonne):
@@ -85,12 +106,16 @@ while not game_over :
                     puissance4.LacherJeton(plateau, ligne, colonne,2)
                     #tester si le joueur 2 a gagné
                     if puissance4.coup_gagnant(plateau,2):
-                        print("Le joueur 2 a gagné!!! Bravo")
+                        pygame.draw.circle(ecran, JAUNE, (int(LARGEUR_CASE/2), int(LARGEUR_CASE/2)),RAYON)
+                        texte_image = myfont.render("Le joueur 2 a gagné", True, JAUNE)
+                        ecran.blit(texte_image, [50, 10])
                         game_over = True
                 tour=0
+                #afficher le jeton du joueur 1
                 Dessinerplateau(plateau) 
     if puissance4.Partienulle(plateau):
-        print("Partie nulle")
+        texte_image = myfont.render("Match nul ", True, BLANC)
+        ecran.blit(texte_image, [50, 10])
         game_over = True
 pygame.time.wait(3000)
 pygame.quit()
