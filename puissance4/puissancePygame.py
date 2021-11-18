@@ -86,6 +86,7 @@ while not game_over :
                     puissance4.LacherJeton(plateau, ligne, colonne,1)
                     #tester si le joueur 1 a gagné
                     if puissance4.coup_gagnant(plateau,1):
+                        pygame.draw.circle(ecran, ROUGE, (int(LARGEUR_CASE/2), int(LARGEUR_CASE/2)),RAYON)
                         texte_image = myfont.render("Le joueur 1 a gagné", True, ROUGE)
                         ecran.blit(texte_image, [50, 10])
                         game_over = True
