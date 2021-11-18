@@ -76,7 +76,7 @@ class Game:
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=6)
         self.group.add(self.player)
 
-        # definir le rect de collision pour entrer dans la maison
+        # definir le rect de collision pour sortir de la maison
         enter_house = tmx_data.get_object_by_name("exit_house")
         self.enter_house_rect = pygame.Rect(enter_house.x, enter_house.y, enter_house.width, enter_house.height)
 
