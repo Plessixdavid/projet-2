@@ -14,7 +14,7 @@ class Game:
         pygame.display.set_caption("PYGAMON")
 
         # charger la carte (tmx)
-        tmx_data = pytmx.load_pygame("ressources/tmx/carte.tmx")
+        tmx_data = pytmx.load_pygame("ressources/tmx_tsx/carte.tmx")
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
         map_layer.zoom = 2
@@ -60,7 +60,7 @@ class Game:
 
     def switch_house(self):
         # charger la carte (tmx)
-        tmx_data = pytmx.load_pygame("ressources/tmx/my_house.tmx")
+        tmx_data = pytmx.load_pygame("ressources/tmx_tsx/my_house.tmx")
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
         map_layer.zoom = 2
@@ -87,7 +87,7 @@ class Game:
             
     def switch_world(self):
         # charger la carte (tmx)
-        tmx_data = pytmx.load_pygame("ressources/tmx/carte.tmx")
+        tmx_data = pytmx.load_pygame("ressources/tmx_tsx/carte.tmx")
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
         map_layer.zoom = 2
