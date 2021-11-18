@@ -76,6 +76,7 @@ while not game_over :
         if event.type == pygame.MOUSEBUTTONDOWN :
             #effacer la première ligne du plateau 
             if tour == 0 :
+                pygame.draw.rect(ecran,NOIR,(0,0,largeur,LARGEUR_CASE))
                 posx = event.pos[0] # position du de la souris au moment du click
                 colonne = int(math.floor(posx/LARGEUR_CASE))
                 
