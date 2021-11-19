@@ -64,33 +64,33 @@ class game():
             
             if event.type == pygame.KEYDOWN:   # 'Keydown' is the touch 'Enter'.
                 if event.type == pygame.K_RETURN:   
-                    self.start_key = True
+                    self.START_KEY = True
                 
                 if event.type == pygame.K_BACKSPACE:
-                    self.back_key = True
+                    self.BACK_KEY = True
                 
                 if event.type == pygame.K_DOWN:    
-                    self.down_key = True
+                    self.DOWN_KEY = True
                 
                 if event.type == pygame.K_UP:
-                    self.up_key = True
+                    self.UP_KEY = True
 
     # New function : reset actions of the player :
     def reset_keys(self):
-        self.up_key = False
-        self.down_key = False
-        self.start_key = False
-        self.back_key = False
+        self.UP_KEY = False
+        self.DOWN_KEY = False
+        self.START_KEY = False
+        self.BACK_KEY = False
 
     # New function : write on the screen :
     def draw_text(self, text, size, x, y ):
         # Font:
         font = pygame.font.Font(self.font_name, size)
-        text_surface = font.render(text, True, self.white)
+        text_Surface = font.render(text, True, self.white)
         
         # Dimensions :
-        text_rect = text_surface.get_rect()
+        text_rect = text_Surface.get_rect()
 
         # Positions of the text :
         text_rect.center = (x, y)
-        self.display.blit(text_surface, text_rect)
+        self.display.blit(text_Surface, text_rect)
