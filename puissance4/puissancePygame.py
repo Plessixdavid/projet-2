@@ -10,12 +10,13 @@ ROUGE = (255,0,0)
 JAUNE = (255,255,0)
 NOIR = (0,0,0)
 BLANC = (255,255,255)
-RAYON= int(LARGEUR_CASE/2)-4
+RAYON = int(LARGEUR_CASE/2)-4
+VIOLET = (108, 2, 119)
 
 def Dessinerplateau(plateau):
     """
     """
-            #draw plateau 
+    #draw plateau 
     pygame.draw.rect(ecran,BLEU,(0,LARGEUR_CASE,puissance4.NBcolon * LARGEUR_CASE,(puissance4.NBligne+1) * LARGEUR_CASE))  
     for colon in range (puissance4.NBcolon):
         
@@ -70,9 +71,10 @@ while not game_over :
 
         if event.type==pygame.QUIT:
             game_over = True
+            pygame.time.wait(3000)
             pygame.quit() 
 
-# player 1 choice of position jeton
+        # player 1 choice of position jeton
         if event.type == pygame.MOUSEBUTTONDOWN :
             #effacer la première ligne du plateau 
             if tour == 0 :
@@ -116,11 +118,12 @@ while not game_over :
                 #afficher le jeton du joueur 1
                 Dessinerplateau(plateau) 
     if puissance4.Partienulle(plateau):
-        texte_image = myfont.render("Match nul ", True, BLANC)
+        print("match null")
+        texte_image = myfont.render("Match nul ", True, VIOLET)
         ecran.blit(texte_image, [50, 10])
+        Dessinerplateau(plateau)
         game_over = True
-pygame.time.wait(3000)
-pygame.quit()
+
     
 
 
