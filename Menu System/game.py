@@ -19,11 +19,11 @@ class game():
         # Variables to display the background :
         self.display_width = 800
         self.display_height = 800
-        self.display = pygame.surface(self.display_width, self.display_height)
-        self.window = pygame.display.set_mode(self.display_width, self.display_height)
+        self.display = pygame.Surface((self.display_width, self.display_height))
+        self.window = pygame.display.set_mode((self.display_width, self.display_height))
 
         # Font for the menu :
-        self.font_name = '8-BIT WONDER.TTF'
+        self.font_name = 'Menu System/8-BIT WONDER.TTF'
         # self.font_name = pygame.font.get_default_font()
         # Colors (RGB) of the font :
         self.black = (0, 0, 0)
@@ -36,12 +36,12 @@ class game():
             self.check_events()
 
             # If the player clicks on the start key :
-            if self.start_key:
+            if self.START_KEY:
                 self.playing = False     # Stop the loop without stop the game.
 
             # Reset the canevas :
             self.display.fill(self.black)
-            self.drax_text('Thanx for playing', 20, self.display_width/2, self.display_height/2)     # self.display/2 : operation to put the text in the center.
+            self.draw_text('Thanx for playing', 20, self.display_width/2, self.display_height/2)     # self.display/2 : operation to put the text in the center.
             self.window.blit(self.display, (0, 0, ))       # x and y of the window.
 
             # Our screen :
@@ -50,26 +50,29 @@ class game():
             # Reset keys :
             self.reset_keys()
 
+        # Close the window of Pygame:
+        pygame.quit()
+
     # New function : actions of the player :
     def check_events(self):
         # Loop about all the things that the player could do on the computer.
         for event in pygame.event.get():
-            if event.type == pygame.quit :   # If the player clicks on the 'x' in the up of the window.
+            if event.type == pygame.QUIT :   # If the player clicks on the 'x' in the up of the window.
                 # Stop the loop :
                 self.running = False
                 self.playing = False
             
-            if event.type == pygame.keydown:   # 'Keydown' is the touch 'Enter'.
-                if event.type == pygame.k_return:   
+            if event.type == pygame.KEYDOWN:   # 'Keydown' is the touch 'Enter'.
+                if event.type == pygame.K_RETURN:   
                     self.start_key = True
                 
-                if event.type == pygame.k_backspace:
+                if event.type == pygame.K_BACKSPACE:
                     self.back_key = True
                 
-                if event.type == pygame.k_down:    
+                if event.type == pygame.K_DOWN:    
                     self.down_key = True
                 
-                if event.type == pygame.k_up:
+                if event.type == pygame.K_UP:
                     self.up_key = True
 
     # New function : reset actions of the player :
