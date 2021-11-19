@@ -1,7 +1,8 @@
 # Coding : utf-8
 
 # Imports :
-import pygame 
+import pygame
+from menu import *
 
 # Creation of the class Game.
 class game():
