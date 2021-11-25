@@ -16,7 +16,7 @@ class Game :
         # Loop when the game is running :
         self.game_running = True
         self.grids = Grid(self.screen)
-        # Init variables x and y :
+        # Init variables X and O :
         self.player_X = 'X'
         self.player_O = 'O'
 
