@@ -10,11 +10,12 @@ class Game :
     # Function init :
     def __init__(self):
         # Pygame's windows :
-        self.ecran = pygame.display.set_mode((600, 600))
+        self.screen = pygame.display.set_mode((600, 600))
         # Name of the game :
         pygame.display.set_caption('Tic Tac Toe')
         # Loop when the game is running :
         self.game_running = True
+        self.grids = Grid(self.screen)
 
     # Main function :
     def Main_function(self) :
@@ -27,7 +28,10 @@ class Game :
                     sys.exit()
 
         # Colors of the windows :
-        self.ecran.fill((240, 240, 240))
+        self.screen.fill((240, 240, 240))
+
+        # Display the lines of the grids :
+        self.grids.display_lines()
 
         # Update the screen :
         pygame.display.flip()
