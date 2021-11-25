@@ -6,7 +6,9 @@ import pygame
 # New class :
 class Grid:
     # Function init :
-    def __init__(self):
+    def __init__(self, screen):
+        # Define the screen :
+        self.screen = screen
         # Lines of the grids :
         self.lines = [                  # List.
             ((200, 0), (200, 600)),     # First line.
@@ -15,3 +17,10 @@ class Grid:
             ((0, 400), (600, 400))      # Fourth line.
             ]
 
+    # New function to display the lines :
+    def display_lines(self):
+        # For each lines in self :
+        for line in self.lines :
+            # Display the lines :
+            # Function pygame + color + start + end + thickness.
+            pygame.draw.line(self.screen, (0, 0, 0), line[0], line[1], 2)
