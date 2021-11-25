@@ -79,6 +79,11 @@ class Game :
                         O_position = (line, column)
                         List_O.append(O_position)
 
+            # New condition :
+            if len(List_X) >= 3:
+                for (line, column) in List_X:
+                    
+
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
 
@@ -91,4 +96,4 @@ class Game :
 if __name__ == '__main__':
     pygame.init()
     Game().Main_function()
-    pygame.QUIT()
+    pygame.QUIT() 
