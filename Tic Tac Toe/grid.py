@@ -51,4 +51,9 @@ class Grid:
 
     # New function to stare the values :
     def stare_the_value(self, x, y, value):
-        self.grid[y][x] = value
+        # Condition if the box had the value None :
+        if self.grid[y][x] == None:
+            self.grid[y][x] = value
+            # The counter is 'ON' :
+            self.counter_on = True
+
