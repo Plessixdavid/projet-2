@@ -43,6 +43,9 @@ class Game :
                     
                     print(position_x, position_y)
 
+                    # Function to stare the values :
+                    self.grids.stare_the_value(position_x, position_y, 'X')
+
             # Print the grid :
             self.grids.print_grid()
 
