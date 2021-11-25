@@ -19,6 +19,8 @@ class Game :
         # Init variables X and O :
         self.player_X = 'X'
         self.player_O = 'O'
+        # The counter :
+        self.counter = 0
 
     # Main function :
     def Main_function(self) :
