@@ -46,6 +46,16 @@ class Game :
                     # Function to stare the values :
                     self.grids.stare_the_value(position_x, position_y, 'X')
 
+                    # Condition if the counter is pair or odd :
+                    if self.counter %2 == 0:
+                        # The player in X who plays :
+                        self.grids.stare_the_value(position_x, position_y, self.player_X)
+                    else:
+                        # The player in O who plays :
+                        self.grids.stare_the_value(position_x, position_y, self.player_O)
+                    # Increment the counter +1 :
+                    self.counter += 1
+
             # Print the grid :
             self.grids.print_grid()
 
