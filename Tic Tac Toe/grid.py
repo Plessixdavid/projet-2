@@ -20,6 +20,10 @@ class Grid:
         # Init the grid :
         self.grid = [[None in x in range(0, 3) for y in range(0, 3)]]
 
+    # New function to print the grid :
+    def print_grid(self):
+        print(self.grid)
+        
     # New function to display the lines :
     def display_lines(self):
         # For each lines in self :
