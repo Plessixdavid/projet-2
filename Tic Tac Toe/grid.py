@@ -19,6 +19,9 @@ class Grid:
         # Init the grid :
         self.grid = [[None in x in range(0, 3)] for y in range(0, 3)]
 
+        # Init a variable to verify ig the counter is 'ON' :
+        self.counter_on = False
+
     # New function to display the lines :
     def display_lines(self):
         # For each lines in self :
