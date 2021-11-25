@@ -68,7 +68,16 @@ class Game :
             List_lines_O = []
             List_column_O = []
 
-            
+            # Loop about the position of X or O :
+            for line in range(0, len(self.grids.grid)):
+                for column in range(0, len(self.grids.grid)):
+                    # Condition :
+                    if self.grids.grid[line][column] == 'X':
+                        X_position = (line, column)
+                        List_X.append(X_position)
+                    elif self.grids.grid[line][column] == 'O':
+                        O_position = (line, column)
+                        List_O.append(O_position)
 
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
