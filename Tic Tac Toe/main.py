@@ -27,14 +27,14 @@ class Game :
                 if event.type == pygame.QUIT:
                     sys.exit()
 
-        # Colors of the windows :
-        self.screen.fill((240, 240, 240))
+            # Colors of the windows :
+            self.screen.fill((240, 240, 240))
 
-        # Display the lines of the grids :
-        self.grids.display_lines()
+            # Display the lines of the grids :
+            self.grids.display_lines()
 
-        # Update the screen :
-        pygame.display.flip()
+            # Update the screen :
+            pygame.display.flip()
 
 if __name__ == '__main__':
     pygame.init()
