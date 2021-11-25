@@ -56,8 +56,8 @@ class Game :
                     # Increment the counter +1 :
                     self.counter += 1
 
-            # Print the grid :
-            self.grids.print_grid()
+                # Print the grid :
+                self.grids.print_grid()
 
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
