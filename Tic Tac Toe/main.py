@@ -31,3 +31,7 @@ class Game :
         # Update the screen :
         pygame.display.flip()
 
+if __name__ == '__main__':
+    pygame.init()
+    Game().Main_function()
+    pygame.QUIT()
