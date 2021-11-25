@@ -37,6 +37,10 @@ class Game :
                     position_y = position[1]//200
                     
                     print(position_x, position_y)
+
+            # Print the grid :
+            self.grids.print_grid()
+            
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
 
