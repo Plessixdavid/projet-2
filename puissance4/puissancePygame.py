@@ -1,5 +1,4 @@
 import pygame
-from pygame.constants import MOUSEBUTTONDOWN
 import puissance4
 import math
 
