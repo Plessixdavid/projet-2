@@ -60,8 +60,15 @@ class Game :
                         # Stare the value of counter_on as False :
                         self.grids.counter_on = False
 
-                # Print the grid :
-                self.grids.print_grid()
+            # Lists :
+            List_X = []               # All positions in x and y about X.
+            List_O = []               # All positions in x and y about O.
+            List_lines_X = []
+            List_column_X = []
+            List_lines_O = []
+            List_column_O = []
+
+            
 
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
