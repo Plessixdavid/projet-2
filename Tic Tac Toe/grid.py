@@ -39,8 +39,7 @@ class Grid:
                     pygame.draw.line(self.screen, (0, 0, 0), ((x * 200), 200 * (y * 200)), (200 * (x * 200), (y * 200)), 3)
                 elif self.grid[y][x] == 'O':
                     # Pygame + draw circle + black color + start position + end position + radius + thickness.
-                    pygame.draw.circle(self.screen, (0, 0, 0), (100 * (x * 200), 100 * (y * 200)), 20, 3)
-                    pygame.draw.circle(self.screen, (0, 0, 0), ((x * 200), 200 * (y * 200)), (200 * (x * 200), (y * 200)), 3)
+                    pygame.draw.circle(self.screen, (0, 0, 0), (100 * (x * 200), 100 * (y * 200)), 100, 3)
 
 
     # New function to print the grid :
