@@ -16,6 +16,9 @@ class Game :
         # Loop when the game is running :
         self.game_running = True
         self.grids = Grid(self.screen)
+        # Init variables x and y :
+        self.player_X = 'X'
+        self.player_O = 'O'
 
     # Main function :
     def Main_function(self) :
@@ -40,7 +43,7 @@ class Game :
 
             # Print the grid :
             self.grids.print_grid()
-            
+
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
 
