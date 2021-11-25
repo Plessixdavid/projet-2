@@ -23,7 +23,11 @@ class Grid:
     # New function to print the grid :
     def print_grid(self):
         print(self.grid)
-        
+
+    # New function to stare the values :
+    def stare_the_value(self, x, y, value):
+        self.grid[y][x] = value
+
     # New function to display the lines :
     def display_lines(self):
         # For each lines in self :
