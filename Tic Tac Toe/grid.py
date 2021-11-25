@@ -16,6 +16,9 @@ class Grid:
             ((0, 200), (600, 200)),     # Third line.
             ((0, 400), (600, 400))      # Fourth line.
             ]
+        
+        # Init the grid :
+        self.grid = [[None in x in range(0, 3) for y in range(0, 3)]]
 
     # New function to display the lines :
     def display_lines(self):
