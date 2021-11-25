@@ -53,8 +53,12 @@ class Game :
                     else:
                         # The player in O who plays :
                         self.grids.stare_the_value(position_x, position_y, self.player_O)
-                    # Increment the counter +1 :
-                    self.counter += 1
+                    # Condition if the counter is True :
+                    if self.grids.counter_on:
+                        # Increment the counter +1 :
+                        self.counter += 1
+                        # Stare the value of counter_on as False :
+                        self.grids.counter_on = False
 
                 # Print the grid :
                 self.grids.print_grid()
