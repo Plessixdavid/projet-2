@@ -3,6 +3,7 @@
 # Imports:
 import pygame
 import sys
+from grid import *
 
 # New class:
 class Game :
