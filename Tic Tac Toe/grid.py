@@ -17,7 +17,7 @@ class Grid:
             ((0, 400), (600, 400))      # Fourth line.
             ]
         # Init the grid :
-        self.grid = [[None in x in range(0, 3)] for y in range(0, 3)]
+        self.grid = [[None for x in range(0, 3)] for y in range(0, 3)]
 
         # Init a variable to verify ig the counter is 'ON' :
         self.counter_on = False
