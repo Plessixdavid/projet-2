@@ -41,11 +41,6 @@ class Game :
                     # Position y of the mouse :
                     position_y = position[1]//200
                     
-                    print(position_x, position_y)
-
-                    # Function to stare the values :
-                    self.grids.stare_the_value(position_x, position_y, 'X')
-
                     # Condition if the counter is pair or odd :
                     if self.counter %2 == 0:
                         # The player in X who plays :
@@ -53,6 +48,7 @@ class Game :
                     else:
                         # The player in O who plays :
                         self.grids.stare_the_value(position_x, position_y, self.player_O)
+                    
                     # Condition if the counter is True :
                     if self.grids.counter_on:
                         # Increment the counter +1 :
@@ -60,6 +56,11 @@ class Game :
                         # Stare the value of counter_on as False :
                         self.grids.counter_on = False
 
+                # New event :
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:       # Touch Enter on the clapboard.
+                        self.restart()
+                
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
 
@@ -129,7 +130,7 @@ class Game :
         for line in range(0, len(self.grids.grid)):
             for column in range(0, len(self.grids.grid)):
                 self.grids.stare_None(line, column, None)
-                
+
 if __name__ == '__main__':
     pygame.init()
     Game().Main_function()
