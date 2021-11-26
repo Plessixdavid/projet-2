@@ -89,9 +89,13 @@ class Game :
 
                 # New event :
                 if event.type == pygame.KEYDOWN:
+                    # Event for the player with Enter to restart the game :
                     if event.key == pygame.K_RETURN:       # Touch Enter on the clapboard.
                         self.restart()
-                
+                    # Event for the player with Escape to have the screen of beginning :
+                    if event.key == pygame.K_ESCAPE:
+                        self.screen_begin = True
+
             # Lists :
             List_X = []               # All positions in x and y about X.
             List_O = []               # All positions in x and y about O.
