@@ -60,6 +60,15 @@ class Game :
                         # Stare the value of counter_on as False :
                         self.grids.counter_on = False
 
+            # Colors of the windows :
+            self.screen.fill((240, 240, 240))
+
+            # Display the lines of the grids :
+            self.grids.display_lines()
+
+            # Update the screen :
+            pygame.display.flip()
+
             # Lists :
             List_X = []               # All positions in x and y about X.
             List_O = []               # All positions in x and y about O.
@@ -105,26 +114,22 @@ class Game :
 
                 # New condition if the player win horizontally :
                 if List_lines_O.count(0) == 3 or List_lines_O.count(1) == 3 or List_lines_O.count(2) == 3 :
-                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+                    print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
 
                 # New condition if the player win vertically :
                 if List_column_O.count(0) == 3 or List_column_O.count(1) == 3 or List_column_O.count(2) == 3 :
-                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+                    print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
             
                 # New condition is the player win diagonally :
                 if List_lines_O == List_column_O or List_lines_O == List_column_O[::-1] :
-                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+                    print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
 
-
-            # Colors of the windows :
-            self.screen.fill((240, 240, 240))
-
-            # Display the lines of the grids :
-            self.grids.display_lines()
-
-            # Update the screen :
-            pygame.display.flip()
-
+    # New function whom attribuate the value None at all boxes :
+    def restart(self):
+        for line in range(0, len(self.grids.grid)):
+            for column in range(0, len(self.grids.grid)):
+                self.grids.stare_None(line, column, None)
+                
 if __name__ == '__main__':
     pygame.init()
     Game().Main_function()
