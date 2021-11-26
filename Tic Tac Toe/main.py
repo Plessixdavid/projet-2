@@ -22,6 +22,9 @@ class Game :
         # The counter :
         self.counter = 0
 
+        # The screen of the beginning :
+        self.screen_begin = True
+
     # Main function :
     def Main_function(self) :
         # Loop :
