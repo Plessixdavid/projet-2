@@ -92,6 +92,17 @@ class Game :
                     if event.key == pygame.K_RETURN:       # Touch Enter on the clapboard.
                         self.restart()
                 
+            # Lists :
+            List_X = []               # All positions in x and y about X.
+            List_O = []               # All positions in x and y about O.
+            List_lines_X = []
+            List_column_X = []
+            List_lines_O = []
+            List_column_O = []
+
+            # Winner :
+            self.gagnant(List_X, List_O, List_column_X, List_lines_X, List_column_O, List_lines_O)
+
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
 
@@ -101,13 +112,8 @@ class Game :
             # Update the screen :
             pygame.display.flip()
 
-            # Lists :
-            List_X = []               # All positions in x and y about X.
-            List_O = []               # All positions in x and y about O.
-            List_lines_X = []
-            List_column_X = []
-            List_lines_O = []
-            List_column_O = []
+    # New function for the winner :
+    def winner(self, List_X, List_O, List_column_X, List_lines_X, List_column_O, List_lines_O):
 
             # Loop about the position of X or O :
             for line in range(0, len(self.grids.grid)):
