@@ -27,8 +27,16 @@ class Game :
 
     # Main function :
     def Main_function(self) :
-        # Loop :
+        # Loop when the game is running :
         while self.game_running:
+            # Loop when the screen is True :
+            while self.screen_begin:
+              # To receive all elements in pygame :
+                for event in pygame.event.get():
+                    # Quit the game :
+                    if event.type == pygame.QUIT:
+                        sys.exit()  
+
             # To receive all elements in pygame :
             for event in pygame.event.get():
                 # Quit the game :
