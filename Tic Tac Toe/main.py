@@ -97,6 +97,24 @@ class Game :
                 if List_lines_X == List_column_X or List_lines_X == List_column_X[::-1] :
                     print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
 
+            # New condition if the winner has 3 circles on the game :
+            if len(List_O) >= 3:
+                for (line, column) in List_O:
+                    List_lines_O.append(line)
+                    List_column_O.append(column)
+
+                # New condition if the player win horizontally :
+                if List_lines_O.count(0) == 3 or List_lines_O.count(1) == 3 or List_lines_O.count(2) == 3 :
+                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+
+                # New condition if the player win vertically :
+                if List_column_O.count(0) == 3 or List_column_O.count(1) == 3 or List_column_O.count(2) == 3 :
+                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+            
+                # New condition is the player win diagonally :
+                if List_lines_O == List_column_O or List_lines_O == List_column_O[::-1] :
+                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+
 
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
