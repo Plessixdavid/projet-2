@@ -37,6 +37,10 @@ class Game :
                     if event.type == pygame.QUIT:
                         sys.exit()  
 
+            # Background for the screen of the beginning :
+            self.screen.fill(230, 230, 230)
+            pygame.display.flip()
+
             # To receive all elements in pygame :
             for event in pygame.event.get():
                 # Quit the game :
