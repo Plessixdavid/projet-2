@@ -35,7 +35,12 @@ class Game :
                 for event in pygame.event.get():
                     # Quit the game :
                     if event.type == pygame.QUIT:
-                        sys.exit()  
+                        sys.exit() 
+
+                    # Display the screen of the game when player clicks on space :
+                    if event.type == pygame.KEYDOWN:
+                       if event.key == pygame.K_SPACE:
+                           self.screen_begin = False
 
             # Background for the screen of the beginning :
             self.screen.fill(230, 230, 230)
