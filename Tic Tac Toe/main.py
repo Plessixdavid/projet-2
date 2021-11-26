@@ -85,10 +85,14 @@ class Game :
                     List_lines_X.append(line)
                     List_column_X.append(column)
 
-                # New condition if the winner win horizontally :
+                # New condition if the player win horizontally :
                 if List_lines_X.count(0) == 3 or List_lines_X.count(1) == 3 or List_lines_X.count(2) == 3 :
                     print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
 
+                # New condition if the player win vertically :
+                if List_column_X.count(0) == 3 or List_column_X.count(1) == 3 or List_column_X.count(2) == 3 :
+                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+            
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
 
