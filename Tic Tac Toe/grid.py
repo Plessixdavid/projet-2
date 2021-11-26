@@ -57,3 +57,6 @@ class Grid:
             # The counter is 'ON' :
             self.counter_on = True
 
+    # New function to stare the value at None :
+    def stare_None(self, line, column, value):
+        self.grid[line][column] = value
