@@ -44,6 +44,17 @@ class Game :
 
             # Background for the screen of the beginning :
             self.screen.fill(230, 230, 230)
+
+            # Messages : 
+            self.create_message('big', 'Tic Tac Toe', (0, 0, 0), [200, 30, 200, 50])
+            self.create_message('small', 'Ce jeu se joue à deux, et chacun se verra attribuer un symbole.', (0, 0, 0), [50, 130, 400, 50])
+            self.create_message('small', 'X ou O', (0, 0, 0), [220, 150, 100, 100])
+            self.create_message('small', 'Le premier joueur qui réussit à aligner 3 de ses symboles gagne.', (0, 0, 0), [50, 170, 200, 50])
+            self.create_message('medium', 'Pour recommencer le jeu, appuyer sur Enter.', (0, 0, 0), [70, 350, 200, 50])
+            self.create_message('medium', 'Appuyer sur Espace pour commencer le jeu.', (0, 0, 0), [70, 400, 200, 50])
+            self.create_message('medium', 'Pour revenir à cet écran, appuyer sur ESC.', (0, 0, 0), [70, 450, 200, 50])
+
+
             pygame.display.flip()
 
             # To receive all elements in pygame :
@@ -152,7 +163,7 @@ class Game :
                 self.grids.stare_None(line, column, None)
 
     # New function about texts :
-    def create_message(self, font):
+    def create_message(self, font, message, color, message_rectangle):
         # Font of the message :
         if font == 'small':
             # Create a Font + height + bold text = False:
@@ -164,7 +175,9 @@ class Game :
         elif font == 'big':
             font = pygame.font.SysFont('Lato', 40, True)
 
-        
+        message = font.render(message, False, color)
+        self.screen.blit(message, message_rectangle)
+
 if __name__ == '__main__':
     pygame.init()
     Game().Main_function()
