@@ -12,7 +12,7 @@ GREEN = (0, 142, 142)
 GREY = (107, 107, 107)
 YELLOW1 = (195, 180, 112)
 PLAYER_COLOUR = (190, 194, 15 )
-
+RED =(247, 35, 12)
 # font settings
 START_TEXT_SIZE = 16
 START_FONT = 'Comic Sans MS'
