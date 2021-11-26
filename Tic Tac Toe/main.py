@@ -79,10 +79,15 @@ class Game :
                         O_position = (line, column)
                         List_O.append(O_position)
 
-            # New condition :
+            # New condition if the winner has 3 cross on the game :
             if len(List_X) >= 3:
                 for (line, column) in List_X:
-                    
+                    List_lines_X.append(line)
+                    List_column_X.append(column)
+
+                # New condition if the winner win horizontally :
+                if List_lines_X.count(0) == 3 or List_lines_X.count(1) == 3 or List_lines_X.count(2) == 3 :
+                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
 
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
