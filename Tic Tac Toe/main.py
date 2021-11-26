@@ -151,6 +151,20 @@ class Game :
             for column in range(0, len(self.grids.grid)):
                 self.grids.stare_None(line, column, None)
 
+    # New function about texts :
+    def create_message(self, font):
+        # Font of the message :
+        if font == 'small':
+            # Create a Font + height + bold text = False:
+            font = pygame.font.SysFont('Lato', 20, False)
+        
+        elif font == 'medium':
+            font = pygame.font.SysFont('Lato', 30, False)
+
+        elif font == 'big':
+            font = pygame.font.SysFont('Lato', 40, True)
+
+        
 if __name__ == '__main__':
     pygame.init()
     Game().Main_function()
