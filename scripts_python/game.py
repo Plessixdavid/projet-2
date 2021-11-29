@@ -1,17 +1,14 @@
 # coding : utf-8
 
 import pygame
-import pytmx
-import pyscroll
 from map import MapManager
-
 from player import Player
 
 class Game:
 
     def __init__(self):
         # créer la fenetre du jeu
-        self.screen = pygame.display.set_mode((800,700))
+        self.screen = pygame.display.set_mode((900,780))
         pygame.display.set_caption("PYGAMON")
 
         # generer un joueur
