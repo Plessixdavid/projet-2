@@ -25,7 +25,7 @@ class MapManager:
         self.screen = screen
         self.player = player
         self.current_map = "world"
-#"enter_house"  "my_house"  "spawn_house"
+
         self.register_map("world", portals=[
             Portal(from_world="world", origin_point="teleporter", target_world="new_world", teleport_point="spawn_player")
         ]) 
