@@ -28,17 +28,33 @@ class Player (pygame.sprite.Sprite):
         self.image = self.images[name]
         self.image.set_colorkey((0, 0, 0))
 
-    def move_right(self): 
-        self.position[0] += self.speed
-
-    def move_left(self): 
-        self.position[0] -= self.speed
-
     def move_up(self): 
-        self.position[1] -= self.speed
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_SPACE]:
+            self.position[1] -= self.speed*2
+        else:
+            self.position[1] -= self.speed
 
     def move_down(self): 
-        self.position[1] += self.speed
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_SPACE]:
+            self.position[1] += self.speed*2
+        else:
+            self.position[1] += self.speed
+
+    def move_right(self): 
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_SPACE]:
+            self.position[0] += self.speed*2
+        else:
+            self.position[0] += self.speed
+
+    def move_left(self): 
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_SPACE]:
+            self.position[0] -= self.speed*2
+        else:
+            self.position[0] -= self.speed
         
     def update(self):
         self.rect.topleft = self.position
