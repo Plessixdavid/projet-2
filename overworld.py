@@ -61,6 +61,11 @@ class Overworld:
         self.setup_nodes()
         self.setup_icon()
         self.bg_overworld = Bg_Overworld(8)
+
+        # Timer de l'overworld qui evite la capture du dernier mouvement.
+        self.start_time = pygame.time.get_ticks()
+        self.allow_input = False
+        self.timer_lenght = 300
     
     def setup_nodes(self):
         self.nodes = pygame.sprite.Group()
@@ -72,7 +77,6 @@ class Overworld:
                 node_sprite = Node(node_data['node_pos'],'locked', self.speed, node_data['node_graphics'])
             self.nodes.add(node_sprite)
            
-
     def draw_paths(self):
         # comprehension permettant de parcourir la liste de position des nodes et de verifier 
         # si le chemin s'arrete bien au level max.
@@ -89,7 +93,7 @@ class Overworld:
     def input(self):
         #Création du mouvement sur l'overworld
         keys = pygame.key.get_pressed()
-        if not self.moving:
+        if not self.moving and self.allow_input:
             if keys[pygame.K_RIGHT] and self.current_level < self.max_level:
                 self.move_direction = self.get_movement_data('next')
                 self.current_level += 1
@@ -119,7 +123,14 @@ class Overworld:
                 self.moving = False
                 self.move_direction = pygame.math.Vector2(0,0)
 
+    def input_timer(self):
+        if not self.allow_input:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.start_time >= self.timer_lenght:
+                self.allow_input = True
+
     def run(self):
+        self.input_timer()
         self.input()
         self.update_icon_pos()
         self.icon.update()

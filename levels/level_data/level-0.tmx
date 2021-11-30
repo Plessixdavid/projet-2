@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="64" height="12" tilewidth="64" tileheight="64" infinite="0" nextlayerid="11" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="64" height="12" tilewidth="64" tileheight="64" infinite="0" nextlayerid="20" nextobjectid="1">
  <editorsettings>
-  <export target="../0/level_0_coins.csv" format="csv"/>
+  <export target="../0/level_0.csv" format="csv"/>
  </editorsettings>
  <tileset firstgid="1" source="../../../tuile med/tmx/Tileset.tsx"/>
  <tileset firstgid="66" source="../../../2 - Level/levels/tilesets/terrain_tiles.tsx"/>
@@ -10,9 +10,50 @@
  <tileset firstgid="141" source="../tilesets/enemy_tiles.tsx"/>
  <tileset firstgid="143" source="../tilesets/piegepik.tsx"/>
  <tileset firstgid="215" source="../tilesets/player1.tsx"/>
- <layer id="4" name="coins" width="64" height="12">
+ <tileset firstgid="217" source="door (1).tsx"/>
+ <layer id="11" name="background" width="64" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFXRTo7aaaKwYXQPcXMWFESTgSA2ht/lAH3TjYMDDQ4TfQ9o8C2oHBVg4ONveQA/DlF2r6jxizqJV3h0O8jALSAD3KfXQ7uvDIjQIEAACZYwtc
+   eJztwwENAAAMw6D6NzC7F3JIWDVVVfXFAzV+xRA=
+  </data>
+ </layer>
+ <layer id="12" name="terrain" width="64" height="12">
+  <data encoding="base64" compression="zlib">
+   eJy9VtEKgzAMzP9/gfMp28tk65P4gVvAQCiJXtrqQVHKJddL0+pERA9gzCBPuU9gMPVjSqzLW+cL1EF5yr3Lf08Oib3C/4ew3mAw3/s/vgl9FKKP+qo9zY2aNs/SmCODszPg7RVSa427ClftuQVTrq8RyLp7+gPJb+sS3X+IPlPev6fnaWl/ZPawZc85mEd8MchTlEBvdA/VOKoLO1yp+0j/ZX9ulZ5qIfeYcr3Rc845mEfua4lF/G/mGemNBnoWOMmvY63/ybxLvdb9vdf/ek5pBif5di0SG32P7bz1v1Dcx14vI31fDL9QDkf/WmdDvPwATRuSAw==
+  </data>
+ </layer>
+ <layer id="13" name="enemies" width="64" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2B4g14C/FEw9MFonI6CoQB6cbBHwSgYSoDcOpUeaR5fHhvNc6gAAKq5BhA=
+  </data>
+ </layer>
+ <layer id="14" name="constraints" width="64" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2B4gj4K5UfB4Aaj8TsKhgIgJh2OptVRMBQAOWkZnx5K0z0l+kfzHAMDABCkBqk=
+  </data>
+ </layer>
+ <layer id="15" name="objects" width="64" height="12">
+  <data encoding="base64" compression="zlib">
+   eJzVVjESgCAM4/+7jo6Oboz8TRl6x/VKaYCKZpOWJmmBM4R/Ia4W8GBn329q8uLinmprEiKQi2rgSIP7PaBpmoEYsLmv6oOGUhPqJ+d697jkIm2HE0cKNv+UM8M7cpeJ9+zgsc41e2ppknyjZ4fDwkn1L4G7hVIzqtPizXp2UPD7KaFc1/pIsR7/lpl7vwW1+igv6l/jpdgX3/YaRub0hf+8bTBey7Xs6+2dVluK3XDhMuI=
+  </data>
+ </layer>
+ <layer id="16" name="coins" width="64" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQwF0D7QDoKBroB1ABoCFHbXdTus4GYphTQ9A73Chp32DJZ8PNkBKuAzmfEOrsmg4AlLCaDQ8KQOkhh+6emrFFbXiEVt5MVq2YgIAKF8L5Q==
+  </data>
+ </layer>
+ <layer id="17" name="player" width="64" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BkgRs4xK/T1RWjYBSMglEwCkbBKBgFAwMAM+0BsA==
+  </data>
+ </layer>
+ <layer id="19" name="piegepik" width="64" height="12">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+ <layer id="18" name="doors" width="64" height="12">
+  <data encoding="base64" compression="zlib">
+   eJztyDEBAAAIA6D1b2gbM+xVOEnglykfAOCSBU7hAbM=
   </data>
  </layer>
 </map>
