@@ -59,6 +59,7 @@ class App:
 ############################## intro Functions #######################
 
     def start_events(self):
+         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
