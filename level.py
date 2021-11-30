@@ -1,29 +1,40 @@
-from os import path
 import pygame
-from pygame import surface
-from particles import ParticleEffect
 from support import import_csv_layout, import_cut_graphics
 from setting import tile_size, screen_width, screen_height
-from tiles import AnimatedTile, Tile, StaticTile, AnimatedTile, Coin
+from tiles import Tile, StaticTile, Coin
 from enemy import Enemy
 from player import Player
 from particles import ParticleEffect
+from game_data import levels
 
 class Level:
-    def __init__(self, level_data, surface):
+    def __init__(self, current_level, surface, create_overworld, change_coins, change_health):
         # general setup
         self.display_surface = surface
         self.world_shift = 0
         self.current_x = None
 
+        #overworld connection
+        self.create_overworld = create_overworld
+        self.current_level = current_level
+        level_data = levels[self.current_level]
+        self.new_max_level = level_data['unlock']
+
         # player
         player_layout = import_csv_layout(level_data['player'])
         self.player = pygame.sprite.GroupSingle()
         self.goal = pygame.sprite.GroupSingle()
-        self.player_setup(player_layout)
+        self.player_setup(player_layout, change_health)
+
+        #user interface
+        self.change_coins = change_coins
 
         # dust
         self.dust_sprite = pygame.sprite.GroupSingle()
+        self.player_on_ground = False
+
+        # explosion particles
+        self.explosion_sprites =pygame.sprite.Group()
 
 
         # terrain setup
@@ -54,7 +65,6 @@ class Level:
         background_layout = import_csv_layout(level_data['backgrounds'])
         self.background_sprites = self.create_tile_group(background_layout, 'backgrounds')
 
-
     def create_tile_group(self,layout,type):
         sprite_group = pygame.sprite.Group()
 
@@ -83,8 +93,8 @@ class Level:
                         sprite = StaticTile(tile_size,x,y, tile_surface)
 
                     if type == 'coins':
-                        if val == '0': sprite = Coin(tile_size,x,y,'graphics/coins/gold')
-                        if val == '1': sprite = Coin(tile_size,x,y,'graphics/coins/silver')
+                        if val == '0': sprite = Coin(tile_size,x,y,'graphics/coins/gold',5)
+                        if val == '1': sprite = Coin(tile_size,x,y,'graphics/coins/silver',1)
                     
                     if type == 'enemies':
                         sprite = Enemy(tile_size,x,y)
@@ -104,19 +114,18 @@ class Level:
 
         return sprite_group
 
-    def player_setup(self,layout):
+    def player_setup(self, layout, change_health):
         for row_index, row in enumerate(layout):
             for col_index, val in enumerate(row):
                 x = col_index * tile_size
                 y = row_index * tile_size
                 if val == '0':
-                    sprite =Player((x,y),self.display_surface,self.create_jump_particles)
+                    sprite =Player((x,y), self.display_surface, self.create_jump_particles , change_health)
                     self.player.add(sprite)
                 if val == '1':
                     hat_surface = pygame.image.load('graphics/separate/items/doors/1.png').convert_alpha()
                     sprite =StaticTile(tile_size,x,y,hat_surface)
                     self.goal.add(sprite)
-
 
     def enemy_collision_reverse(self):
         for enemy in self.enemy_sprites.sprites():
@@ -130,7 +139,6 @@ class Level:
             pos += pygame.math.Vector2(10,-5)
         jump_particle_sprite = ParticleEffect(pos,'jump')
         self.dust_sprite.add(jump_particle_sprite)
-
 
     def horizontal_movement_collision(self):
         player = self.player.sprite
@@ -203,6 +211,37 @@ class Level:
             fall_dust_particle = ParticleEffect(self.player.sprite.rect.midbottom - offset,'land')
             self.dust_sprite.add(fall_dust_particle)
 
+    def check_death(self):
+        if self.player.sprite.rect.top > screen_height:
+            self.create_overworld(self.current_level,0)
+
+    def check_win(self):
+        if pygame.sprite.spritecollide(self.player.sprite,self.goal,False):
+            self.create_overworld(self.current_level,0, self.new_max_level)
+
+    def check_coin_collisions(self):
+        collided_coins = pygame.sprite.spritecollide(self.player.sprite,self.coin_sprites,True)
+        if collided_coins:
+            for coin in collided_coins:
+                self.change_coins(coin.value)
+
+    def check_enemy_collisions(self):
+        enemy_collisions = pygame.sprite.spritecollide(self.player.sprite, self.enemy_sprites,False)
+
+        if enemy_collisions:
+            for enemy in enemy_collisions:
+                enemy_center = enemy.rect.centery
+                enemy_top = enemy.rect.top
+                player_bottom = self.player.sprite.rect.bottom
+                if enemy_top < player_bottom < enemy_center and self.player.sprite.direction.y >= 0:
+                    self.player.sprite.direction.y = -15
+                    explosion_sprite = ParticleEffect(enemy.rect.center, 'explosion')
+                    self.explosion_sprites.add(explosion_sprite)
+                    enemy.kill()
+                else:
+                    self.player.sprite.get_damage()
+                
+
     def run(self):
         # run the entire game
 
@@ -221,6 +260,8 @@ class Level:
         self.constraint_sprites.update(self.world_shift)
         self.enemy_collision_reverse()
         self.enemy_sprites.draw(self.display_surface)
+        self.explosion_sprites.update(self.world_shift)
+        self.explosion_sprites.draw(self.display_surface)
         
 
         # piegepik
@@ -252,3 +293,9 @@ class Level:
         self.player.draw(self.display_surface)
         self.goal.update(self.world_shift)
         self.goal.draw(self.display_surface)
+
+        self.check_death()
+        self.check_win()
+
+        self.check_coin_collisions()
+        self.check_enemy_collisions()

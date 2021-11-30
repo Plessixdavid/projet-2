@@ -1,58 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="64" height="12" tilewidth="64" tileheight="64" infinite="0" nextlayerid="11" nextobjectid="1">
  <editorsettings>
-  <export target="../0/level_0.csv" format="csv"/>
+  <export target="../0/level_0_coins.csv" format="csv"/>
  </editorsettings>
  <tileset firstgid="1" source="../../../tuile med/tmx/Tileset.tsx"/>
- <tileset firstgid="73" source="../../../2 - Level/levels/tilesets/terrain_tiles.tsx"/>
- <tileset firstgid="145" source="../tilesets/coin_tiles.tsx"/>
- <tileset firstgid="147" source="../tilesets/logo deb.tsx"/>
- <tileset firstgid="148" source="../tilesets/enemy_tiles.tsx"/>
- <tileset firstgid="150" source="../tilesets/piegepik.tsx"/>
- <tileset firstgid="222" source="../tilesets/player1.tsx"/>
- <layer id="1" name="background" width="64" height="12" visible="0">
+ <tileset firstgid="66" source="../../../2 - Level/levels/tilesets/terrain_tiles.tsx"/>
+ <tileset firstgid="138" source="../tilesets/coin_tiles.tsx"/>
+ <tileset firstgid="140" source="../tilesets/logo deb.tsx"/>
+ <tileset firstgid="141" source="../tilesets/enemy_tiles.tsx"/>
+ <tileset firstgid="143" source="../tilesets/piegepik.tsx"/>
+ <tileset firstgid="215" source="../tilesets/player1.tsx"/>
+ <layer id="4" name="coins" width="64" height="12">
   <data encoding="base64" compression="zlib">
-   eJwLZGBgCBzFgwJH4sED7bZR/4/6f9T/o/4f9T9puAYNjzT/j/T4H/X/4PY/A9T8kkEQzgPhfwBCnPX3
-  </data>
- </layer>
- <layer id="2" name="terrain" width="64" height="12">
-  <data encoding="base64" compression="zlib">
-   eJy9VsFKw0AQHT2qp+jFNhWEIKjgP3jUY+up8dJWBUEFEXsXVLBf7QzusK+TTbIJXR88kk12NvNmZ2eyIqK3BDxnXjKHjqtIux+w+Q/eUjocMxeOz5E2j8yDZB79ISOv/445cbzvuM4YbG8C70/J7+t75JpWf0bVeGTd3KwA9WNeoo8z8vHAe8QUbLvk0Q5zN0BBk/4HeLbX4XsWYr/vWOf3K/l44L3ig/kJ4y/md8S3Rfug4b3oz8nHROaq/hd3zdwcjMEhVeM5qnkva7bp3xSumNfkz0mdds0J8cnWRNW/dFfVr3Fqw5EZx+x/Xzy56xZzmzknXwNtHcS9asqJvGHusMWfgnlhnqXQLzViAhTdqes4onDX0DmwlJhtSr/WJKkRto/30a+5KuehqcbZGjpqmGuB+y/97wyIfUxzGfuc7XVLCkN6g9WPOYJrjGF8Aj7aGqfQGto3v1B/Sev/Q/g/gLlcOi5q5oRs0L8ZrCHEvJvCWM8q1jiMgWoP6S8oDqg/5b8l1q3S0Pa4UI3Lab3O6/NBjU0ssf/9Av5NT4Y=
-  </data>
- </layer>
- <layer id="10" name="doors" width="64" height="12" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
-  </data>
- </layer>
- <layer id="8" name="piegepik" width="64" height="12">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMJhBLxo9CkbBKKANuAXFDEg0ITXoeBQQBr0MqOUZvjIOXe0ooA4AAGLNDO0=
-  </data>
- </layer>
- <layer id="3" name="objects" width="64" height="12" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgF+ID/QDtgFJAEAgbaAXjAcE1L+Wh8UuJgMMVXBB45mB8DsIiV08Y5VAeEwjoBjxx6HIMALfydj4OmB8iA0n1A3A/FE6Bi6H6lRrrFF6b09n84jczFF0640g9yOUkv/8fTyR5qA1zhi00cmxg7lB5K/qdFnTGU/E9NAADOqhBN
-  </data>
- </layer>
- <layer id="6" name="enemies" width="64" height="12" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFlIIpA+2AUTAKoGAwp8XB7LZRMLzASElr1PYnLvOoac9IiZtRQD+ALU2hi42mO0wAAFkjBl0=
-  </data>
- </layer>
- <layer id="7" name="constraints" width="64" height="12" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgF5ICpRIqNglFAa4Av3Q22NDnY3DMKKAewOJ2CRg+UO6ilbrACXO4n11/o+qbikSPXrtH6chRQG1ArvY9kAADbcwuj
-  </data>
- </layer>
- <layer id="4" name="coins" width="64" height="12" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFEwdI72AG6P4ixp+0DovhGtbUAhNxsPGJ0RMMtP2jgHZgsMXtYHMPOQCfH6jpP3qW7cMhXkYBaYAecY6vvTKa5nADAOHIC+Y=
-  </data>
- </layer>
- <layer id="5" name="player" width="64" height="12" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJztzkERAAAEADD9Q1LFhwzu3JZgEay8DsCo6wAA8FYD3yABvg==
+   eJxjYBgFXRTo7aaaKwYXQPcXMWFESTgSA2ht/lAH3TjYMDDQ4TfQ9o8C2oHBVg4ONveQA/DlF2r6jxizqJV3h0O8jALSAD3KfXQ7uvDIjQIEAACZYwtc
   </data>
  </layer>
 </map>
