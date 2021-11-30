@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="33">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="34">
  <tileset firstgid="1" source="tuile_nature.tsx"/>
  <tileset firstgid="721" source="house.tsx"/>
  <layer id="1" name="background" width="50" height="50">
@@ -435,9 +435,6 @@
 </data>
  </layer>
  <objectgroup id="5" name="objects">
-  <object id="1" name="spawn_player" x="336" y="34">
-   <point/>
-  </object>
   <object id="11" type="collision" x="0" y="640" width="800" height="64"/>
   <object id="12" type="collision" x="448" y="704" width="64" height="96"/>
   <object id="13" type="collision" x="256" y="512" width="64" height="128"/>
@@ -454,11 +451,17 @@
   <object id="25" name="maison de citoyen" type="collision" x="160" y="534" width="32" height="26"/>
   <object id="26" type="collision" x="97" y="463" width="86" height="55"/>
   <object id="27" type="collision" x="97" y="271" width="86" height="55"/>
-  <object id="28" name="enter_house" x="117" y="307.5" width="16" height="19.5"/>
-  <object id="29" name="spawn_house_exit" x="110" y="327">
+  <object id="31" type="collision" x="304" y="0" width="96" height="32"/>
+  <object id="29" name="spawn_house_exit" type="spawn" x="110" y="327">
    <point/>
   </object>
-  <object id="31" type="collision" x="304" y="0" width="96" height="32"/>
-  <object id="32" name="teleporter" x="336" y="17" width="32" height="16"/>
+  <object id="28" name="enter_house" type="portal" x="117" y="307.5" width="16" height="19.5"/>
+  <object id="1" name="spawn_player" type="spawn" x="336" y="34">
+   <point/>
+  </object>
+  <object id="32" name="teleporter" type="portal" x="336" y="17" width="32" height="16"/>
+  <object id="33" name="player_start" x="336" y="282">
+   <point/>
+  </object>
  </objectgroup>
 </map>
