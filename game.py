@@ -157,20 +157,24 @@ class Game:
 
             self.player.save_location()
             self.handle_input()
+
+            self.update()
+            self.group.center(self.player.rect.center)
+
             
+
             if (self.player.old_position != self.player.position):
+                print(self.map)
                 sio.emit("UPDATE POS", {
                     'pos': self.player.position,
                     'map': self.map
                 })
 
-            self.update()
-            print(self.map)
-            self.group.center(self.player.rect.center)
-
             for player in players:
-                if player['id'] == my_sid or player['map'] != self.map:
+                if player['id'] == my_sid:
                     continue
+
+                print(player['map'] != self.map)
 
                 mul_player = Player(player['pos'][0],player['pos'][1])
                 mul_player.update()
