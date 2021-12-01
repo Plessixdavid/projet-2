@@ -134,7 +134,8 @@ class Game:
     def run(self, sio):
 
         sio.emit("JOIN", {
-            'pos': self.player.position
+            'pos': self.player.position,
+            'map': self.map
             })
         # gerer les FPS
         clock = pygame.time.Clock()
@@ -166,12 +167,10 @@ class Game:
             self.group.center(self.player.rect.center)
 
             for player in players:
-                if player['id'] == my_sid:
+                if player['id'] == my_sid or player['map'] != self.map:
                     continue
 
-                mul_player = Player(player['pos'][0],player['pos'][1])
-                mul_player.update()
-                self.group.add(mul_player, layer=99)
+                self.group.add(Player(player['pos'][0],player['pos'][1]).update(), layer=99)
 
             self.group.draw(self.screen)
             pygame.display.flip()
