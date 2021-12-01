@@ -171,7 +171,10 @@ class Game:
                 if player['id'] == my_sid or player['map'] != self.map:
                     continue
 
-                self.group.add(Player(player['pos'][0],player['pos'][1]).update(), layer=99)
+                mul_player = Player(player['pos'][0],player['pos'][1])
+                mul_player.update()
+
+                self.group.add(mul_player, layer=99)
 
             self.group.draw(self.screen)
             pygame.display.flip()
