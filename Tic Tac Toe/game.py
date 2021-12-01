@@ -191,9 +191,8 @@ class Game :
             elif List_column_O.count(0) == 3 or List_column_O.count(1) == 3 or List_column_O.count(2) == 3 :
                 print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
                 self.game_running = False
-            
+
             # New condition is the player win diagonally :
             elif List_lines_O == List_column_O or List_lines_O == List_column_O[::-1] :
                 print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
                 self.game_running = False
-
