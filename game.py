@@ -34,6 +34,7 @@ class Game:
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=6)
         self.group.add(self.player)
 
+        self.map = "world"
         # definir le rect de collision pour entrer dans la maison
         enter_house = tmx_data.get_object_by_name("enter_house")
         self.enter_house_rect = pygame.Rect(enter_house.x, enter_house.y, enter_house.width, enter_house.height)
@@ -114,7 +115,6 @@ class Game:
 
     def update(self):
         self.group.update()
-        self.map = "world"
 
         # verifier l'entrer dans la maison
         if self.map == "world" and self.player.feet.colliderect(self.enter_house_rect):
@@ -165,6 +165,7 @@ class Game:
                 })
 
             self.update()
+            print(self.map)
             self.group.center(self.player.rect.center)
 
             for player in players:
