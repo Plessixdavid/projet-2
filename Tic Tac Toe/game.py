@@ -3,7 +3,7 @@
 # Imports :
 import pygame
 import sys
-from grid import *
+from background import *
 
 # New class:
 class Game :
@@ -45,20 +45,20 @@ class Game :
                        if event.key == pygame.K_SPACE:
                            self.screen_begin = False
 
-            # Background for the screen of the beginning :
-            self.screen.fill(230, 230, 230)
+                # Background for the screen of the beginning :
+                self.screen.fill((240, 240, 240))
 
-            # Messages : 
-            self.create_message('big', 'Tic Tac Toe', (0, 0, 0), [200, 30, 200, 50])
-            self.create_message('small', 'Ce jeu se joue à deux, et chacun se verra attribuer un symbole.', (0, 0, 0), [50, 130, 400, 50])
-            self.create_message('small', 'X ou O', (0, 0, 0), [220, 150, 100, 100])
-            self.create_message('small', 'Le premier joueur qui réussit à aligner 3 de ses symboles gagne.', (0, 0, 0), [50, 170, 200, 50])
-            self.create_message('medium', 'Pour recommencer le jeu, appuyer sur Enter.', (0, 0, 0), [70, 350, 200, 50])
-            self.create_message('medium', 'Appuyer sur Espace pour commencer le jeu.', (0, 0, 0), [70, 400, 200, 50])
-            self.create_message('medium', 'Pour revenir à cet écran, appuyer sur ESC.', (0, 0, 0), [70, 450, 200, 50])
+                # Messages : 
+                self.create_message('big', 'Tic Tac Toe', (0, 0, 0), [200, 30, 200, 50])
+                self.create_message('small', 'Ce jeu se joue à deux, et chacun se verra attribuer un symbole.', (0, 0, 0), [50, 130, 400, 50])
+                self.create_message('small', 'X ou O', (0, 0, 0), [220, 150, 100, 100])
+                self.create_message('small', 'Le premier joueur qui réussit à aligner 3 de ses symboles gagne.', (0, 0, 0), [50, 170, 200, 50])
+                self.create_message('medium', 'Pour recommencer le jeu, appuyer sur Enter.', (0, 0, 0), [70, 350, 200, 50])
+                self.create_message('medium', 'Appuyer sur Espace pour commencer le jeu.', (0, 0, 0), [70, 400, 200, 50])
+                self.create_message('medium', 'Pour revenir à cet écran, appuyer sur ESC.', (0, 0, 0), [70, 450, 200, 50])
 
 
-            pygame.display.flip()
+                pygame.display.flip()
 
             # To receive all elements in pygame :
             for event in pygame.event.get():
@@ -110,7 +110,7 @@ class Game :
             List_column_O = []
 
             # Winner :
-            self.gagnant(List_X, List_O, List_column_X, List_lines_X, List_column_O, List_lines_O)
+            self.winner(List_X, List_O, List_column_X, List_lines_X, List_column_O, List_lines_O)
 
             # Colors of the windows :
             self.screen.fill((240, 240, 240))
@@ -145,50 +145,50 @@ class Game :
 
     # New function for the winner :
     def winner(self, List_X, List_O, List_column_X, List_lines_X, List_column_O, List_lines_O):
-            # Loop about the position of X or O :
-            for line in range(0, len(self.grids.grid)):
-                for column in range(0, len(self.grids.grid)):
-                    # Condition :
-                    if self.grids.grid[line][column] == 'X':
-                        X_position = (line, column)
-                        List_X.append(X_position)
-                    elif self.grids.grid[line][column] == 'O':
-                        O_position = (line, column)
-                        List_O.append(O_position)
+        # Loop about the position of X or O :
+        for line in range(0, len(self.grids.grid)):
+            for column in range(0, len(self.grids.grid)):
+                # Condition :
+                if self.grids.grid[line][column] == 'X':
+                    X_position = (line, column)
+                    List_X.append(X_position)
+                elif self.grids.grid[line][column] == 'O':
+                    O_position = (line, column)
+                    List_O.append(O_position)
 
-            # New condition if the winner has 3 cross on the game :
-            if len(List_X) >= 3:
-                for (line, column) in List_X:
-                    List_lines_X.append(line)
-                    List_column_X.append(column)
+        # New condition if the winner has 3 cross on the game :
+        if len(List_X) >= 3:
+            for (line, column) in List_X:
+                List_lines_X.append(line)
+                List_column_X.append(column)
 
-                # New condition if the player win horizontally :
-                if List_lines_X.count(0) == 3 or List_lines_X.count(1) == 3 or List_lines_X.count(2) == 3 :
-                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
-
-                # New condition if the player win vertically :
-                if List_column_X.count(0) == 3 or List_column_X.count(1) == 3 or List_column_X.count(2) == 3 :
-                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
-                
-                # New condition is the player win diagonally :
-                if List_lines_X == List_column_X or List_lines_X == List_column_X[::-1] :
-                    print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
-
-            # New condition if the winner has 3 circles on the game :
-            if len(List_O) >= 3:
-                for (line, column) in List_O:
-                    List_lines_O.append(line)
-                    List_column_O.append(column)
-
-                # New condition if the player win horizontally :
-                if List_lines_O.count(0) == 3 or List_lines_O.count(1) == 3 or List_lines_O.count(2) == 3 :
-                    print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
-
-                # New condition if the player win vertically :
-                if List_column_O.count(0) == 3 or List_column_O.count(1) == 3 or List_column_O.count(2) == 3 :
-                    print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
+            # New condition if the player win horizontally :
+            if List_lines_X.count(0) == 3 or List_lines_X.count(1) == 3 or List_lines_X.count(2) == 3 :
+                print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
             
-                # New condition is the player win diagonally :
-                if List_lines_O == List_column_O or List_lines_O == List_column_O[::-1] :
-                    print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
+            # New condition if the player win vertically :
+            elif List_column_X.count(0) == 3 or List_column_X.count(1) == 3 or List_column_X.count(2) == 3 :
+                print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+                
+            # New condition is the player win diagonally :
+            elif List_lines_X == List_column_X or List_lines_X == List_column_X[::-1] :
+                print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
+
+        # New condition if the winner has 3 circles on the game :
+        if len(List_O) >= 3:
+            for (line, column) in List_O:
+                List_lines_O.append(line)
+                List_column_O.append(column)
+
+            # New condition if the player win horizontally :
+            if List_lines_O.count(0) == 3 or List_lines_O.count(1) == 3 or List_lines_O.count(2) == 3 :
+                print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
+
+            # New condition if the player win vertically :
+            elif List_column_O.count(0) == 3 or List_column_O.count(1) == 3 or List_column_O.count(2) == 3 :
+                print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
+            
+            # New condition is the player win diagonally :
+            elif List_lines_O == List_column_O or List_lines_O == List_column_O[::-1] :
+                print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
 
