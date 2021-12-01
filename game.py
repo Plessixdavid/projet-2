@@ -135,7 +135,7 @@ class Game:
 
         sio.emit("JOIN", {
             'pos': self.player.position,
-            'map': self.map
+            'map': "world"
             })
         # gerer les FPS
         clock = pygame.time.Clock()
@@ -160,7 +160,8 @@ class Game:
             
             if (self.player.old_position != self.player.position):
                 sio.emit("UPDATE POS", {
-                    'pos': self.player.position
+                    'pos': self.player.position,
+                    'map': self.map
                 })
 
             self.update()
