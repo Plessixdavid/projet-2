@@ -13,3 +13,8 @@ def Windows():
 
     # Color of the screen : black :
     screen.fill((0, 0, 0))
+
+# New function about limits of the screen :      
+def create_limits():
+    pygame.draw.rect(Windows, (255, 255, 255), (100, 100, 600, 500), 3)
+        
