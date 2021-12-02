@@ -68,6 +68,17 @@ class Game :
                 or (self.snake_position_y <= 100) or (self.snake_position_y >= 600) :
                 self.game_running = False
 
+            # Condition if the snake eats the apple :
+            if self.apple_position_y == self.snake_position_y and self.snake_position_x == self.apple_position_x:
+                self.apple_position_x = random.randrange(110,690,10)
+                self.apple_position_y = random.randrange(110,590,10)                
+                
+                # Increase the height of the snake +1 :
+                self.height_body_snake += 1
+                
+                # Increase the score of the player +1 :
+                self.score += 1
+
             # Limits of the game in the screen :
             create_limits()
 
@@ -84,6 +95,6 @@ class Game :
     # New function : display differents elements : 
     def display_elements(self):
         # Display the snake :
-        self.screen.blit(self.image_snake_head,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
-        # Display the apple :
-        pygame.draw.rect(self.screen, (255, 0, 0), (self.apple_position_x, self.apple_position_y, self.apple, self.apple))
+        # Windows.blit(self.image_snake_head,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
+        # Display the apple (color : red) :
+        pygame.draw.rect(Windows, (255, 0, 0), (self.apple_position_x, self.apple_position_y, self.apple, self.apple))
