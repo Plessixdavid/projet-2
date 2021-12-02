@@ -18,4 +18,6 @@ class Game :
 
     # New function : Main_function :
     def Main_function(self):
-        pass
+        # Loop when the game is running : 
+        while self.game_running:
+            
