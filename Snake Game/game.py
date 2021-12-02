@@ -98,6 +98,9 @@ class Game :
             head_snake.append(self.snake_position_x)
             head_snake.append(self.snake_position_y)
 
+            # Append snake's head positions in the list of snake positions : 
+            self.positions_snake.append(head_snake)
+            
             # Update the screen :     
             pygame.display.flip()
 
