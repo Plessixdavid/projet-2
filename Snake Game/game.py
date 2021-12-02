@@ -20,4 +20,12 @@ class Game :
     def Main_function(self):
         # Loop when the game is running : 
         while self.game_running:
+            # Loop to verify the event :
+            for evenement in pygame.event.get():
+                # Close the windows :
+                if evenement.type == pygame.QUIT:
+                    sys.exit()
+        
+            self.screen.fill((0, 0, 0))
+            pygame.display.flip()
             

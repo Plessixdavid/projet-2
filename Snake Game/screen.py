@@ -13,14 +13,3 @@ class Windows :
 
         # Title of the game :
         pygame.display.set_caption('Jeu Snake')
-
-    # New function : event(self) :
-    def event(self):
-        # Verify the evenements when the game is running :
-        for evenement in pygame.event.get():
-            # Close the windows :
-            if evenement.type == pygame.QUIT:
-                sys.exit()
-        
-        self.screen.fill((0, 0, 0))
-        pygame.display.flip()
