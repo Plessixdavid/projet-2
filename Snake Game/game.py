@@ -46,6 +46,12 @@ class Game :
 
         # Variable for the screen of the beginning :
         self.screen_beginning = True
+
+        # Charge image :
+        self.head_snake = pygame.image.load('Snake Game/head_snake.png')
+        self.image = pygame.image.load('snake-game.jpg')
+        # Shrink the image :
+        self.image_title = pygame.transform.scale(self.image, (200, 100))
         
     # New function : Main_function :
     def Main_function(self):
