@@ -4,6 +4,7 @@
 import pygame
 import sys
 import random
+import os
 
 # New class : Game :
 class Game :
@@ -12,7 +13,7 @@ class Game :
         # Resolution of the screen :
         self.screen = pygame.display.set_mode((800, 600))     # Double parentheses as a tuple.
         # Title of the game :
-        pygame.display.set_caption('Jeu Snake')
+        pygame.display.set_caption('Jeu Snake 🐍')
 
         # Variable : game_running : 
         self.game_running = True
@@ -112,7 +113,7 @@ class Game :
             # Condition if the snake is out the limits of the rectangle :
             if (self.snake_position_x <= 100) or (self.snake_position_x >= 700) \
                 or (self.snake_position_y <= 100) or (self.snake_position_y >= 600) :
-                print("Ton serpent s'est pris un mur, tu as donc perdu.")
+                print("Ton 🐍 s'est pris un mur, tu as donc perdu.")
                 sys.exit()
 
             # Movements of the snake :
@@ -199,7 +200,7 @@ class Game :
         for part_snake in self.positions_snake[:-1]:
             if part_snake == head_snake :
                 self.game_running = False
-                print("Ton serpent s'est mordu la queue, tu as perdu.")
+                print("Ton 🐍 s'est mordu la queue, tu as perdu.")
 
     # New function to create messages :
     def create_message(self, font, message, message_rectangle, color):
