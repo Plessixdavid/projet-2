@@ -175,6 +175,20 @@ class Game :
             if part_snake == head_snake :
                 self.game_running = False
 
+    # New function to create messages :
+    def create_message(self, font, message, message_rectangle, color):
+        if font == 'small':
+            font = pygame.font.SysFont('Lato', 20 ,False)
+        elif font == 'medium':
+            font = pygame.font.SysFont('Lato', 30 ,False)
+        elif font == 'big':
+            font = pygame.font.SysFont('Lato', 40 , True)
+        
+        # Variable to display the text :
+        message = font.render(message, True, color)
+        # Display on the screen :
+        self.screen.blit(message, message_rectangle)
+
     def create_limits(self):
         pygame.draw.rect(Windows, (255, 255, 255), (100, 100, 600, 500), 3)
 
