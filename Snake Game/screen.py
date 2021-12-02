@@ -2,7 +2,6 @@
 
 # Imports :
 import pygame
-import sys
 
 # New function : __init__(self) :
 def Windows():
