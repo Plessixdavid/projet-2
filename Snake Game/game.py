@@ -57,9 +57,14 @@ class Game :
                         self.snake_direction_y = -10
                         self.snake_direction_x = 0
 
+            # Condition if the snake is out the limits of the rectangle :
+            if (self.snake_position_x <= 100) or (self.snake_position_x >= 700) \
+                or (self.snake_position_y <= 100) or (self.snake_position_y >= 600) :
+                self.game_running = False
+
             # Limits of the game in the screen :
             create_limits()
-            
+
             # Update the screen :     
             pygame.display.flip()
 
