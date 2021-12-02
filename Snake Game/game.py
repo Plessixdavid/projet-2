@@ -7,3 +7,6 @@ import random
 
 # New class : Game :
 class Game :
+    # New function : __init__(self) :
+    def __init__(self):
+        pass
