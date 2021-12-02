@@ -27,6 +27,11 @@ class Game :
         # Variable about the body of the snake :
         self.snake_body = 10
 
+        # Position of the apple :
+        self.apple_position_x = random.randrange(110, 690, 10)
+        self.apple_position_y = random.randrange(110, 590, 10)
+        self.apple = 10
+
     # New function : Main_function :
     def Main_function(self):
         # Loop when the game is running : 
