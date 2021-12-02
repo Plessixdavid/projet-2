@@ -11,7 +11,7 @@ class Game :
     # New function : __init__(self) :
     def __init__(self):
         # Class Windows of the file screen :
-        Windows()
+        Screen()
 
         # Variable : game_running : 
         self.game_running = True
@@ -26,6 +26,4 @@ class Game :
                 if evenement.type == pygame.QUIT:
                     sys.exit()
         
-            self.screen.fill((0, 0, 0))
-            pygame.display.flip()
             
