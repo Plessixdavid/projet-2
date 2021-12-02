@@ -12,4 +12,6 @@ class Game :
     def __init__(self):
         # Class Windows of the file screen :
         Windows()
-        
+
+        # Variable : game_running : 
+        self.game_running = True
