@@ -2,8 +2,7 @@
 
 # Imports :
 
-# New class :
-class Snake :
-    # New function : Snake :
-    def Snake(self):
-        
+# New function : Snake :
+def Snake_position():
+    Snake_position_x = 300
+    Snake_position_y = 300

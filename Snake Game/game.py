@@ -5,16 +5,20 @@ import pygame
 import sys
 import random
 from screen import *
+from snake import *
 
 # New class : Game :
 class Game :
     # New function : __init__(self) :
     def __init__(self):
-        # Class Windows of the file screen :
-        Screen()
+        # Class Screen of the file screen :
+        Windows()
 
         # Variable : game_running : 
         self.game_running = True
+
+        # Position of the snake :
+        Snake_position()
 
     # New function : Main_function :
     def Main_function(self):
@@ -26,4 +30,5 @@ class Game :
                 if evenement.type == pygame.QUIT:
                     sys.exit()
         
-            
+            # Update the screen :     
+            pygame.display.flip()

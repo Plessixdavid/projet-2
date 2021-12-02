@@ -4,6 +4,7 @@
 import pygame
 from screen import *
 from game import *
+from snake import *
 
 # New function : main :
 def main():
