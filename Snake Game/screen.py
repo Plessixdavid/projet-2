@@ -2,6 +2,7 @@
 
 # Imports :
 import pygame
+import sys
 
 # New class : Windows :
 class Windows :
@@ -15,4 +16,11 @@ class Windows :
 
     # New function : event(self) :
     def event(self):
-        pass
+        # Verify the evenements when the game is running :
+        for evenement in pygame.event.get():
+            # Close the windows :
+            if evenement.type == pygame.QUIT:
+                sys.exit()
+        
+        self.screen.fill((0, 0, 0))
+        pygame.display.flip()
