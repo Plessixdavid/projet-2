@@ -38,9 +38,7 @@ class Game :
 
         # List that will store all snake's positions :
         self.positions_snake = []
-
         
-
     # New function : Main_function :
     def Main_function(self):
         # Loop when the game is running : 
@@ -95,10 +93,10 @@ class Game :
             self.clock.tick(10)
             self.speed_snake()
 
-            # List that will store the snake's position :
+            # List that will store the snake's head position :
             head_snake = []
-            head_snake.append(self.serpent_position_x)
-            head_snake.append(self.serpent_position_y)
+            head_snake.append(self.snake_position_x)
+            head_snake.append(self.snake_position_y)
 
             # Update the screen :     
             pygame.display.flip()
