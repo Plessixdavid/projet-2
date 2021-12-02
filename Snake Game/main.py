@@ -7,7 +7,9 @@ from game import *
 
 # New function : main :
 def main():
-    pass
+    pygame.init()
+    Game()
+    pygame.quit()
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     main()
