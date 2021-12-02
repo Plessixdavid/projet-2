@@ -159,9 +159,9 @@
   <object id="11" type="collision" x="272" y="0" width="48" height="320"/>
   <object id="12" type="collision" x="48" y="0" width="224" height="64"/>
   <object id="13" type="collision" x="48" y="272" width="224" height="48"/>
-  <object id="15" name="spawn_house" type="spawn" x="80" y="228">
+  <object id="1000" name="spawn_my_house" type="spawn" x="80" y="228">
    <point/>
   </object>
-  <object id="14" name="exit_house" type="portal" x="82" y="265" width="28" height="7"/>
+  <object id="2000" name="exit_my_house" type="portal" x="82" y="265" width="28" height="7"/>
  </objectgroup>
 </map>
