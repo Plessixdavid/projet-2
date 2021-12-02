@@ -18,6 +18,3 @@ def Windows():
 def create_limits():
     pygame.draw.rect(Windows, (255, 255, 255), (100, 100, 600, 500), 3)
         
-# New function : display differents elements : 
-def display_elements():
-    

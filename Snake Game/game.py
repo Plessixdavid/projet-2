@@ -30,6 +30,7 @@ class Game :
         # Position of the apple :
         self.apple_position_x = random.randrange(110, 690, 10)
         self.apple_position_y = random.randrange(110, 590, 10)
+        # Position at the beginning :
         self.apple = 10
 
     # New function : Main_function :
@@ -80,4 +81,9 @@ class Game :
         # Make the snake moves at up or at down on the screen :
         self.snake_position_y += self.snake_direction_y  
 
-    
+    # New function : display differents elements : 
+    def display_elements(self):
+        # Display the snake :
+        self.screen.blit(self.image_snake_head,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
+        # Display the apple :
+        pygame.draw.rect(self.screen, (255, 0, 0), (self.apple_position_x, self.apple_position_y, self.apple, self.apple))
