@@ -36,6 +36,11 @@ class Game :
         # Stare FPS :
         self.clock = pygame.time.Clock()
 
+        # List that will store all snake's positions :
+        self.positions_snake = []
+
+        
+
     # New function : Main_function :
     def Main_function(self):
         # Loop when the game is running : 
@@ -46,7 +51,8 @@ class Game :
                 # Close the windows :
                 if evenement.type == pygame.QUIT:
                     sys.exit()
-
+                
+                # Events for the direction of the snake :
                 # Event KEYDOWN :
                 if evenement.type == pygame.KEYDOWN:
                     # Event K_RIGHT :
@@ -85,8 +91,14 @@ class Game :
             # Limits of the game in the screen :
             create_limits()
 
-            # Speed of the snake :
+            # Speed initial of the snake :
             self.clock.tick(10)
+            self.speed_snake()
+
+            # List that will store the snake's position :
+            head_snake = []
+            head_snake.append(self.serpent_position_x)
+            head_snake.append(self.serpent_position_y)
 
             # Update the screen :     
             pygame.display.flip()
