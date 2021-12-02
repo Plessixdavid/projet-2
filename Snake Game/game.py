@@ -43,9 +43,26 @@ class Game :
 
         # Variable about the height of the snake :
         self.height_body_snake = 1
+
+        # Variable for the screen of the beginning :
+        self.screen_beginning = True
         
     # New function : Main_function :
     def Main_function(self):
+
+        # Loop for the screen of beginning :
+        while self.screen_beginning:
+            # Loop to verify the event :
+            for evenement in pygame.event.get():
+                if evenement.type == pygame.QUIT:
+                    sys.exit()
+                if evenement.type == pygame.KEYDOWN:
+                    if evenement.key == pygame.K_RETURN:
+                        self.screen_beginning = False
+
+                self.screen.fill((0, 0, 0))
+                pygame.display.flip()
+    
         # Loop when the game is running : 
         while self.game_running:
 
@@ -144,14 +161,13 @@ class Game :
 
         # Display parts of the snake :
         self.display_elements()
-        
+
     # New function : display the snake :
     def display_snake(self):
         # Display all parts of the snake :
         for parts_of_snake in self.positions_snake[:-1]:
             pygame.draw.rect(self.screen, (0, 255, 0), (parts_of_snake[0], parts_of_snake[1], self.body_snake, self.body_snake))
         
-
     # New function when the snake bite his end : 
     def bite_him(self,head_snake):
         # We said self.positions_snake[:-1] because he can't bite his head.
