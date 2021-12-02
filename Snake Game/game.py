@@ -24,6 +24,9 @@ class Game :
         self.snake_direction_x = 0
         self.snake_direction_y = 0
 
+        # Variable about the body of the snake :
+        self.snake_body = 10
+
     # New function : Main_function :
     def Main_function(self):
         # Loop when the game is running : 
