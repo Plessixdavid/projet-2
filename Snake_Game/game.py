@@ -48,8 +48,8 @@ class Game :
         self.screen_beginning = True
 
         # Charge image :
-        self.image_head_snake = pygame.image.load('Snake Game/head_snake.png')
-        self.image = pygame.image.load('Snake Game/snake-game.jpg')
+        self.image_head_snake = pygame.image.load('Snake_Game/head_snake.png')
+        self.image = pygame.image.load('Snake_Game/snake-game.jpg')
         # Shrink the image :
         self.image_title = pygame.transform.scale(self.image, (200, 100))
 
@@ -205,11 +205,11 @@ class Game :
     # New function to create messages :
     def create_message(self, font, message, message_rectangle, color):
         if font == 'small':
-            font = pygame.font.SysFont('Lato', 20 ,False)
+            font = pygame.font.SysFont('Lato', 20, False)
         elif font == 'medium':
-            font = pygame.font.SysFont('Lato', 30 ,False)
+            font = pygame.font.SysFont('Lato', 30, False)
         elif font == 'big':
-            font = pygame.font.SysFont('Lato', 40 , True)
+            font = pygame.font.SysFont('Lato', 40, True)
         
         # Variable to display the text :
         message = font.render(message, True, color)
