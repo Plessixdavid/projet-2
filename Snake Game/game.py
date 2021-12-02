@@ -2,3 +2,6 @@
 
 # Imports :
 import pygame
+
+# New class : Game :
+class Game :
