@@ -52,6 +52,9 @@ class Game :
         self.image = pygame.image.load('snake-game.jpg')
         # Shrink the image :
         self.image_title = pygame.transform.scale(self.image, (200, 100))
+
+        # Variable score :
+        self.score = 0
         
     # New function : Main_function :
     def Main_function(self):
@@ -73,7 +76,7 @@ class Game :
 
                 # Messages :
                 self.create_message('small', 'Le but du jeu est que le serpent se développe.', (250, 200, 200, 5), (240, 240, 240))
-                self.create_message('small',' Pour cela, il a besoin de pommes. Mangez-en autant que possible !!', (190, 220, 200, 5), (240, 240, 240))
+                self.create_message('small',' Pour cela, il a besoin de pommes. Mangez-en autant que possible pour grandir !!', (190, 220, 200, 5), (240, 240, 240))
                 self.create_message('medium','Appuyer sur Enter pour commencer.', (200, 450, 200, 5), (255, 255, 255))                
                 
                 pygame.display.flip()
@@ -124,7 +127,7 @@ class Game :
                 self.height_body_snake += 1
                 
                 # Increase the score of the player +1 :
-                # self.score += 1
+                self.score += 1
 
             # List that will store the snake's head position :
             head_snake = []
@@ -144,6 +147,10 @@ class Game :
 
             # Display the function bite_him :
             self.bite_him()
+
+            # Display the title and the score :
+            self.create_message('big', 'Snake Game', (320, 10, 100, 50), (255, 255, 255))
+            self.create_message('big','{}'.format(str(self.score)), (375, 50, 50, 50), (255, 255, 255))
 
             # Limits of the game in the screen :
             self.create_limits()
