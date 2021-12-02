@@ -9,4 +9,6 @@ class Windows :
     def __init__(self):
         # Resolution of the screen :
         self.screen = pygame.display.set_mode((800, 600))     # Double parentheses as a tuple.
-        
+
+        # Title of the game :
+        pygame.display.set_caption('Jeu Snake')
