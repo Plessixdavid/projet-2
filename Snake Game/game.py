@@ -10,4 +10,6 @@ from screen import *
 class Game :
     # New function : __init__(self) :
     def __init__(self):
-        pass
+        # Class Windows of the file screen :
+        Windows()
+        
