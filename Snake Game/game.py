@@ -38,6 +38,9 @@ class Game :
 
         # List that will store all snake's positions :
         self.positions_snake = []
+
+        # Variable about the height of the snake :
+        self.height_body_snake = 1
         
     # New function : Main_function :
     def Main_function(self):
@@ -91,7 +94,7 @@ class Game :
 
             # Speed initial of the snake :
             self.clock.tick(10)
-            self.speed_snake()
+            # self.speed_snake()
 
             # List that will store the snake's head position :
             head_snake = []
