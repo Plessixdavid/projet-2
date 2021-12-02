@@ -87,7 +87,7 @@ class Game :
                 self.score += 1
 
             # Limits of the game in the screen :
-            create_limits()
+            create_limits(
 
             # Speed initial of the snake :
             self.clock.tick(10)
@@ -128,3 +128,10 @@ class Game :
             self.clock.tick(40)
         elif self.height_body_snake > 30:
             self.clock.tick(50)
+
+    # New function to display the snake :
+    def display_snake(self):
+        for parts_of_snake in self.positions_snake[:-1]:
+            pygame.draw.rect(Windows, (0, 255, 0), (parts_of_snake[0], parts_of_snake[1], self.body_snake, self.body_snake))
+    
+    
