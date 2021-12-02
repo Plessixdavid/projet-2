@@ -15,3 +15,7 @@ class Game :
 
         # Variable : game_running : 
         self.game_running = True
+
+    # New function : Main_function :
+    def Main_function(self):
+        pass
