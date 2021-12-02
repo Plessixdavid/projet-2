@@ -4,7 +4,6 @@
 import pygame
 import sys
 import random
-from screen import *
 
 # New class : Game :
 class Game :
@@ -48,8 +47,8 @@ class Game :
         self.screen_beginning = True
 
         # Charge image :
-        self.head_snake = pygame.image.load('Snake Game/head_snake.png')
-        self.image = pygame.image.load('snake-game.jpg')
+        self.image_head_snake = pygame.image.load('Snake Game/head_snake.png')
+        self.image = pygame.image.load('Snake Game/snake-game.jpg')
         # Shrink the image :
         self.image_title = pygame.transform.scale(self.image, (200, 100))
 
@@ -113,7 +112,8 @@ class Game :
             # Condition if the snake is out the limits of the rectangle :
             if (self.snake_position_x <= 100) or (self.snake_position_x >= 700) \
                 or (self.snake_position_y <= 100) or (self.snake_position_y >= 600) :
-                self.game_running = False
+                print("Ton serpent s'est pris un mur, tu as donc perdu.")
+                sys.exit()
 
             # Movements of the snake :
             self.snake_movement()
@@ -146,7 +146,7 @@ class Game :
             self.display_elements()
 
             # Display the function bite_him :
-            self.bite_him()
+            self.bite_himself(head_snake)
 
             # Display the title and the score :
             self.create_message('big', 'Snake Game', (320, 10, 100, 50), (255, 255, 255))
@@ -156,12 +156,15 @@ class Game :
             self.create_limits()
 
             # Speed initial of the snake :
-            self.clock.tick(10)
-            self.speed_snake()
+            self.clock.tick(15)
 
             # Update the screen :     
             pygame.display.flip()
 
+    # New function to create limits :
+    def create_limits(self):
+        pygame.draw.rect(self.screen, (255, 255, 255), (100, 100, 610, 500), 3)
+    
     # New function about movements of the snake :       
     def snake_movement(self):
         # Make the snake moves at right or at left on the screen :
@@ -175,27 +178,28 @@ class Game :
         self.screen.fill((0, 0, 0))
 
         # Display the snake (color : green) :
-        pygame.draw.rect(self.screen, (0, 250, 0), (self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
-        # self..blit(self.image_snake_head,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
+        # pygame.draw.rect(self.screen, (0, 250, 0), (self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
+        self.screen.blit(self.image_head_snake,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
 
         # Display the apple (color : red) :
         pygame.draw.rect(self.screen, (255, 0, 0), (self.apple_position_x, self.apple_position_y, self.apple, self.apple))
 
         # Display parts of the snake :
-        self.display_elements()
+        self.display_snake()
 
     # New function : display the snake :
     def display_snake(self):
         # Display all parts of the snake :
         for parts_of_snake in self.positions_snake[:-1]:
-            pygame.draw.rect(self.screen, (0, 255, 0), (parts_of_snake[0], parts_of_snake[1], self.body_snake, self.body_snake))
+            pygame.draw.rect(self.screen, (0, 255, 0), (parts_of_snake[0], parts_of_snake[1], self.snake_body, self.snake_body))
         
     # New function when the snake bite his end : 
-    def bite_him(self,head_snake):
+    def bite_himself(self, head_snake):
         # We said self.positions_snake[:-1] because he can't bite his head.
         for part_snake in self.positions_snake[:-1]:
             if part_snake == head_snake :
                 self.game_running = False
+                print("Ton serpent s'est mordu la queue, tu as perdu.")
 
     # New function to create messages :
     def create_message(self, font, message, message_rectangle, color):
@@ -210,18 +214,3 @@ class Game :
         message = font.render(message, True, color)
         # Display on the screen :
         self.screen.blit(message, message_rectangle)
-
-    def create_limits(self):
-        pygame.draw.rect(Windows, (255, 255, 255), (100, 100, 600, 500), 3)
-
-    # New function : increase the speed of the snake following his height :
-    def speed_snake(self):
-        if self.height_body_snake > 5:
-            self.clock.tick(20)
-        elif self.height_body_snake > 10:
-            self.clock.tick(30)
-        elif self.height_body_snake > 20:
-            self.clock.tick(40)
-        elif self.height_body_snake > 30:
-            self.clock.tick(50)
-   
