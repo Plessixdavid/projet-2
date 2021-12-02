@@ -12,3 +12,7 @@ class Windows :
 
         # Title of the game :
         pygame.display.set_caption('Jeu Snake')
+
+    # New function : event(self) :
+    def event(self):
+        pass
