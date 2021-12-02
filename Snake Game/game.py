@@ -10,8 +10,10 @@ from screen import *
 class Game :
     # New function : __init__(self) :
     def __init__(self):
-        # Class Screen of the file screen :
-        Windows()
+        # Resolution of the screen :
+        self.screen = pygame.display.set_mode((800, 600))     # Double parentheses as a tuple.
+        # Title of the game :
+        pygame.display.set_caption('Jeu Snake')
 
         # Variable : game_running : 
         self.game_running = True
@@ -72,29 +74,25 @@ class Game :
                     if evenement.key == pygame.K_UP:
                         self.snake_direction_y = -10
                         self.snake_direction_x = 0
-
+            
             # Condition if the snake is out the limits of the rectangle :
             if (self.snake_position_x <= 100) or (self.snake_position_x >= 700) \
                 or (self.snake_position_y <= 100) or (self.snake_position_y >= 600) :
                 self.game_running = False
 
+            # Movements of the snake :
+            self.snake_movement()
+
             # Condition if the snake eats the apple :
             if self.apple_position_y == self.snake_position_y and self.snake_position_x == self.apple_position_x:
-                self.apple_position_x = random.randrange(110,690,10)
-                self.apple_position_y = random.randrange(110,590,10)                
+                self.apple_position_x = random.randrange(110, 690, 10)
+                self.apple_position_y = random.randrange(110, 590, 10)                
                 
                 # Increase the height of the snake +1 :
                 self.height_body_snake += 1
                 
                 # Increase the score of the player +1 :
-                self.score += 1
-
-            # Limits of the game in the screen :
-            create_limits()
-
-            # Speed initial of the snake :
-            self.clock.tick(10)
-            # self.speed_snake()
+                # self.score += 1
 
             # List that will store the snake's head position :
             head_snake = []
@@ -108,7 +106,20 @@ class Game :
             if len(self.positions_snake) > self.height_body_snake :
                 # We use .pop to delete the initial position of the snake.
                 self.positions_snake.pop(0)
-            
+
+            # Display elements :
+            self.display_elements()
+
+            # Display the function bite_him :
+            self.bite_him()
+
+            # Limits of the game in the screen :
+            self.create_limits()
+
+            # Speed initial of the snake :
+            self.clock.tick(10)
+            self.speed_snake()
+
             # Update the screen :     
             pygame.display.flip()
 
@@ -121,10 +132,35 @@ class Game :
 
     # New function : display differents elements : 
     def display_elements(self):
-        # Display the snake :
-        # Windows.blit(self.image_snake_head,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
+        # Color of the screen : black :
+        self.screen.fill((0, 0, 0))
+
+        # Display the snake (color : green) :
+        pygame.draw.rect(self.screen, (0, 250, 0), (self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
+        # self..blit(self.image_snake_head,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
+
         # Display the apple (color : red) :
-        pygame.draw.rect(Windows, (255, 0, 0), (self.apple_position_x, self.apple_position_y, self.apple, self.apple))
+        pygame.draw.rect(self.screen, (255, 0, 0), (self.apple_position_x, self.apple_position_y, self.apple, self.apple))
+
+        # Display parts of the snake :
+        self.display_elements()
+        
+    # New function : display the snake :
+    def display_snake(self):
+        # Display all parts of the snake :
+        for parts_of_snake in self.positions_snake[:-1]:
+            pygame.draw.rect(self.screen, (0, 255, 0), (parts_of_snake[0], parts_of_snake[1], self.body_snake, self.body_snake))
+        
+
+    # New function when the snake bite his end : 
+    def bite_him(self,head_snake):
+        # We said self.positions_snake[:-1] because he can't bite his head.
+        for part_snake in self.positions_snake[:-1]:
+            if part_snake == head_snake :
+                self.game_running = False
+
+    def create_limits(self):
+        pygame.draw.rect(Windows, (255, 255, 255), (100, 100, 600, 500), 3)
 
     # New function : increase the speed of the snake following his height :
     def speed_snake(self):
@@ -136,14 +172,4 @@ class Game :
             self.clock.tick(40)
         elif self.height_body_snake > 30:
             self.clock.tick(50)
-
-    # New function to display the snake :
-    def display_snake(self):
-        for parts_of_snake in self.positions_snake[:-1]:
-            pygame.draw.rect(Windows, (0, 255, 0), (parts_of_snake[0], parts_of_snake[1], self.body_snake, self.body_snake))
-    
-    # New function when the snake bite his end : 
-    def bite_him(self,head_snake):
-        for part_snake in self.positions_snake[:-1]:
-            if part_snake == head_snake :
-                self.game_running = False
+   
