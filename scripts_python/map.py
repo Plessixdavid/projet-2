@@ -21,7 +21,7 @@ class Map:
 class MapManager:
 
     def __init__(self, screen, player):
-        self.maps = dict() # "house" -> Map("house", tmx_data, group, walls, portals)
+        self.maps = dict() # "house" -> Map("house", walls, group, portals)
         self.screen = screen
         self.player = player
         self.current_map = "world"
