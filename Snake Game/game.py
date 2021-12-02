@@ -33,6 +33,9 @@ class Game :
         # Position at the beginning :
         self.apple = 10
 
+        # Stare FPS :
+        self.clock = pygame.time.Clock()
+
     # New function : Main_function :
     def Main_function(self):
         # Loop when the game is running : 
@@ -82,6 +85,9 @@ class Game :
             # Limits of the game in the screen :
             create_limits()
 
+            # Speed of the snake :
+            self.clock.tick(10)
+
             # Update the screen :     
             pygame.display.flip()
 
@@ -98,3 +104,14 @@ class Game :
         # Windows.blit(self.image_snake_head,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
         # Display the apple (color : red) :
         pygame.draw.rect(Windows, (255, 0, 0), (self.apple_position_x, self.apple_position_y, self.apple, self.apple))
+
+    # New function : increase the speed of the snake following his height :
+    def speed_snake(self):
+        if self.height_body_snake > 5:
+            self.clock.tick(20)
+        elif self.height_body_snake > 10:
+            self.clock.tick(30)
+        elif self.height_body_snake > 20:
+            self.clock.tick(40)
+        elif self.height_body_snake > 30:
+            self.clock.tick(50)
