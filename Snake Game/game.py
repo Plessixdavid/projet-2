@@ -61,6 +61,12 @@ class Game :
                         self.screen_beginning = False
 
                 self.screen.fill((0, 0, 0))
+
+                # Messages :
+                self.create_message('small', 'Le but du jeu est que le serpent se développe.', (250, 200, 200, 5), (240, 240, 240))
+                self.create_message('small',' Pour cela, il a besoin de pommes. Mangez-en autant que possible !!', (190, 220, 200, 5), (240, 240, 240))
+                self.create_message('medium','Appuyer sur Enter pour commencer.', (200, 450, 200, 5), (255, 255, 255))                
+                
                 pygame.display.flip()
     
         # Loop when the game is running : 
