@@ -18,7 +18,7 @@ class Game:
     # recuperation des touche pour le deplacement
     def handle_input(self):
         pressed = pygame.key.get_pressed()
-
+        
         if pressed[pygame.K_UP]:
             self.player.move_up()
             self.player.change_animation("up")
