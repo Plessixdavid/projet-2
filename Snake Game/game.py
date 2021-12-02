@@ -57,12 +57,17 @@ class Game :
                         self.snake_direction_y = -10
                         self.snake_direction_x = 0
 
+            # Limits of the game in the screen :
+            create_limits()
+            
+            # Update the screen :     
+            pygame.display.flip()
+
     # New function about movements of the snake :       
     def snake_movement(self):
         # Make the snake moves at right or at left on the screen :
         self.snake_position_x += self.snake_direction_x
         # Make the snake moves at up or at down on the screen :
         self.snake_position_y += self.snake_direction_y  
-            
-    # Update the screen :     
-    pygame.display.flip()
+
+    
