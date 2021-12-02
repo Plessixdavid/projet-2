@@ -4,6 +4,7 @@
 import pygame
 import sys
 import random
+from screen import *
 
 # New class : Game :
 class Game :
