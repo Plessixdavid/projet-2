@@ -90,7 +90,7 @@ class Game :
                 self.score += 1
 
             # Limits of the game in the screen :
-            create_limits(
+            create_limits()
 
             # Speed initial of the snake :
             self.clock.tick(10)
@@ -103,6 +103,10 @@ class Game :
 
             # Append snake's head positions in the list of snake positions : 
             self.positions_snake.append(head_snake)
+
+            # Condition to resolve about the height of the snake through his position :
+            if len(self.positions_snake) > self.height_body_snake :
+                self.positions_snake.pop(0)
             
             # Update the screen :     
             pygame.display.flip()
