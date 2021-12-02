@@ -106,6 +106,7 @@ class Game :
 
             # Condition to resolve about the height of the snake through his position :
             if len(self.positions_snake) > self.height_body_snake :
+                # We use .pop to delete the initial position of the snake.
                 self.positions_snake.pop(0)
             
             # Update the screen :     
@@ -141,4 +142,8 @@ class Game :
         for parts_of_snake in self.positions_snake[:-1]:
             pygame.draw.rect(Windows, (0, 255, 0), (parts_of_snake[0], parts_of_snake[1], self.body_snake, self.body_snake))
     
-    
+    # New function when the snake bite his end : 
+    def bite_him(self,head_snake):
+        for part_snake in self.positions_snake[:-1]:
+            if part_snake == head_snake :
+                self.game_running = False
