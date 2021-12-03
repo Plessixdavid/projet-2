@@ -35,7 +35,6 @@ class Game:
             self.player.move_left()
             self.player.change_animation("left")
 
-
     def update(self):
         self.map_manager.update()
 

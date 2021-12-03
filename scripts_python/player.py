@@ -22,29 +22,37 @@ class Player (animate_sprite):
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_SPACE]:
             self.position[1] -= self.speed*2
+            self.speed_clock = 130
         else:
             self.position[1] -= self.speed
+            self.speed_clock = 180
 
     def move_down(self): 
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_SPACE]:
             self.position[1] += self.speed*2
+            self.speed_clock = 130
         else:
             self.position[1] += self.speed
+            self.speed_clock = 180
 
     def move_right(self): 
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_SPACE]:
             self.position[0] += self.speed*2
+            self.speed_clock = 130
         else:
             self.position[0] += self.speed
+            self.speed_clock = 180
 
     def move_left(self): 
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_SPACE]:
             self.position[0] -= self.speed*2
+            self.speed_clock = 130
         else:
             self.position[0] -= self.speed
+            self.speed_clock = 180
         
     def update(self):
         self.rect.topleft = self.position

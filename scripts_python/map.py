@@ -69,7 +69,7 @@ class MapManager:
         tmx_data = pytmx.load_pygame(f"ressources/tmx_tsx/{name}.tmx")
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
-        map_layer.zoom = 1.8
+        map_layer.zoom = 2
 
         # definir une liste qui va stocker les rectangles de collision
         walls_list = []
@@ -92,9 +92,6 @@ class MapManager:
     def get_walls(self): return self.get_map().walls
 
     def get_object(self, name): return self.get_map().tmx_data.get_object_by_name(name)
-
-    def associate_teleport_spawn(self):
-        pass
 
     def draw(self):
         self.get_group().draw(self.screen)

@@ -7,7 +7,7 @@ class animate_sprite(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.sprite_sheet = pygame.image.load("ressources/png/player.png")
-        self.animation_index = 0
+        self.animation_index = 1
         self.clock = 0
         self.images = {
         "down" : self.get_images(0),
@@ -16,14 +16,14 @@ class animate_sprite(pygame.sprite.Sprite):
         "up" : self.get_images(96)
         }
         self.speed = 2
-
+        self.speed_clock = 130
 
     def change_animation(self, name):
         self.image = self.images[name][self.animation_index]
         self.image.set_colorkey((0, 0, 0))
         self.clock += self.speed * 8
 
-        if self.clock >= 150:
+        if self.clock >= self.speed_clock:
 
             self.animation_index += 1 #pour passer à l'image suivante
 
