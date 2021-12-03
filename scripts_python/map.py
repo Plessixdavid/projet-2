@@ -6,34 +6,39 @@ import pygame, pytmx, pyscroll
 @dataclass
 class Portal:
     from_world: str
-    teleport_point: list
+    teleport_point: str
     target_world: str
     spawn_point: str
 
 @dataclass
 class Map:
     name: str
-    walls: list[pygame.Rect]
-    group: pyscroll.PyscrollGroup
     tmx_data: pytmx.TiledMap
+    group: pyscroll.PyscrollGroup
+    walls: list[pygame.Rect]
     portals: list[Portal]
 
 class MapManager:
 
     def __init__(self, screen, player):
-        self.maps = dict() # "house" -> Map("house", walls, group)
+        self.maps = dict() # "house" -> Map("house", walls, group, portals)
         self.screen = screen
         self.player = player
         self.current_map = "world"
 
         self.register_map("world", portals=[
+            Portal(from_world="world", teleport_point="enter_inn", target_world="inn", spawn_point="spawn_inn"),
+            Portal(from_world="world", teleport_point="enter_my_house", target_world="my_house", spawn_point="spawn_my_house"),
             Portal(from_world="world", teleport_point="teleporter", target_world="new_world", spawn_point="spawn_player")
-        ]) 
+        ])
         self.register_map("my_house", portals=[
-            Portal(from_world="my_house", teleport_point="exit_house", target_world="world", spawn_point="spawn_house_exit")
+            Portal(from_world="my_house", teleport_point="exit_my_house", target_world="world", spawn_point="spawn_my_house_exit")
         ])
         self.register_map("new_world", portals=[
             Portal(from_world="new_world", teleport_point="teleporter", target_world="world", spawn_point="spawn_player")
+        ])
+        self.register_map("inn", portals=[
+            Portal(from_world="inn", teleport_point="exit_inn", target_world="world", spawn_point="spawn_inn_exit")
         ])
 
         self.teleport_player("player_start")
@@ -64,28 +69,31 @@ class MapManager:
         tmx_data = pytmx.load_pygame(f"ressources/tmx_tsx/{name}.tmx")
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
-        map_layer.zoom = 1.8
+        if name == "world":
+            map_layer.zoom = 1.75
+            
+        if name == "new_world":
+            map_layer.zoom = 1.5
+
+        elif name == "my_house":
+            map_layer.zoom = 2.4
+
+        elif name == "inn":
+            map_layer.zoom = 2.2
 
         # definir une liste qui va stocker les rectangles de collision
-        walls = []
+        walls_list = []
 
         for obj in tmx_data.objects:
             if obj.type == "collision":
-                walls.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
-
-        # definir un dictionnaire qui va stocker les rectangles de teleportation
-        teleporter_group = []
-
-        for obj in tmx_data.objects:
-            if obj.type == "portal":
-                teleporter_group.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
+                walls_list.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
 
         # dessiner le groupe de calques
         group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=6)
         group.add(self.player)
 
         # Enregistrer la nouvelle carte chargée
-        self.maps[name] = Map(name, walls, group, tmx_data, portals)
+        self.maps[name] = Map(name, tmx_data, group, walls=walls_list, portals=portals)
 
     def get_map(self): return self.maps[self.current_map]
 
