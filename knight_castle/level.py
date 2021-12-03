@@ -7,6 +7,7 @@ from player import Player
 from particles import ParticleEffect
 from game_data import levels
 
+
 class Level:
     def __init__(self, current_level, surface, create_overworld, change_coins, change_health):
         # General setup
@@ -15,8 +16,8 @@ class Level:
         self.current_x = None
 
         # Audio
-        self.coin_sound = pygame.mixer.Sound('audio/effects/coin.wav')
-        self.stomp_sound = pygame.mixer.Sound('audio/effects/stomp.wav')
+        self.coin_sound = pygame.mixer.Sound('knight_castle/audio/effects/coin.wav')
+        self.stomp_sound = pygame.mixer.Sound('knight_castle/audio/effects/stomp.wav')
 
         # Overworld connection
         self.create_overworld = create_overworld
@@ -81,24 +82,24 @@ class Level:
 
 
                     if type == 'terrain':
-                        terrain_tile_list = import_cut_graphics('graphics/terrain/terrain1.png')
+                        terrain_tile_list = import_cut_graphics('knight_castle/graphics/terrain/terrain1.png')
                         tile_surface = terrain_tile_list[int(val)]
                         sprite = StaticTile(tile_size,x,y, tile_surface)
 
 
                     if type == "piegepik":
-                        piegepik_tile_list = import_cut_graphics('graphics/terrain/terrain1.png')
+                        piegepik_tile_list = import_cut_graphics('knight_castle/graphics/terrain/terrain1.png')
                         tile_surface = piegepik_tile_list[int(val)]
                         sprite = StaticTile(tile_size,x,y, tile_surface)
                         
                     if type == 'objects':
-                        objet_tile_list = import_cut_graphics('graphics/terrain/terrain1.png')
+                        objet_tile_list = import_cut_graphics('knight_castle/graphics/terrain/terrain1.png')
                         tile_surface = objet_tile_list[int(val)]
                         sprite = StaticTile(tile_size,x,y, tile_surface)
 
                     if type == 'coins':
-                        if val == '0': sprite = Coin(tile_size,x,y,'graphics/coins/gold',5)
-                        if val == '1': sprite = Coin(tile_size,x,y,'graphics/coins/silver',1)
+                        if val == '0': sprite = Coin(tile_size,x,y,'knight_castle/graphics/coins/gold',5)
+                        if val == '1': sprite = Coin(tile_size,x,y,'knight_castle/graphics/coins/silver',1)
                     
                     if type == 'enemies':
                         sprite = Enemy(tile_size,x,y)
@@ -107,7 +108,7 @@ class Level:
                         sprite = Tile(tile_size,x,y)
 
                     if type == 'backgrounds':
-                        background_tile_list = import_cut_graphics('graphics/terrain/terrain1.png')
+                        background_tile_list = import_cut_graphics('knight_castle/graphics/terrain/terrain1.png')
                         tile_surface = background_tile_list[int(val)]
                         sprite = StaticTile(tile_size,x,y, tile_surface)
                         
@@ -119,6 +120,10 @@ class Level:
         return sprite_group
 
     def player_setup(self, layout, change_health):
+        self.max_level = 0
+        self.max_health = 100
+        self.cur_health = 100
+        self.coins = 0
         for row_index, row in enumerate(layout):
             for col_index, val in enumerate(row):
                 x = col_index * tile_size
@@ -127,7 +132,7 @@ class Level:
                     sprite =Player((x,y), self.display_surface, self.create_jump_particles , change_health)
                     self.player.add(sprite)
                 if val == '1':
-                    hat_surface = pygame.image.load('graphics/separate/items/doors/1.png').convert_alpha()
+                    hat_surface = pygame.image.load('knight_castle/graphics/separate/items/doors/1.png').convert_alpha()
                     sprite =StaticTile(tile_size,x,y,hat_surface)
                     self.goal.add(sprite)
 
@@ -237,6 +242,7 @@ class Level:
                     explosion_sprite = ParticleEffect(enemy.rect.center, 'explosion')
                     self.explosion_sprites.add(explosion_sprite)
                     enemy.kill()
+                    
                 else:
                     self.player.sprite.get_damage()
                 

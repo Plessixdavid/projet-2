@@ -1,8 +1,7 @@
 import pygame
-from decoration import Bg_Overworld
 from game_data import levels
 from support import import_folder
-from decoration import Bg_Overworld
+
 
 class Node(pygame.sprite.Sprite):
     def __init__(self,pos,status, icon_speed,path):
@@ -37,7 +36,7 @@ class Icon(pygame.sprite.Sprite):
     def __init__(self,pos):
         super().__init__()
         self.pos = pos
-        self.image = pygame.image.load('graphics/character/idle/1.png').convert_alpha()
+        self.image = pygame.image.load('knight_castle/graphics/character/idle/1.png').convert_alpha()
         self.rect = self.image.get_rect(center = pos) 
 
     def update(self):
@@ -60,7 +59,7 @@ class Overworld:
         # sprite de l'overworld.
         self.setup_nodes()
         self.setup_icon()
-        self.bg_overworld = Bg_Overworld(8)
+        
 
         # Timer de l'overworld qui evite la capture du dernier mouvement.
         self.start_time = pygame.time.get_ticks()
@@ -81,7 +80,8 @@ class Overworld:
         # comprehension permettant de parcourir la liste de position des nodes et de verifier 
         # si le chemin s'arrete bien au level max.
         points = [ node ['node_pos'] for index, node in enumerate(levels.values()) if index <= self.max_level]
-        
+
+        if (len(points) == 1): return
         #permet de dessiner les lignes reliant les levels( la surface, la couleur de la ligne, l'epaisseur)
         pygame.draw.lines(self.display_surface,'#ffd700',False,points,6)
 
@@ -136,7 +136,9 @@ class Overworld:
         self.icon.update()
         self.nodes.update()
         
-        self.bg_overworld.draw(self.display_surface)
+        
+        image = pygame.image.load("knight_castle/123.jpg")
+        self.display_surface.blit(image, (0, 0))
         self.draw_paths()
         self.nodes.draw(self.display_surface)
         self.icon.draw(self.display_surface)
