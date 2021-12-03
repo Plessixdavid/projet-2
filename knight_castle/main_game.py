@@ -83,9 +83,6 @@ class Game:
             clock.tick(60)
 
 
-
-
-
 pygame.init()
 screen =pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
