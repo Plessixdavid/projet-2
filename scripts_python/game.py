@@ -40,8 +40,10 @@ class Game:
         self.map_manager.update()
 
     def run(self):
-
+        # Creating Socket
         sio = socketio.Client()
+
+        # This event is triggered when the socket connects for the first time
         @sio.event
         def connect():
             print('connection established')
@@ -50,13 +52,10 @@ class Game:
             'map': "world"
             })
 
-        @sio.event
-        def disconnect():
-            print('disconnected from server')
-
+        # Try to connect to the server, if this fail the game will just run on solo
         try:
-            # sio.connect('http://93.6.41.243:8271/')
-            sio.connect('http://localhost:6969/')
+            sio.connect('http://93.6.41.243:8271/') # Public server
+            # sio.connect('http://localhost:6969/') # Local server
         except: 
             pass
 
@@ -66,41 +65,41 @@ class Game:
         # boucle du jeu
         running = True
 
+        # Guest list
         players = []
 
+        # The server send every players data, we add it to the guest list
         @sio.on("GET")
         def addPlayers(data):
             players.clear()
             players.extend(data)
 
         while running:
+            # Retrieve list of every player
             sio.emit("GET")
 
             self.player.save_location()
             self.handle_input()
             self.update()
             
-
+            # Update our position in the server ONLY if we move
             if (self.player.old_position != self.player.position):
-                print(self.map_manager.current_map)
                 sio.emit("UPDATE POS", {
                     'pos': self.player.position,
                     'map': self.map_manager.current_map
                 })
 
-
+            # Print every players to the map except us
             for player in players:
-                if player['id'] == sio.get_sid():
-                    continue
-                
-                # print(player['map'])
-                if player['map'] != self.map_manager.current_map:
+                if player['id'] == sio.get_sid() or player['map'] != self.map_manager.current_map:
                     continue
 
-                mul_player = Player(player['pos'][0],player['pos'][1])
-                mul_player.update()
+                # Create the guest
+                guest = Player(player['pos'][0],player['pos'][1])
+                guest.update()
 
-                self.map_manager.get_group().add(mul_player, layer=99)
+                # Add the guest to the group at layer 99
+                self.map_manager.get_group().add(guest, layer=99)
 
             self.map_manager.draw()
             pygame.display.flip()
@@ -108,8 +107,12 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+
+            # Remove every element at layer 99 (all our guests)
             self.map_manager.get_group().remove_sprites_of_layer(99)
+
             clock.tick(60)
 
+        # Disconnect the socket
         sio.disconnect()
         pygame.quit()
