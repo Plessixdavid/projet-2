@@ -1,9 +1,7 @@
-from io import FileIO
-import pygame , sys
-
-from pygame.draw import line
+import pygame , sys, copy
 from settings import *
 from player_class import*
+from enemy_class import *
 
 
 
@@ -17,25 +15,36 @@ class App:
         self.Clock = pygame.time.Clock()
         self.running = True
         self.state = 'start'
-        self.cell_width = MAZE_WIDTH//28
-        self.cell_height = MAZE_HEIGHT//30
+        self.cell_width = MAZE_WIDTH//COLS
+        self.cell_height = MAZE_HEIGHT//ROWS
         self.walls = []
         self.coins = []
+        self.enemies = []
+        self.e_pos = []
         self.p_pos = None
         self.load()
-        self.player = Player(self, self.p_pos) 
+        self.player = Player(self, vec(self.p_pos)) 
+        self.make_enemies () 
     
     def run(self):
+        self.m=True
+        self.m2 = True
         while self.running:
             if self.state == 'start' :
                 self.start_events()
                 self.start_update()
                 self.start_draw()
+            
             elif self.state == 'playing' :
                 self.playing_events()
                 self.playing_update()
                 self.playing_draw()
-                
+
+            elif self.state == 'game over' :
+                self.game_over_events()
+                self.game_over_update()
+                self.game_over_draw()
+
             else:
                 self.running = False
             self.Clock.tick(FPS)
@@ -43,7 +52,7 @@ class App:
         pygame.quit()
         sys.exit()
 
-############################## Helper Functions #######################        
+                                                ############################## Helper Functions #######################        
     def draw_text(self, words, screen , pos, size, colour ,font_name, centered = False):
         font = pygame.font.SysFont(font_name, size)
         text = font.render(words, False, colour)
@@ -68,9 +77,16 @@ class App:
                     elif char == "C":
                         self.coins.append(vec(xidx, yidx))
                     elif char == "P":
-                        self.p_pos = vec(xidx, yidx)
+                        self.p_pos = [xidx, yidx]
+                    elif char in ["1","2","3","4","5"]:
+                        self.e_pos.append(xidx, yidx)
+                    elif char  == "B" :
+                        pygame.draw.rect(self.background, BLACK, (xidx*self.cell_width, yidx*self.cell_height, self.cell_width, self.cell_height))
+                    
 
-        # print(len(self.walls))
+    def make_enemies(self):
+        for idx, pos in enumerate(self.e_pos):
+            self.enemies.append(Enemy(self, pos, idx))
 
     def draw_grid(self):
         for x in range(WIDTH//self.cell_width):
@@ -80,6 +96,24 @@ class App:
         # for coins in self.coins:
         #     pygame.draw.rect(self.background,(167, 179, 34),(coins.x*self.cell_width, coins.y*self.cell_height, self.cell_width, self.cell_height))
 
+    def reset(self):
+        self.player.lives = 3
+        self.player.current_score = 0
+        self.player.grid_pos =  vec(self.player.starting.pos)
+        self.player.pix_pos = self.player.get_pix_pos()
+        self.player.direction *= 0
+        for enemy in self.enemies:
+            enemy.grid_pos = vec (enemy.starting_pos)
+            enemy.pix_pos = enemy.get_pix_pos()
+            enemy.direction *= 0
+
+        self.coins = []
+        with open("PacMan/walls.txt",'r') as file :
+            for yidx,line in enumerate(file) :
+                for xidx, char in enumerate(line):
+                    if char == 'C':
+                        self.coins.append(vec(xidx, yidx))
+        self.state = "playing"
 ############################## intro Functions #######################
 
     
@@ -89,6 +123,11 @@ class App:
                 self.running = False
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE :
                 self.state = 'playing'
+            if self.m == True : 
+                pygame.mixer.music.load("PacMan/song/intro.wav")
+                pygame.mixer.music.play(1)
+                self.m=False
+
 
     def start_update(self):
         pass
@@ -102,7 +141,7 @@ class App:
 
 ############################## playing Functions #######################
 
-    def playing_events(self):
+    def playing_events(self):        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -115,9 +154,19 @@ class App:
                     self.player.move(vec(0,-1))
                 if event.key == pygame.K_DOWN :
                     self.player.move(vec(0,1))
+                if self.m2 == True : 
+                    pygame.mixer.music.load("PacMan/song/animaux.mp3")
+                    pygame.mixer.music.play(10)
+                    self.m2=False
 
     def playing_update(self):
         self.player.update()
+        for enemy in self.enemies:
+            enemy.update()
+
+        for enemy in self.enemies :
+            if enemy.grid_pos == self.player.grid_pos :
+                self.remove_life()
 
     def playing_draw(self):
         self.screen.fill(BLACK)
@@ -127,8 +176,23 @@ class App:
         self.draw_text('CURRENT SCORE: {}'.format(self.player.current_score), self.screen, (60,0), 18, YELLOW1, 'Arial Black', centered = False)
         self.draw_text('HIGH SCORE: 0', self.screen, (WIDTH//2 + 60,0), 18, YELLOW1, 'Arial Black', centered = False)
         self.player.draw()
+        for enemy in self.enemies:
+            enemy.draw()
         pygame.display.update()
         
+    def remove_life(self):
+        self.player.lives -= 1
+        if self.player.lives == 0 :
+            self.state == "game over"
+        else:
+            self.player.grid_pos = vec(self.player.starting_pos)
+            self.player.pix_pos = self.player.get_pix_pos()
+            self.player.direction *= 0
+            for enemy in self.enemies :
+                enemy.grid_pos = vec(enemy.starting_pos)
+                enemy.pix_pos = enemy.getpix_pos()
+                enemy.dierction *= 0
+            
 
     def draw_coins(self):
         for coin in self.coins :
@@ -136,4 +200,26 @@ class App:
             int(coin.y*self.cell_height)+self.cell_height//2+TOP_BOTTOM_BUFFER//2),5)
 
 
-    
+############################## GAME OVER Functions #######################
+
+    def game_over_event(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE :
+                self.reset()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE :
+                self.running = False
+
+    def game_over_update(self):
+        pass
+
+    def game_over_draw(self):
+        self.screen.fill(BLACK)
+        quit_text = "Press the escape button to QUIT"
+        again_text = "Pres the SPACE bar to PLAY AGAIN"
+        self.draw_text ("GAME OVER", self.screen, [WIDTH//2, 100], 52, RED, START_FONT, centered = True)
+        self.draw_text (quit_text, self.screen, [WIDTH//2, HEIGHT//2], 36, BLUE, START_FONT, centered = True)
+        self.draw_text (again_text, self.screen, [WIDTH//2, HEIGHT//1.5], 36, BLUE, START_FONT, centered = True)
+
+        pygame.display.update()
