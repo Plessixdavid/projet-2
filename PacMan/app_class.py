@@ -79,14 +79,14 @@ class App:
                     elif char == "P":
                         self.p_pos = [xidx, yidx]
                     elif char in ["1","2","3","4","5"]:
-                        self.e_pos.append(xidx, yidx)
+                        self.e_pos.append([xidx, yidx])
                     elif char  == "B" :
                         pygame.draw.rect(self.background, BLACK, (xidx*self.cell_width, yidx*self.cell_height, self.cell_width, self.cell_height))
                     
 
     def make_enemies(self):
         for idx, pos in enumerate(self.e_pos):
-            self.enemies.append(Enemy(self, pos, idx))
+            self.enemies.append(Enemy(self, vec(pos), idx))
 
     def draw_grid(self):
         for x in range(WIDTH//self.cell_width):
@@ -183,15 +183,15 @@ class App:
     def remove_life(self):
         self.player.lives -= 1
         if self.player.lives == 0 :
-            self.state == "game over"
+            self.state = "game over"
         else:
             self.player.grid_pos = vec(self.player.starting_pos)
             self.player.pix_pos = self.player.get_pix_pos()
             self.player.direction *= 0
             for enemy in self.enemies :
                 enemy.grid_pos = vec(enemy.starting_pos)
-                enemy.pix_pos = enemy.getpix_pos()
-                enemy.dierction *= 0
+                enemy.pix_pos = enemy.get_pix_pos()
+                enemy.direction *= 0
             
 
     def draw_coins(self):
@@ -202,7 +202,7 @@ class App:
 
 ############################## GAME OVER Functions #######################
 
-    def game_over_event(self):
+    def game_over_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
