@@ -27,7 +27,7 @@ class App:
         self.make_enemies () 
     
     def run(self):
-        self.m=True
+        self.m = True
         self.m2 = True
         while self.running:
             if self.state == 'start' :
@@ -52,7 +52,7 @@ class App:
         pygame.quit()
         sys.exit()
 
-                                                ############################## Helper Functions #######################        
+############################## Helper Functions #######################        
     def draw_text(self, words, screen , pos, size, colour ,font_name, centered = False):
         font = pygame.font.SysFont(font_name, size)
         text = font.render(words, False, colour)
@@ -99,7 +99,7 @@ class App:
     def reset(self):
         self.player.lives = 3
         self.player.current_score = 0
-        self.player.grid_pos =  vec(self.player.starting.pos)
+        self.player.grid_pos = vec(self.player.starting_pos)
         self.player.pix_pos = self.player.get_pix_pos()
         self.player.direction *= 0
         for enemy in self.enemies:
@@ -182,6 +182,9 @@ class App:
         
     def remove_life(self):
         self.player.lives -= 1
+        pygame.mixer.music.load("PacMan/song/death.wav")
+        pygame.mixer.music.play(1)
+        self.m2 = True
         if self.player.lives == 0 :
             self.state = "game over"
         else:
