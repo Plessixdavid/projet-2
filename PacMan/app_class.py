@@ -24,7 +24,8 @@ class App:
         self.p_pos = None
         self.load()
         self.player = Player(self, vec(self.p_pos)) 
-        self.make_enemies () 
+        self.make_enemies ()
+        self.High_Score = 0
     
     def run(self):
         self.m = True
@@ -154,7 +155,7 @@ class App:
                     self.player.move(vec(0,-1))
                 if event.key == pygame.K_DOWN :
                     self.player.move(vec(0,1))
-                if self.m2 == True : 
+                if self.m2 == False : 
                     pygame.mixer.music.load("PacMan/song/animaux.mp3")
                     pygame.mixer.music.play(10)
                     self.m2=False
@@ -174,7 +175,7 @@ class App:
         self.draw_coins()
         # self.draw_grid()
         self.draw_text('CURRENT SCORE: {}'.format(self.player.current_score), self.screen, (60,0), 18, YELLOW1, 'Arial Black', centered = False)
-        self.draw_text('HIGH SCORE: 0', self.screen, (WIDTH//2 + 60,0), 18, YELLOW1, 'Arial Black', centered = False)
+        self.draw_text('HIGH SCORE: {}'.format(self.High_Score), self.screen, (WIDTH//2 + 60,0), 18, YELLOW1, 'Arial Black', centered = False)
         self.player.draw()
         for enemy in self.enemies:
             enemy.draw()
@@ -186,6 +187,8 @@ class App:
         pygame.mixer.music.play(1)
         self.m2 = True
         if self.player.lives == 0 :
+            if self.player.current_score > self.High_Score :
+                self.High_Score = self.player.current_score
             self.state = "game over"
         else:
             self.player.grid_pos = vec(self.player.starting_pos)

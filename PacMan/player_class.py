@@ -39,8 +39,8 @@ class Player :
             pygame.draw.circle(self.app.screen, PLAYER_COLOUR, (30 + 10*x, HEIGHT - 15), 7)
 
         # Drawing the grid pos rect
-        # pygame.draw.rect(self.app.screen, RED, (self.grid_pos[0]*self.app.cell_width+TOP_BOTTOM_BUFFER//2,
-        #                 self.grid_pos[1]*self.app.cell_height+TOP_BOTTOM_BUFFER//2,self.app.cell_width,self.app.cell_height),1)
+        pygame.draw.rect(self.app.screen, RED, (self.grid_pos[0]*self.app.cell_width+TOP_BOTTOM_BUFFER//2,
+                         self.grid_pos[1]*self.app.cell_height+TOP_BOTTOM_BUFFER//2,self.app.cell_width,self.app.cell_height),1)
 
     def on_coin(self):
         if self.grid_pos in self.app.coins:
@@ -55,6 +55,9 @@ class Player :
     def eat_coin(self):
         self.app.coins.remove(self.grid_pos)
         self.current_score += 1
+        pygame.mixer.music.load("PacMan/song/eatfruit.wav")
+        pygame.mixer.music.play(10)
+
 
     def move (self,direction) :
         self.stored_direction = direction
