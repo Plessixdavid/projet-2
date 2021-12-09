@@ -2,7 +2,8 @@
 
 # imports
 from Score_jeux1 import Score_jeux1
-
+from Score_jeux2 import Score_jeux2
+from Score_jeux3 import Score_jeux3
 
 # class
 class Data_joueur:
@@ -44,6 +45,18 @@ class Data_joueur:
             for Element 
             in Score_jeux1.List 
             if Element.ID == self.ScoreJeux1ID][0]
+
+        self.Scorejeux2Name = [
+            Element.Score 
+            for Element 
+            in Score_jeux2.List 
+            if Element.ID == self.ScoreJeux2ID][0]
+
+        self.Scorejeux3Name = [
+            Element.Score 
+            for Element 
+            in Score_jeux3.List 
+            if Element.ID == self.ScoreJeux3ID][0]
 
         # add object to collection
         Data_joueur.List.append(self)
