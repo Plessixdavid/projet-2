@@ -40,7 +40,7 @@ class Data_joueur:
         
         # calculated properties
         self.Scorejeux1Name = [
-            Element.Name 
+            Element.Score 
             for Element 
             in Score_jeux1.List 
             if Element.ID == self.ScoreJeux1ID][0]
@@ -56,4 +56,4 @@ class Data_joueur:
             return string
         """
 
-        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, (avec l'image {self.SkinID}), {self.ScoreJeux1ID}, {self.ScoreJeux2ID}, {self.ScoreJeux3ID})"
+        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, (avec l'image {self.SkinID}), {self.Scorejeux1Name}, {self.ScoreJeux2ID}, {self.ScoreJeux3ID})"
