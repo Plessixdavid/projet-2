@@ -2,6 +2,8 @@
 
 from dataclasses import dataclass
 import pygame, pytmx, pyscroll
+from player import PNJ
+# from dialog import dialog_box
 
 @dataclass
 class Portal:
@@ -17,6 +19,7 @@ class Map:
     group: pyscroll.PyscrollGroup
     walls: list[pygame.Rect]
     portals: list[Portal]
+    pnjs: list[PNJ]
 
 class MapManager:
 
@@ -30,6 +33,8 @@ class MapManager:
             Portal(from_world="world", teleport_point="enter_inn", target_world="inn", spawn_point="spawn_inn"),
             Portal(from_world="world", teleport_point="enter_my_house", target_world="my_house", spawn_point="spawn_my_house"),
             Portal(from_world="world", teleport_point="teleporter", target_world="new_world", spawn_point="spawn_player")
+        ], pnjs=[
+            PNJ("paul", nb_points=4, dialog=["Salut ça va?","Bonne journnée."])
         ])
         self.register_map("my_house", portals=[
             Portal(from_world="my_house", teleport_point="exit_my_house", target_world="world", spawn_point="spawn_my_house_exit")
@@ -39,12 +44,21 @@ class MapManager:
         ])
         self.register_map("inn", portals=[
             Portal(from_world="inn", teleport_point="exit_inn", target_world="world", spawn_point="spawn_inn_exit")
+        ], pnjs=[
+            PNJ("hostess", nb_points=1, dialog=["Salut, comment ça va?", "Bienvenue dans la salle d'arcade", "Bonne journnée."])
         ])
 
         self.teleport_player("player_start")
+        self.teleport_pnjs()
+
+    def check_pnj_collision(self,dialog_box):
+        for sprite in self.get_group().sprites():
+            if sprite.feet.colliderect(self.player.rect) and type(sprite) is PNJ:
+                dialog_box.execute(sprite.dialog)
 
     def check_collision(self):
         for portal in self.get_map().portals:
+
             if portal.from_world == self.current_map:
                 point =self.get_object(portal.teleport_point)
                 rect = pygame.Rect(point.x, point.y, point.width, point.height)
@@ -55,6 +69,15 @@ class MapManager:
                     self.teleport_player(copy_portal.spawn_point)
 
         for sprite in self.get_group().sprites():
+
+            if type(sprite) is PNJ:
+
+                if sprite.feet.colliderect(self.player.rect):
+                    sprite.speed = 0
+
+                else:
+                    sprite.speed = 1
+
             if sprite.feet.collidelist(self.get_walls()) > -1:
                 sprite.move_back()
 
@@ -64,7 +87,7 @@ class MapManager:
         self.player.position[1] = point.y
         self.player.save_location()
 
-    def register_map(self, name, portals=[]):
+    def register_map(self, name, portals=[], pnjs=[]):
         # charger la carte (tmx)
         tmx_data = pytmx.load_pygame(f"ressources/tmx_tsx/{name}.tmx")
         map_data = pyscroll.data.TiledMapData(tmx_data)
@@ -92,8 +115,12 @@ class MapManager:
         group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=6)
         group.add(self.player)
 
+        # recuperer tout les pnjs pour les ajouter au groupe
+        for pnj in pnjs:
+            group.add(pnj)
+
         # Enregistrer la nouvelle carte chargée
-        self.maps[name] = Map(name, tmx_data, group, walls=walls_list, portals=portals)
+        self.maps[name] = Map(name, tmx_data, group, walls_list, portals, pnjs)
 
     def get_map(self): return self.maps[self.current_map]
 
@@ -103,6 +130,15 @@ class MapManager:
 
     def get_object(self, name): return self.get_map().tmx_data.get_object_by_name(name)
 
+    def teleport_pnjs(self):
+        for map in self.maps:
+            map_data = self.maps[map]
+            pnjs = map_data.pnjs
+
+            for pnj in pnjs:
+                pnj.load_points(map_data.tmx_data)
+                pnj.teleport_spawn()
+
     def draw(self):
         self.get_group().draw(self.screen)
         self.get_group().center(self.player.rect.center)
@@ -110,3 +146,6 @@ class MapManager:
     def update(self):
         self.get_group().update()
         self.check_collision()
+
+        for pnj in self.get_map().pnjs:
+            pnj.move()
