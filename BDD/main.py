@@ -6,6 +6,7 @@ from Data_joueur import Data_joueur
 from Score_jeux1 import Score_jeux1
 from Score_jeux2 import Score_jeux2
 from Score_jeux3 import Score_jeux3
+from Skin import Skin
 
 
 # functions
@@ -20,7 +21,9 @@ def Main():
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux1", Score_jeux1)
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux2", Score_jeux2)
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux3", Score_jeux3)
+    DBUtil.FillModelCollection("SELECT * FROM Skin", Skin)
     DBUtil.FillModelCollection("SELECT * FROM Data_joueur", Data_joueur)
+
 
         
       # close DB
@@ -31,6 +34,7 @@ def Main():
     PrintCollection(Score_jeux1)
     PrintCollection(Score_jeux2)
     PrintCollection(Score_jeux3)
+    PrintCollection(Skin)
     
    
     

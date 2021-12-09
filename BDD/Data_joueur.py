@@ -4,6 +4,7 @@
 from Score_jeux1 import Score_jeux1
 from Score_jeux2 import Score_jeux2
 from Score_jeux3 import Score_jeux3
+from Skin import Skin
 
 # class
 class Data_joueur:
@@ -58,6 +59,13 @@ class Data_joueur:
             in Score_jeux3.List 
             if Element.ID == self.ScoreJeux3ID][0]
 
+                # calculated properties
+        self.SkinName = [
+            Element.url_image 
+            for Element 
+            in Skin.List 
+            if Element.ID == self.SkinID][0]
+
         # add object to collection
         Data_joueur.List.append(self)
 
@@ -69,4 +77,4 @@ class Data_joueur:
             return string
         """
 
-        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, (avec l'image {self.SkinID}), {self.Scorejeux1Name}, {self.ScoreJeux2ID}, {self.ScoreJeux3ID})"
+        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, (avec l'image {self.SkinName}), {self.Scorejeux1Name}, {self.Scorejeux2Name}, {self.Scorejeux3Name})"
