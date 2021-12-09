@@ -1,6 +1,8 @@
 # coding: utf-8
 
 # imports
+from Score_jeux1 import Score_jeux1
+
 
 # class
 class Data_joueur:
@@ -32,6 +34,7 @@ class Data_joueur:
                 CategoryID : foreign key to Category model
         """
         
+        # model properties
         self.ID = ID
         self.Name = Name
         self.Motdepasse = Motdepasse
@@ -42,6 +45,13 @@ class Data_joueur:
         self.ScoreJeux3ID = ScoreJeux3ID
 
         
+        # calculated properties
+        self.Scorejeux1Name = [
+        Element.Name 
+        for Element 
+        in Score_jeux1.List 
+        if Element.ID == self.ScoreJeux1ID][0]
+
         # add object to collection
         Data_joueur.List.append(self)
 
