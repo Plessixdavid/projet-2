@@ -24,6 +24,8 @@ class Enemy(pygame.sprite.Sprite):
 
     def damage(self, amount, player):
         self.health -= amount
+        self.explose_music = pygame.mixer.Sound('spaceship/assets/sounds/stomp.wav')
+        self.explose_music.play()
 
         if self.health <= 0:
             self.health = self.max_health
@@ -51,6 +53,7 @@ class Enemy(pygame.sprite.Sprite):
             self.rect.y += self.velocity_y
         else:
             self.game.player.damage(self.attack)
+            
             
         
                     

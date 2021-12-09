@@ -1,6 +1,7 @@
 import pygame
 from pygame import surface
 from projectile import Projectile
+from enemy import Enemy
 
 
 # Création du joueur.
@@ -22,7 +23,8 @@ class Player(pygame.sprite.Sprite):
         self.max_xp = 500
         self.total_xp = 0
         self.current_level = 1
-        self.more_enemy = 2
+        
+        
 
     def update_level_bar(self,surface):
         # Dessiner la barre de level       
@@ -43,14 +45,15 @@ class Player(pygame.sprite.Sprite):
         level_text = pygame.font.Font('spaceship/assets/FreckleFace-Regular.ttf', 40).render(f'Level: {self.current_level}', True, (247, 255, 0 ))
         surface.blit(level_text, (50, surface.get_height() - 200))
 
-    def gain_xp(self, xp):
+    def gain_xp(self, xp, ):
         self.current_xp += xp
         self.total_xp += self.current_xp
-        if self.current_xp >= self.max_xp:
-            self.current_xp = self.current_xp - self.max_xp
+        if self.current_xp == self.max_xp:
+            # self.current_xp = self.current_xp - self.max_xp
             self.current_level += 1
             self.max_xp += 500
-            self.more_enemy += 2
+            self.game.spawn_enemy(25)
+            
             
     def damage(self, amount):
         if self.health - amount > amount:

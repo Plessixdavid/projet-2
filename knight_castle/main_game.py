@@ -29,7 +29,7 @@ class Game:
     def create_level(self,current_level):
         self.level = Level(current_level, screen, self.create_overworld, self.change_coins, self.change_health)
         self.status = 'level'
-        self.overworld_bg_music.stop()
+        
         self.level_bg_music.play(loops = -1)
 
     def create_overworld(self,current_level,new_max_level):

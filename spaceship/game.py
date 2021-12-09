@@ -1,8 +1,7 @@
 import pygame
 from player import Player
 from enemy import Enemy
-
-
+import math
 # Création de la classe game.
 class Game:
 
@@ -12,14 +11,20 @@ class Game:
         self.player = Player(self)
         self.all_players.add(self.player)
         self.all_enemy = pygame.sprite.Group()
+        self.spawn_enemy(25) 
         self.spawn_enemy(25)
-        self.spawn_enemy(25)
+        
+        
         
         self.pressed = {}
         
 
     def start(self):
         self.is_playing = True
+        
+        self.start_music = pygame.mixer.Sound('spaceship/assets/sounds/starts.wav')
+        self.start_music.play(loops = -1)
+
 
     def game_over(self):
         self.all_enemy = pygame.sprite.Group()

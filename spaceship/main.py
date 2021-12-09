@@ -9,18 +9,19 @@ import math
 def start():
     pygame.init()
 
-
+    
     # génère la fenêtre du jeu et charge des images en memoire et change le nom de la fenêtre ainsi que l'icon.
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     icons = pygame.image.load("spaceship/assets/icons/bender.png")
     background = pygame.image.load("spaceship/assets/bg4.png")
-
+    level_up = pygame.image.load("spaceship/assets/level_up.png")
     banner = pygame.image.load("spaceship/assets/futu.png")
     banner = pygame.transform.scale(banner ,(500,500))
     banner_rect = banner.get_rect()
     banner_rect.x = math.ceil(screen.get_width() / 4 + 150)
     banner_rect.y = math.ceil(screen.get_height() / 4 -150)
-
+    menu_music = pygame.mixer.Sound('spaceship/assets/sounds/menu.wav')
+    menu_music.play(loops = -1)
     play_button = pygame.image.load("spaceship/assets/button.png")
     play_button = pygame.transform.scale(play_button, (400, 150))
     play_button_rect = play_button.get_rect()
@@ -36,6 +37,7 @@ def start():
 
 
     running = True
+
     while running:
 
         
@@ -44,6 +46,8 @@ def start():
 
         if game.is_playing:
             game.update(screen)
+        
+            
         else:
             screen.blit(banner,banner_rect)
             screen.blit(play_button, play_button_rect)
@@ -75,11 +79,14 @@ def start():
                 print(event)
                 if event.button == 9:
                     game.start()
+                    menu_music.stop()
                 if event.button == 8 :
                     running = False
                     pygame.quit()
                 elif event.button == 1 or 2 or 3 or 0 :
                     game.player.lunch_projectile()
+                    projectile_music = pygame.mixer.Sound('spaceship/assets/sounds/tir.ogg')
+                    projectile_music.play()
                     
             if event.type == pygame.QUIT:
                 running = False
@@ -95,8 +102,7 @@ def start():
                 game.pressed[event.key] = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 game.player.lunch_projectile()
-                if play_button_rect.collidepoint(event.pos):
-                    game.start()
+                
 
 if __name__ == "__main__":
     start()
