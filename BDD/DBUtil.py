@@ -99,3 +99,11 @@ class DBUtil:
             for Data in Line:
                 print(f"{Data}{Separator}", end="")
             print()
+
+    @classmethod
+    def Close(cls):
+        """
+            Free resources
+        """
+        
+        cls.Connection.close()

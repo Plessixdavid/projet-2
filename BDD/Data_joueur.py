@@ -15,14 +15,7 @@ class Data_joueur:
     
     # methods
     def __init__(self, 
-        ID: int, 
-        Name: str, 
-        Motdepasse: str, 
-        Email: str, 
-        SkinID: int,
-        ScoreJeux1ID: int,
-        ScoreJeux2ID: int,
-        ScoreJeux3ID: int ):
+        Data: tuple):
         """
             Constructor
 
@@ -35,22 +28,22 @@ class Data_joueur:
         """
         
         # model properties
-        self.ID = ID
-        self.Name = Name
-        self.Motdepasse = Motdepasse
-        self.Email = Email
-        self.SkinID = SkinID
-        self.ScoreJeux1ID = ScoreJeux1ID
-        self.ScoreJeux2ID = ScoreJeux2ID
-        self.ScoreJeux3ID = ScoreJeux3ID
+        self.ID = Data[0]
+        self.Name = Data[1]
+        self.Motdepasse = Data[2]
+        self.Email = Data[3]
+        self.SkinID = Data[4]
+        self.ScoreJeux1ID = Data[5]
+        self.ScoreJeux2ID = Data[6]
+        self.ScoreJeux3ID = Data[7]
 
         
         # calculated properties
         self.Scorejeux1Name = [
-        Element.Name 
-        for Element 
-        in Score_jeux1.List 
-        if Element.ID == self.ScoreJeux1ID][0]
+            Element.Name 
+            for Element 
+            in Score_jeux1.List 
+            if Element.ID == self.ScoreJeux1ID][0]
 
         # add object to collection
         Data_joueur.List.append(self)

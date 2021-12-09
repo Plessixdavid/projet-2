@@ -41,6 +41,8 @@ def Dessinerplateau(plateau):
 
 
 pygame.init()
+pygame.mixer.music.load("puissance4/son.wav")
+pygame.mixer.music.play()
 largeur = puissance4.NBcolon * LARGEUR_CASE
 hauteur = (puissance4.NBligne+1) * LARGEUR_CASE
 ecran = pygame.display.set_mode((largeur, hauteur))
