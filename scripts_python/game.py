@@ -4,6 +4,7 @@ import pygame
 from map import MapManager
 from player import Player
 from dialog import dialog_box
+from test_chat_in_pygame_2 import input_box
 
 class Game:
 
@@ -16,6 +17,7 @@ class Game:
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
         self.dialog_box = dialog_box()
+        self.chat_player = input_box(100, 700, 320, 32)
 
     # recuperation des touche pour le deplacement
     def handle_input(self):
@@ -51,9 +53,11 @@ class Game:
             self.update()
             self.map_manager.draw()
             self.dialog_box.render(self.screen)
+            self.chat_player.draw_chat(self.screen)
             pygame.display.flip()
 
             for event in pygame.event.get():
+                self.chat_player.handle_event(event)
                 if event.type == pygame.QUIT:
                     running = False
                 

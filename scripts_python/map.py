@@ -3,7 +3,6 @@
 from dataclasses import dataclass
 import pygame, pytmx, pyscroll
 from player import PNJ
-# from dialog import dialog_box
 
 @dataclass
 class Portal:
@@ -87,7 +86,7 @@ class MapManager:
         self.player.position[1] = point.y
         self.player.save_location()
 
-    def register_map(self, name, portals=[], pnjs=[]):
+    def register_map(self, name, portals=[], pnjs=[], rect_lunch=[]):
         # charger la carte (tmx)
         tmx_data = pytmx.load_pygame(f"ressources/tmx_tsx/{name}.tmx")
         map_data = pyscroll.data.TiledMapData(tmx_data)
@@ -149,3 +148,4 @@ class MapManager:
 
         for pnj in self.get_map().pnjs:
             pnj.move()
+
