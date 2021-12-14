@@ -4,7 +4,7 @@ import pygame
 from map import MapManager
 from player import Player
 from dialog import dialog_box
-from test_chat_in_pygame_2 import input_box
+from test_chat_in_pygame import input_box
 
 class Game:
 
@@ -19,9 +19,8 @@ class Game:
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
         self.dialog_box = dialog_box()
-        self.chat_player = input_box(100, 700, 320, 32)
-        self.rect_chat_recent = input_box(100, 380, 320, 320)
-# , self.chat_player.recent_message
+        self.chat_player = input_box()
+        # self.rect_chat_recent = input_box(100, 380, 320, 320)
     # recuperation des touche pour le deplacement
     def handle_input(self):
         pressed = pygame.key.get_pressed()
@@ -41,6 +40,12 @@ class Game:
     def update(self):
         self.map_manager.update()
 
+    # def machin_chouette(self):
+    #     self.ancient_message = []
+    #     new_message = recent_message.copy()
+    #     for message in recent_message:
+    #         self.ancient_message.append(pygame.encode_string(message))
+
     def run(self):
 
         # gerer les FPS
@@ -50,15 +55,15 @@ class Game:
         running = True
 
         while running:
+            # print(self.ancient_message)
 
             self.player.save_location()
             self.handle_input()
             self.update()
             self.map_manager.draw()
+            self.chat_player.update_chat()
             self.dialog_box.render(self.screen)
             self.chat_player.draw_chat(self.screen)
-            self.rect_chat_recent.draw_chat(self.screen)
-            # self.chat_recent = self.chat_player.text
             pygame.display.flip()
 
             for event in pygame.event.get():
@@ -68,7 +73,7 @@ class Game:
                     running = False
                 
                 elif event.type == pygame.KEYDOWN:
-                    self.chat_player.text += event.unicode
+                    # self.chat_player.text += event.unicode
                     if event.key == pygame.K_SPACE:
                         self.map_manager.check_pnj_collision(self.dialog_box)
                         
