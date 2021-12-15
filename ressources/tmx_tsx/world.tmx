@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="36">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="40">
  <tileset firstgid="1" source="tuile_nature.tsx"/>
  <tileset firstgid="721" source="house.tsx"/>
  <layer id="1" name="background" width="50" height="50">
@@ -460,12 +460,18 @@
    <point/>
   </object>
   <object id="2001" name="teleporter" type="portal" x="336" y="17" width="32" height="16"/>
-  <object id="33" name="player_start" x="336" y="282">
+  <object id="33" name="player_start" x="334" y="240">
    <point/>
   </object>
   <object id="2002" name="enter_inn" type="portal" x="629" y="505" width="14" height="16"/>
   <object id="1002" name="spawn_inn_exit" type="spawn" x="622" y="521">
    <point/>
   </object>
+ </objectgroup>
+ <objectgroup id="11" name="PNJ_path">
+  <object id="36" name="paul_path_1" x="424" y="272" width="16" height="16"/>
+  <object id="37" name="paul_path_2" x="424" y="432" width="16" height="16"/>
+  <object id="38" name="paul_path_3" x="264" y="432" width="16" height="16"/>
+  <object id="39" name="paul_path_4" x="264" y="272" width="16" height="16"/>
  </objectgroup>
 </map>
