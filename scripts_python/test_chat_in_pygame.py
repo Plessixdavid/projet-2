@@ -2,14 +2,6 @@
 
 import pygame
 
-# from map import MapManager
-
-
-# pygame.init()
-# screen = pygame.display.set_mode((640, 480))
-# FONT = pygame.font.Font("./ressources/dialog_font.ttf", 18)
-
-
 COLOR_INACTIVE = pygame.Color(175, 175 ,175)
 COLOR_ACTIVE = pygame.Color(48, 48, 48)
 class input_box:
@@ -46,7 +38,7 @@ class input_box:
                     print(self.recent_message)
                     # puis vider la variable qui sert à afficher le texte saisie
                     self.text = ''
-                    self.recent_message += '. '
+                    self.recent_message = ''
                 elif event.key == pygame.K_BACKSPACE: # si on appuie sur la touche "retour arriere"
                     # alors supprime le dernier charactere de la str stocker dans la variable "text"
                     self.text = self.text[:-1]
@@ -71,34 +63,3 @@ class input_box:
         # afficher le rect de saisie
         pygame.draw.rect(screen, self.color, self.rect, 2)
         pygame.draw.rect(screen, self.color, self.rect_2, 2)
-
-
-
-# def main():
-#     # clock = pygame.time.Clock()
-#     input_box1 = input_box(100, 100, 140, 32)
-#     input_box2 = input_box(100, 300, 140, 32)
-#     input_boxes = [input_box1, input_box2]
-#     done = False
-
-#     while not done:
-#         for event in pygame.event.get():
-#             if event.type == pygame.QUIT:
-#                 done = True
-#             for box in input_boxes:
-#                 box.handle_event(event)
-
-#         for box in input_boxes:
-#             box.update_chat()
-
-#         screen.fill((30, 30, 30))
-#         for box in input_boxes:
-#             box.draw_chat(screen)
-
-#         pygame.display.flip()
-        # clock.tick(30)
-
-
-# if __name__ == '__main__':
-#     main()
-#     pygame.quit()

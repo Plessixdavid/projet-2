@@ -20,7 +20,6 @@ class Game:
         self.map_manager = MapManager(self.screen, self.player)
         self.dialog_box = dialog_box()
         self.chat_player = input_box()
-        # self.rect_chat_recent = input_box(100, 380, 320, 320)
     # recuperation des touche pour le deplacement
     def handle_input(self):
         pressed = pygame.key.get_pressed()
@@ -40,12 +39,6 @@ class Game:
     def update(self):
         self.map_manager.update()
 
-    # def machin_chouette(self):
-    #     self.ancient_message = []
-    #     new_message = recent_message.copy()
-    #     for message in recent_message:
-    #         self.ancient_message.append(pygame.encode_string(message))
-
     def run(self):
 
         # gerer les FPS
@@ -55,7 +48,6 @@ class Game:
         running = True
 
         while running:
-            # print(self.ancient_message)
 
             self.player.save_location()
             self.handle_input()
@@ -68,12 +60,10 @@ class Game:
 
             for event in pygame.event.get():
                 self.chat_player.handle_event(event)
-                # self.txt_surface = self.font.render(self.chat_player.recent_message, True, self.chat_player.color)
                 if event.type == pygame.QUIT:
                     running = False
                 
                 elif event.type == pygame.KEYDOWN:
-                    # self.chat_player.text += event.unicode
                     if event.key == pygame.K_SPACE:
                         self.map_manager.check_pnj_collision(self.dialog_box)
                         
