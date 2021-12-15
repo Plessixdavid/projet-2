@@ -13,13 +13,12 @@ class Game:
         self.screen = pygame.display.set_mode((900,780))
         pygame.display.set_caption("PYGAMON")
 
-        self.font = pygame.font.Font("./ressources/dialog_font.ttf", 18)
-
         # generer un joueur
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
         self.dialog_box = dialog_box()
         self.chat_player = input_box()
+
     # recuperation des touche pour le deplacement
     def handle_input(self):
         pressed = pygame.key.get_pressed()
@@ -67,7 +66,6 @@ class Game:
                     if event.key == pygame.K_SPACE:
                         self.map_manager.check_pnj_collision(self.dialog_box)
                         
-
             clock.tick(60)
 
         pygame.quit()
