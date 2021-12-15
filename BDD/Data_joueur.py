@@ -1,9 +1,6 @@
 # coding: utf-8
 
 # imports
-from Score_jeux1 import Score_jeux1
-from Score_jeux2 import Score_jeux2
-from Score_jeux3 import Score_jeux3
 from Skin import Skin
 
 # class
@@ -35,33 +32,17 @@ class Data_joueur:
         self.Motdepasse = Data[2]
         self.Email = Data[3]
         self.SkinID = Data[4]
-        self.ScoreJeux1ID = Data[5]
-        self.ScoreJeux2ID = Data[6]
-        self.ScoreJeux3ID = Data[7]
+        # self.ScoreJeux1ID = Data[5]
+        # self.ScoreJeux2ID = Data[6]
+        # self.ScoreJeux3ID = Data[7]
+        # self.ScoreJeux4ID = Data[8]
+        # self.ScoreJeux5ID = Data[9]
+        # self.ScoreJeux6ID = Data[10]
 
         
         # calculated properties
-        self.Scorejeux1Name = [
-            Element.Score 
-            for Element 
-            in Score_jeux1.List 
-            if Element.ID == self.ScoreJeux1ID][0]
-
-        self.Scorejeux2Name = [
-            Element.Score 
-            for Element 
-            in Score_jeux2.List 
-            if Element.ID == self.ScoreJeux2ID][0]
-
-        self.Scorejeux3Name = [
-            Element.Score 
-            for Element 
-            in Score_jeux3.List 
-            if Element.ID == self.ScoreJeux3ID][0]
-
-                # calculated properties
         self.SkinName = [
-            Element.url_image 
+            Skin.Element.url_image 
             for Element 
             in Skin.List 
             if Element.ID == self.SkinID][0]
@@ -77,4 +58,4 @@ class Data_joueur:
             return string
         """
 
-        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, (avec l'image {self.SkinName}), {self.Scorejeux1Name}, {self.Scorejeux2Name}, {self.Scorejeux3Name})"
+        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email})"

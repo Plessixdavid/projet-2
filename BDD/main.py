@@ -6,6 +6,9 @@ from Data_joueur import Data_joueur
 from Score_jeux1 import Score_jeux1
 from Score_jeux2 import Score_jeux2
 from Score_jeux3 import Score_jeux3
+from Score_jeux4 import Score_jeux4
+from Score_jeux5 import Score_jeux5
+from Score_jeux6 import Score_jeux6
 from Skin import Skin
 
 
@@ -17,16 +20,17 @@ def Main():
     # connect to DB
     DBUtil.Connect("Projet coconuts")
     
-  # get categories
+    # get categories
+    DBUtil.FillModelCollection("SELECT * FROM Skin", Skin)
+    DBUtil.FillModelCollection("SELECT * FROM Data_joueur", Data_joueur)
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux1", Score_jeux1)
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux2", Score_jeux2)
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux3", Score_jeux3)
-    DBUtil.FillModelCollection("SELECT * FROM Skin", Skin)
-    DBUtil.FillModelCollection("SELECT * FROM Data_joueur", Data_joueur)
-
-
-        
-      # close DB
+    DBUtil.FillModelCollection("SELECT * FROM Score_jeux1", Score_jeux4)
+    DBUtil.FillModelCollection("SELECT * FROM Score_jeux2", Score_jeux5)
+    DBUtil.FillModelCollection("SELECT * FROM Score_jeux3", Score_jeux6)
+    
+    # close DB
     DBUtil.Close()
   
     # print model content
@@ -34,6 +38,9 @@ def Main():
     PrintCollection(Score_jeux1)
     PrintCollection(Score_jeux2)
     PrintCollection(Score_jeux3)
+    PrintCollection(Score_jeux4)
+    PrintCollection(Score_jeux5)
+    PrintCollection(Score_jeux6)
     PrintCollection(Skin)
     
    

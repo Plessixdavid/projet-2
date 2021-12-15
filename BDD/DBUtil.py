@@ -53,7 +53,7 @@ class DBUtil:
         Query = Query
         Cursor.execute(Query)
         Results = Cursor.fetchall()
-
+        
         # close cursor
         Cursor.close()
 
@@ -107,3 +107,4 @@ class DBUtil:
         """
         
         cls.Connection.close()
+

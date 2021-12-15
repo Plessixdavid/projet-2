@@ -28,8 +28,9 @@ class App:
         self.High_Score = 0
     
     def run(self):
-        self.m = True
-        self.m2 = True
+
+        self.song = True
+        self.song2 = True
         while self.running:
             if self.state == 'start' :
                 self.start_events()
@@ -119,12 +120,15 @@ class App:
 
     
     def start_events(self):
+        # check if we quit the game
+        # check if we press key
+        # check if we are intro for play music
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE :
                 self.state = 'playing'
-            if self.m == True : 
+            if self.song == True : 
                 pygame.mixer.music.load("PacMan/song/intro.wav")
                 pygame.mixer.music.play(1)
                 self.m=False
@@ -134,6 +138,8 @@ class App:
         pass
 
     def start_draw(self):
+        # display screen 
+        # draw the text 
         self.screen.fill(BLACK)
         self.draw_text('PUSH SPACE BAR',self.screen, [WIDTH//2,HEIGHT//2], START_TEXT_SIZE , (255, 9, 33), START_FONT, centered = True)
         self.draw_text('PLAYER 1',self.screen, [WIDTH//2,HEIGHT//2 +75], START_TEXT_SIZE , (121, 28, 248), START_FONT, centered = True)
@@ -155,7 +161,7 @@ class App:
                     self.player.move(vec(0,-1))
                 if event.key == pygame.K_DOWN :
                     self.player.move(vec(0,1))
-                if self.m2 == False : 
+                if self.song2 == False : 
                     pygame.mixer.music.load("PacMan/song/animaux.mp3")
                     pygame.mixer.music.play(10)
                     self.m2=False
