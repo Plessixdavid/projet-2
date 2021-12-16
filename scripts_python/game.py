@@ -6,7 +6,7 @@ from map import MapManager
 from player import Player
 from animation import animate_sprite
 from dialog import dialog_box
-from test_chat_in_pygame import input_box
+from test_chat import input_box
 
 class Game:
 

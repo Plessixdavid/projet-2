@@ -1,6 +1,7 @@
 # coding : utf-8
 
 import pygame
+from animation import animate_sprite
 
 COLOR_INACTIVE = pygame.Color(175, 175 ,175)
 COLOR_ACTIVE = pygame.Color(48, 48, 48)
@@ -9,6 +10,7 @@ class input_box:
     def __init__(self, text=''):
         self.rect = pygame.Rect(1000, 320, 320, 32)
         self.rect_2 = pygame.Rect(1000, 0, 320, 320)
+        
         self.color = COLOR_INACTIVE
         self.text = text
         self.recent_message = ''
@@ -31,11 +33,9 @@ class input_box:
             if self.active:
                 if event.key == pygame.K_RETURN: # envoyer le texte si on presse "enter"
                     # afficher le texte en console pour verifier le fonctionnement
-                    print(self.text)
-                    self.mess_surface = self.font.render(self.recent_message, True, self.color)
+                    self.mess_surface = self.font.render(f"{animate_sprite.firstnane} dit: {self.recent_message}", True, self.color)
                     # ajouter le message envoyer à la liste de message recent
                     # pour l'afficher ensuite dans le rect qui ce trouve juste au-dessus
-                    print(self.recent_message)
                     # puis vider la variable qui sert à afficher le texte saisie
                     self.text = ''
                     self.recent_message = ''

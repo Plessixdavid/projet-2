@@ -6,5 +6,5 @@ from game import Game
 # start code is here
 if __name__ == "__main__":
     pygame.init()
-    game = Game()    
-    game.run()
+    Game().run()   
+    
