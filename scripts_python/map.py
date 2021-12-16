@@ -33,7 +33,7 @@ class MapManager:
             Portal(from_world="world", teleport_point="enter_my_house", target_world="my_house", spawn_point="spawn_my_house"),
             Portal(from_world="world", teleport_point="teleporter", target_world="new_world", spawn_point="spawn_player")
         ], pnjs=[
-            PNJ("paul", nb_points=4, dialog=["Salut ça va?","Bonne journnée."])
+            PNJ("paul", nb_points=12, dialog=["Salut ça va?","Bonne journnée."])
         ])
         self.register_map("my_house", portals=[
             Portal(from_world="my_house", teleport_point="exit_my_house", target_world="world", spawn_point="spawn_my_house_exit")

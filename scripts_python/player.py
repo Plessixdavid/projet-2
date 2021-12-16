@@ -93,10 +93,18 @@ class PNJ(Entity):
         current_rect = self.points[current_point]
         target_rect = self.points[target_point]
         
-        if current_rect.y < target_rect.y and abs(current_rect.x - target_rect.x) < 3: self.move_down()
-        elif current_rect.y > target_rect.y and abs(current_rect.x - target_rect.x) < 3: self.move_up()
-        elif current_rect.x < target_rect.x and abs(current_rect.y - target_rect.y) < 3: self.move_right()
-        elif current_rect.x > target_rect.x and abs(current_rect.y - target_rect.y) < 3: self.move_left()
+        if current_rect.y < target_rect.y and abs(current_rect.x - target_rect.x) < 3: 
+            self.change_animation("down")
+            self.position[1] += self.speed # move down
+        elif current_rect.y > target_rect.y and abs(current_rect.x - target_rect.x) < 3: 
+            self.change_animation("up")
+            self.position[1] -= self.speed # move up
+        elif current_rect.x < target_rect.x and abs(current_rect.y - target_rect.y) < 3: 
+            self.change_animation("right")
+            self.position[0] += self.speed # move right
+        elif current_rect.x > target_rect.x and abs(current_rect.y - target_rect.y) < 3: 
+            self.change_animation("left")
+            self.position[0] -= self.speed # move left
 
         if self.rect.colliderect(target_rect): self.current_point = target_point
 

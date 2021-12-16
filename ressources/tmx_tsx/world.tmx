@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="40">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="48">
  <tileset firstgid="1" source="tuile_nature.tsx"/>
  <tileset firstgid="721" source="house.tsx"/>
  <layer id="1" name="background" width="50" height="50">
@@ -469,9 +469,17 @@
   </object>
  </objectgroup>
  <objectgroup id="11" name="PNJ_path">
-  <object id="36" name="paul_path_1" x="424" y="272" width="16" height="16"/>
-  <object id="37" name="paul_path_2" x="424" y="432" width="16" height="16"/>
-  <object id="38" name="paul_path_3" x="264" y="432" width="16" height="16"/>
-  <object id="39" name="paul_path_4" x="264" y="272" width="16" height="16"/>
+  <object id="36" name="paul_path_1" x="104" y="526" width="16" height="16"/>
+  <object id="37" name="paul_path_2" x="106" y="590" width="16" height="16"/>
+  <object id="38" name="paul_path_3" x="224" y="590" width="16" height="16"/>
+  <object id="39" name="paul_path_4" x="224" y="416" width="16" height="16"/>
+  <object id="40" name="paul_path_5" x="412" y="416" width="16" height="16"/>
+  <object id="41" name="paul_path_6" x="412" y="606" width="16" height="16"/>
+  <object id="42" name="paul_path_7" x="656" y="606" width="16" height="16"/>
+  <object id="43" name="paul_path_8" x="376" y="606" width="16" height="16"/>
+  <object id="44" name="paul_path_9" x="376" y="416" width="16" height="16"/>
+  <object id="45" name="paul_path_10" x="184" y="416" width="16" height="16"/>
+  <object id="46" name="paul_path_11" x="184" y="590" width="16" height="16"/>
+  <object id="47" name="paul_path_12" x="102" y="590" width="16" height="16"/>
  </objectgroup>
 </map>
