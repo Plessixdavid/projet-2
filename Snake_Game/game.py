@@ -67,7 +67,7 @@ class Game :
                 if evenement.type == pygame.KEYDOWN:
                     if evenement.key == pygame.K_RETURN:
                         self.screen_beginning = False
-
+                
                 self.screen.fill((0, 0, 0))
 
                 # Display the image of the title in a rectangle :
@@ -88,6 +88,9 @@ class Game :
                 # Close the windows :
                 if evenement.type == pygame.QUIT:
                     sys.exit()
+
+                if evenement.key == pygame.K_RETURN:       # Touch Enter on the clapboard.
+                    self.screen_beginning = True
                 
                 # Events for the direction of the snake :
                 # Event KEYDOWN :

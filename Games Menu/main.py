@@ -1,10 +1,12 @@
 # Code : UTF-8
 
 # Imports :
-from game import Game
+from connexion import *
 
-g = Game()
+g = Connexion()
 
 while g.running:
     g.curr_menu.display_menu()
-    g.game_loop()
+    g.connexion_loop()
+    g.inscription_loop()
+    g.credits_menu()
