@@ -169,17 +169,17 @@ class Game :
             # New condition if the player win horizontally :
             if List_lines_X.count(0) == 3 or List_lines_X.count(1) == 3 or List_lines_X.count(2) == 3 :
                 print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
-                self.game_running = False
+                self.restart()
             
             # New condition if the player win vertically :
             elif List_column_X.count(0) == 3 or List_column_X.count(1) == 3 or List_column_X.count(2) == 3 :
                 print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
-                self.game_running = False
+                self.restart()
 
             # New condition is the player win diagonally :
             elif List_lines_X == List_column_X or List_lines_X == List_column_X[::-1] :
                 print("Le joueur qui jouait avec les croix a gagné ! Félicitations.")
-                self.game_running = False
+                self.restart()
 
         # New condition if the winner has 3 circles on the game :
         if len(List_O) >= 3:
@@ -190,14 +190,14 @@ class Game :
             # New condition if the player win horizontally :
             if List_lines_O.count(0) == 3 or List_lines_O.count(1) == 3 or List_lines_O.count(2) == 3 :
                 print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
-                self.game_running = False
+                self.restart()
 
             # New condition if the player win vertically :
             elif List_column_O.count(0) == 3 or List_column_O.count(1) == 3 or List_column_O.count(2) == 3 :
                 print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
-                self.game_running = False
+                self.restart()
 
             # New condition is the player win diagonally :
             elif List_lines_O == List_column_O or List_lines_O == List_column_O[::-1] :
                 print("Le joueur qui jouait avec les ronds a gagné ! Félicitations.")
-                self.game_running = False
+                self.restart()
