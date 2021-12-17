@@ -2,7 +2,7 @@ import pygame , sys, copy
 from settings import *
 from player_class import*
 from enemy_class import *
-
+from DBUtil import DBUtil
 
 
 pygame.init()
@@ -50,7 +50,11 @@ class App:
             else:
                 self.running = False
             self.Clock.tick(FPS)
-            
+        DBUtil.Connect("Projet coconuts")
+        Query = "INSERT INTO pac_man (score, nameid ) VALUES (%s, %s)"
+        Values = (self.High_Score, 1)
+        DBUtil.ExecuteQuery(Query, Values)
+        DBUtil.Close()    
         pygame.quit()
         sys.exit()
 
@@ -223,6 +227,8 @@ class App:
                 self.reset()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE :
                 self.running = False
+                # envoie score
+            
 
     def game_over_update(self):
         pass
