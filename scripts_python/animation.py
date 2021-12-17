@@ -4,9 +4,10 @@ import pygame
 
 class animate_sprite(pygame.sprite.Sprite):
 
-    def __init__(self):
+    firstnane = "David"
+    def __init__(self, name):
         super().__init__()
-        self.sprite_sheet = pygame.image.load("ressources/png/player.png")
+        self.sprite_sheet = pygame.image.load(f"ressources/png/{name}.png")
         self.animation_index = 1
         self.clock = 0
         self.images = {
@@ -17,6 +18,7 @@ class animate_sprite(pygame.sprite.Sprite):
         }
         self.speed = 2
         self.speed_clock = 130
+        
 
     def change_animation(self, name):
         self.image = self.images[name][self.animation_index]
@@ -45,3 +47,9 @@ class animate_sprite(pygame.sprite.Sprite):
         image = pygame.Surface([32, 32])
         image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 32))
         return image
+
+    @classmethod
+    def get_name(cls, surface):
+            Name = pygame.font.Font('scripts_python/menu/spaceship/assets/FreckleFace-Regular.ttf', 20).render(f'name: {cls.firstnane}', True, (247, 255, 0 ))
+            surface.blit(Name, (25, 25))
+
