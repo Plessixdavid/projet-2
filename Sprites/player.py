@@ -2,7 +2,7 @@
 
 import pygame
 
-from animation import animate_sprite
+from Dragons.anim_D_bleu import animate_sprite
 
 class Player (animate_sprite):
 
