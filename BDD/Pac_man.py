@@ -1,10 +1,10 @@
 # coding: utf-8
 
 # imports
-from Skin import Skin
+from Data_joueur import Data_joueur
 
 # class
-class Data_joueur:
+class Pac_man:
     """
         Model for Data_joueur table
     """
@@ -20,25 +20,23 @@ class Data_joueur:
 
             Args:
                 ID : primary key
-                Name : name
-                SkinID : image ID
-                Motdepasse : password
-                Email : Email
+                Score : score
+                NameID : Name ID
+               
         """
         
         # model properties
         self.ID = Data[0]
-        self.Motdepasse = Data[1]
-        self.Email = Data[2]
-        self.SkinID = Data[3]
-        self.Name = Data[4]
+        self.Score = Data[1]
+        self.NameID = Data[2]
+        
         
         # calculated properties
-        self.Skinname = [
-            Element.Url_image 
+        self.names = [
+            Element.Name
             for Element 
-            in Skin.List 
-            if Element.ID == self.SkinID][0]
+            in Data_joueur.List 
+            if Element.ID == self.NameID][0]
         
 
         # add object to collection
@@ -52,4 +50,4 @@ class Data_joueur:
             return string
         """
 
-        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, {self.Skinname})"
+        return f"({self.ID}, {self.Score}, {self.names})"
