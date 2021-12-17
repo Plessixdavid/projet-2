@@ -4,7 +4,7 @@
 from DBUtil import DBUtil
 from Data_joueur import Data_joueur
 from Pac_man import Pac_man
-from Score_jeux2 import Score_jeux2
+from knight_castle import knight_castle
 from Score_jeux3 import Score_jeux3
 from Score_jeux4 import Score_jeux4
 from Score_jeux5 import Score_jeux5
@@ -24,7 +24,7 @@ def Main():
     DBUtil.FillModelCollection("SELECT * FROM Skin", Skin)
     DBUtil.FillModelCollection("SELECT * FROM Data_joueur", Data_joueur)
     DBUtil.FillModelCollection("SELECT * FROM Pac_man", Pac_man)
-    DBUtil.FillModelCollection("SELECT * FROM Score_jeux2", Score_jeux2)
+    DBUtil.FillModelCollection("SELECT * FROM Knight_castle", knight_castle)
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux3", Score_jeux3)
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux4", Score_jeux4)
     DBUtil.FillModelCollection("SELECT * FROM Score_jeux5", Score_jeux5)
