@@ -68,8 +68,8 @@ class Game:
 
         # Try to connect to the server, if this fail the game will just run on solo
         try:
-            # sio.connect('http://109.11.96.12:8271/') # Public server
-            sio.connect('http://localhost:6969/') # Local server
+            sio.connect('http://109.11.96.12:8271/') # Public server
+            # sio.connect('http://localhost:6969/') # Local server
             self.chat_player = input_box(sio=sio)
             connected = True
         except: 
