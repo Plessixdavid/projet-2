@@ -1,6 +1,8 @@
 import pygame
-from pygame import display
-from pygame import surface
+# from pygame import display
+# from pygame import surface
+from test_request import input_box
+
 
 
 class Menu():
@@ -10,6 +12,8 @@ class Menu():
         self.run_display = True
         self.cursor_rect = pygame.Rect(0, 0, 50, 50)
         self.offset = -150
+        self.chat_player = input_box()
+
 
     # afficher et configurer le curseur.
     def draw_cursor(self):
@@ -21,6 +25,7 @@ class Menu():
         self.game.window.blit(self.game.display,(0,0))
         pygame.display.update()
         self.game.reset_keys()
+
 
 # Création du menu et configuration des elements.
 class Commencer(Menu):
@@ -42,8 +47,7 @@ class Commencer(Menu):
         self.run_display = True
         
         while self.run_display:
-            
-            self.game.check_events()
+            self.game.check_events(self.chat_player)
             self.check_input()
             self.game.draw_text("Connexion", 50, self.connexionx, self.connexiony)
             self.game.draw_text("Inscription", 50, self.inscriptionx, self.inscriptiony)
@@ -95,19 +99,26 @@ class Connexion(Menu):
         self.mailx, self.maily = self.mid_w, self.mid_h + 40
         self.validex, self.validey = self.mid_w, self.mid_h + 40
         self.cursor_rect.midtop = (self.pseudox + self.offset, self.pseudoy)
-
+        self.chat_player = input_box()
 
 
     def display_menu(self):
 
         self.run_display = True
         while self.run_display:
-            self.game.check_events()
             self.game.display.fill((0,0,0))
+            self.game.check_events(self.chat_player)
+
+            self.chat_player.update_chat()
+            self.chat_player.draw_chat(self.game.display)
+
+            pygame.display.flip()
+
             self.game.draw_text("Pseudo :", 60, self.pseudox -300, self.pseudoy )
             self.game.draw_text("MDP :", 60, self.mdpx -300, self.mdpy + 100)
             self.game.draw_text("Valide :", 60, self.mailx, self.maily + 300)
             self.blit_screen()
+            
             
 
             
@@ -136,6 +147,8 @@ class Inscription(Menu):
             self.game.draw_text("Mail :", 60, self.mailx -300, self.maily + 200)
             self.game.draw_text("Valide :", 60, self.mailx, self.maily + 300)
             self.blit_screen()
+
+    
 
     def check_input(self):
         if self.game.BACK_KEY:

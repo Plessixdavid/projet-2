@@ -27,6 +27,7 @@ class input_box:
                 self.active = not self.active
             else:
                 self.active = False
+                
             # change la couleur actuelle de la boite de saisie si elle est activer/desactiver
             self.color = COLOR_ACTIVE if self.active else COLOR_INACTIVE
         if event.type == pygame.KEYDOWN:

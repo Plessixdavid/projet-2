@@ -1,6 +1,6 @@
 import pygame
-
 from menu import *
+from test_request import input_box
 
 class Game():
     def __init__(self):
@@ -17,19 +17,25 @@ class Game():
         self.display = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
         # self.font_name = pygame.font.get_default_font()
         
-        self.BLACK,self.WHITE = (0,0,0), (255,255,255)
+        self.BLACK,self.WHITE =(0,0,0), (255,255,255),
         self.main_menu = Commencer(self)
         self.connexion = Connexion(self)
         self.inscription = Inscription(self)
         self.credits = CreditsMenu(self)
         self.curr_menu = self.main_menu
 
+
+        
+
     def game_loop(self):
         
         while self.playing:
+            
             self.check_events()
+            self.chat_player.update_chat()
             if self.START_KEY:
                 self.playing = False
+            
                 
             
             # self.display.fill(self.BLACK)
@@ -38,8 +44,9 @@ class Game():
             # pygame.display.update()
             # self.reset_keys()
 
-    def check_events(self):
+    def check_events(self, chat):
         for event in pygame.event.get():
+            chat.handle_event(event)
             if event.type == pygame.QUIT:
                 self.running, self.playing = False, False
                 self.curr_menu.run_display = False
@@ -50,13 +57,16 @@ class Game():
                     self.BACK_KEY = False
                     self.running, self.playing = False, False
                     self.curr_menu.run_display = False
-                if event.key == pygame.K_BACKSPACE:
-                    self.BACK_KEY = True
+                # if event.key == pygame.K_BACKSPACE:
+                #     self.BACK_KEY = True
                 if event.key == pygame.K_DOWN:
                     self.DOWN_KEY = True
                 if event.key == pygame.K_UP:
                     self.UP_KEY = True
 
+            
+                    
+            
             
 
     def reset_keys(self):
