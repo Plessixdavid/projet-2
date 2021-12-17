@@ -39,6 +39,10 @@ class Game :
                     # Quit the game :
                     if event.type == pygame.QUIT:
                         sys.exit() 
+                    if event.type == pygame.KEYDOWN:
+                        # Event for the player with Escape to have the screen of menu :
+                        if event.key == pygame.K_ESCAPE:
+                            print("Menu")
 
                     # Display the screen of the game when player clicks on space :
                     if event.type == pygame.KEYDOWN:
@@ -64,6 +68,7 @@ class Game :
                 # Quit the game :
                 if event.type == pygame.QUIT:
                     sys.exit()
+
                 # Event : right click : 
                     # [0] : list of buttons in the mouse = right click. 
                 if event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:   
@@ -96,7 +101,7 @@ class Game :
                     # Event for the player with Enter to restart the game :
                     if event.key == pygame.K_RETURN:       # Touch Enter on the clapboard.
                         self.restart()
-                    # Event for the player with Escape to have the screen of beginning :
+                    # Event for the player with Escape to have the screen of beginning during the party:
                     if event.key == pygame.K_ESCAPE:
                         self.screen_begin = True
 
