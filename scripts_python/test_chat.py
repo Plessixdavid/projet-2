@@ -7,10 +7,13 @@ COLOR_INACTIVE = pygame.Color(175, 175 ,175)
 COLOR_ACTIVE = pygame.Color(48, 48, 48)
 class input_box:
 
-    def __init__(self, text=''):
+    def __init__(self, text='', sio=None):
         self.rect = pygame.Rect(1000, 320, 320, 32)
         self.rect_2 = pygame.Rect(1000, 0, 320, 320)
         
+        self.sio = sio
+        self.messages = []
+
         self.color = COLOR_INACTIVE
         self.text = text
         self.recent_message = ''
@@ -18,6 +21,14 @@ class input_box:
         self.txt_surface = self.font.render(self.text, True, self.color)
         self.mess_surface = self.font.render(self.recent_message, True, self.color)
         self.active = False
+
+        # GET All the chat ! And update the chat on new messages
+        if sio is not None:
+            @self.sio.on('MESSAGE')
+            def message(data):
+                self.messages =  data
+            
+            self.sio.emit("GET CHAT")
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -34,6 +45,14 @@ class input_box:
                 if event.key == pygame.K_RETURN: # envoyer le texte si on presse "enter"
                     # afficher le texte en console pour verifier le fonctionnement
                     self.mess_surface = self.font.render(f"{animate_sprite.firstnane} dit: {self.recent_message}", True, self.color)
+
+                    # Send message to the server
+                    if self.sio is not None:
+                        self.sio.emit('NEW MESSAGE', f"{animate_sprite.firstnane} dit: {self.recent_message}")
+
+                    # TODO: Afficher tout le chat !!!! Et pas juste un message !
+                    # ! Le chat est la variable self.messages, elle est egale a une liste de string !
+
                     # ajouter le message envoyer à la liste de message recent
                     # pour l'afficher ensuite dans le rect qui ce trouve juste au-dessus
                     # puis vider la variable qui sert à afficher le texte saisie

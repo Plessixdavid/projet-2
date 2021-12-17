@@ -11,10 +11,6 @@ from test_chat import input_box
 class Game:
 
     def __init__(self):
-
-        
-        
-        
         # créer la fenetre du jeu
         infoObject = pygame.display.Info()
         self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
@@ -26,7 +22,7 @@ class Game:
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
         self.dialog_box = dialog_box()
-        self.chat_player = input_box()
+        self.chat_player = None
 
     # recuperation des touche pour le deplacement
     def handle_input(self):
@@ -72,10 +68,12 @@ class Game:
 
         # Try to connect to the server, if this fail the game will just run on solo
         try:
-            sio.connect('http://109.11.96.12:8271/') # Public server
-            # sio.connect('http://localhost:6969/') # Local server
+            # sio.connect('http://109.11.96.12:8271/') # Public server
+            sio.connect('http://localhost:6969/') # Local server
+            self.chat_player = input_box(sio=sio)
             connected = True
         except: 
+            self.chat_player = input_box()
             pass
 
         # gerer les FPS
