@@ -58,16 +58,23 @@ class Game :
     # New function : Main_function :
     def Main_function(self):
 
-        # Loop for the screen of beginning :
-        while self.screen_beginning:
-            # Loop to verify the event :
-            for evenement in pygame.event.get():
-                if evenement.type == pygame.QUIT:
-                    sys.exit()
-                if evenement.type == pygame.KEYDOWN:
-                    if evenement.key == pygame.K_RETURN:
-                        self.screen_beginning = False
-                
+        # Loop when the game is running : 
+        while self.game_running:
+            # Loop for the screen of beginning :
+            while self.screen_beginning:
+                # Loop to verify the event :
+                for evenement in pygame.event.get():
+                    if evenement.type == pygame.QUIT:
+                        sys.exit()
+                    if evenement.type == pygame.KEYDOWN:
+                        # Event for the player with Escape to have the screen of menu :
+                        if evenement.key == pygame.K_ESCAPE:
+                            print("Menu")
+                        # Event to display the screen of the game when the player clicks on Enter :
+                        if evenement.key == pygame.K_RETURN:
+                            self.screen_beginning = False
+
+                # Background for the screen of the beginning :
                 self.screen.fill((0, 0, 0))
 
                 # Display the image of the title in a rectangle :
@@ -77,93 +84,103 @@ class Game :
                 self.create_message('small', 'Le but du jeu est que le serpent se développe.', (250, 200, 200, 5), (240, 240, 240))
                 self.create_message('small',' Pour cela, il a besoin de pommes. Mangez-en autant que possible pour grandir !!', (190, 220, 200, 5), (240, 240, 240))
                 self.create_message('medium','Appuyer sur Enter pour commencer.', (200, 450, 200, 5), (255, 255, 255))                
-                
+                    
                 pygame.display.flip()
-    
-        # Loop when the game is running : 
-        while self.game_running:
 
-            # Loop to verify the event :
-            for evenement in pygame.event.get():
-                # Close the windows :
-                if evenement.type == pygame.QUIT:
-                    sys.exit()
+                # Loop to verify the event :
+                for evenement in pygame.event.get():
+                    # Close the windows :
+                    if evenement.type == pygame.QUIT:
+                        sys.exit()
 
-                if evenement.key == pygame.K_RETURN:       # Touch Enter on the clapboard.
-                    self.screen_beginning = True
+                    # Events for the direction of the snake :
+                    # Event KEYDOWN :
+                    if evenement.type == pygame.KEYDOWN:
+                        # Event K_RIGHT :
+                        if evenement.key == pygame.K_RIGHT:
+                            self.snake_direction_x = 10
+                            self.snake_direction_y = 0
+                        # Event K_LEFT :
+                        if evenement.key == pygame.K_LEFT:
+                            self.snake_direction_x = -10
+                            self.snake_direction_y = 0
+                        # Event K_DOWN :
+                        if evenement.key == pygame.K_DOWN:
+                            self.snake_direction_y = 10
+                            self.snake_direction_x = 0
+                        # Event K_UP :
+                        if evenement.key == pygame.K_UP:
+                            self.snake_direction_y = -10
+                            self.snake_direction_x = 0
                 
-                # Events for the direction of the snake :
-                # Event KEYDOWN :
-                if evenement.type == pygame.KEYDOWN:
-                    # Event K_RIGHT :
-                    if evenement.key == pygame.K_RIGHT:
-                        self.snake_direction_x = 10
-                        self.snake_direction_y = 0
-                    # Event K_LEFT :
-                    if evenement.key == pygame.K_LEFT:
-                        self.snake_direction_x = -10
-                        self.snake_direction_y = 0
-                    # Event K_DOWN :
-                    if evenement.key == pygame.K_DOWN:
-                        self.snake_direction_y = 10
-                        self.snake_direction_x = 0
-                    # Event K_UP :
-                    if evenement.key == pygame.K_UP:
-                        self.snake_direction_y = -10
-                        self.snake_direction_x = 0
-            
-            # Condition if the snake is out the limits of the rectangle :
-            if (self.snake_position_x <= 100) or (self.snake_position_x >= 700) \
-                or (self.snake_position_y <= 100) or (self.snake_position_y >= 600) :
-                print("Ton 🐍 s'est pris un mur, tu as donc perdu.")
-                sys.exit()
-
-            # Movements of the snake :
-            self.snake_movement()
-
-            # Condition if the snake eats the apple :
-            if self.apple_position_y == self.snake_position_y and self.snake_position_x == self.apple_position_x:
-                self.apple_position_x = random.randrange(110, 690, 10)
-                self.apple_position_y = random.randrange(110, 590, 10)                
+                        # New events :
+                        if evenement.type == pygame.KEYDOWN:
+                            # Event for the player with Enter to restart the game :
+                            #if evenement.key == pygame.K_RETURN:       # Touch Enter on the clapboard.
+                                #self.restart()
+                            # Event for the player with Escape to have the screen of beginning during the party:
+                            if evenement.key == pygame.K_ESCAPE:
+                                self.screen_begin = True
                 
-                # Increase the height of the snake +1 :
-                self.height_body_snake += 1
-                
-                # Increase the score of the player +1 :
-                self.score += 1
+                # Condition if the snake is out the limits of the rectangle :
+                if (self.snake_position_x <= 100) or (self.snake_position_x >= 700) \
+                    or (self.snake_position_y <= 200) or (self.snake_position_y >= 600) :
+                    print("Ton 🐍 s'est pris un mur, tu as donc perdu.")
+                    self.restart()
 
-            # List that will store the snake's head position :
-            head_snake = []
-            head_snake.append(self.snake_position_x)
-            head_snake.append(self.snake_position_y)
+                # Movements of the snake :
+                self.snake_movement()
 
-            # Append snake's head positions in the list of snake positions : 
-            self.positions_snake.append(head_snake)
+                # Condition if the snake eats the apple :
+                if self.apple_position_y == self.snake_position_y and self.snake_position_x == self.apple_position_x:
+                    self.apple_position_x = random.randrange(110, 690, 10)
+                    self.apple_position_y = random.randrange(110, 590, 10)                
+                    
+                    # Increase the height of the snake +1 :
+                    self.height_body_snake += 1
+                    
+                    # Increase the score of the player +1 :
+                    self.score += 1
 
-            # Condition to resolve about the height of the snake through his position :
-            if len(self.positions_snake) > self.height_body_snake :
-                # We use .pop to delete the initial position of the snake.
-                self.positions_snake.pop(0)
+                # List that will store the snake's head position :
+                head_snake = []
+                head_snake.append(self.snake_position_x)
+                head_snake.append(self.snake_position_y)
 
-            # Display elements :
-            self.display_elements()
+                # Append snake's head positions in the list of snake positions : 
+                self.positions_snake.append(head_snake)
 
-            # Display the function bite_him :
-            self.bite_himself(head_snake)
+                # Condition to resolve about the height of the snake through his position :
+                if len(self.positions_snake) > self.height_body_snake :
+                    # We use .pop to delete the initial position of the snake.
+                    self.positions_snake.pop(0)
 
-            # Display the title and the score :
-            self.create_message('big', 'Snake Game', (320, 10, 100, 50), (255, 255, 255))
-            self.create_message('big','{}'.format(str(self.score)), (375, 50, 50, 50), (255, 255, 255))
+                # Display elements :
+                self.display_elements()
 
-            # Limits of the game in the screen :
-            self.create_limits()
+                # Display the function bite_him :
+                self.bite_himself(head_snake)
 
-            # Speed initial of the snake :
-            self.clock.tick(15)
+                # Display the title and the score :
+                self.create_message('big', 'Snake Game', (320, 10, 100, 50), (255, 255, 255))
+                self.create_message('big','{}'.format(str(self.score)), (375, 50, 50, 50), (255, 255, 255))
 
-            # Update the screen :     
-            pygame.display.flip()
+                # Limits of the game in the screen :
+                self.create_limits()
 
+                # Speed initial of the snake :
+                self.clock.tick(15)
+
+                # Update the screen :     
+                pygame.display.flip()
+
+    # New function te restart :
+    def restart(self):
+        self.screen.fill((0, 0, 0))
+        self.screen.blit(self.image_head_snake,(self.snake_position_x, self.snake_position_y, self.snake_body, self.snake_body))
+        pygame.draw.rect(self.screen, (255, 0, 0), (self.apple_position_x, self.apple_position_y, self.apple, self.apple))
+        self.display_snake()
+        
     # New function to create limits :
     def create_limits(self):
         pygame.draw.rect(self.screen, (255, 255, 255), (100, 100, 610, 500), 3)
@@ -201,8 +218,9 @@ class Game :
         # We said self.positions_snake[:-1] because he can't bite his head.
         for part_snake in self.positions_snake[:-1]:
             if part_snake == head_snake :
-                self.game_running = False
                 print("Ton 🐍 s'est mordu la queue, tu as perdu.")
+                self.restart()
+    
 
     # New function to create messages :
     def create_message(self, font, message, message_rectangle, color):
