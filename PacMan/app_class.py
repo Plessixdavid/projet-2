@@ -166,6 +166,7 @@ class App:
                     pygame.mixer.music.play(10)
                     self.m2=False
 
+
     def playing_update(self):
         self.player.update()
         for enemy in self.enemies:

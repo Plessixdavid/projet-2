@@ -1,6 +1,7 @@
 # coding: utf-8
 
 # imports
+from types import NotImplementedType
 import psycopg2
 
 # class
@@ -25,7 +26,7 @@ class DBUtil:
                 password="azerty",
                 host="localhost",
                 port="5432",
-                database=DBName)
+                database = DBName)
                     
         except(Exception, psycopg2.Error) as error:
             print(f"Impossible de se connecter à la base Postgre {DBName}\n{error}")
@@ -33,7 +34,8 @@ class DBUtil:
     @classmethod
     def ExecuteQuery(
         cls,
-        Query: str) -> list[tuple]:
+        Query: str,
+        Values: tuple = None) -> list[tuple]:
         """
             Execute specified query
 
@@ -50,9 +52,13 @@ class DBUtil:
         Cursor = cls.Connection.cursor()
         
         # execute query
-        Query = Query
-        Cursor.execute(Query)
-        Results = Cursor.fetchall()
+        Cursor.execute(Query, Values)
+        
+        if Query.startswith("SELECT"):
+            Results = Cursor.fetchall()
+
+        else:
+            Results = cls.Connection.commit()
         
         # close cursor
         Cursor.close()
@@ -60,6 +66,7 @@ class DBUtil:
         # return results
         return Results
 
+    
     @classmethod
     def FillModelCollection(
         cls,

@@ -21,31 +21,25 @@ class Data_joueur:
             Args:
                 ID : primary key
                 Name : name
-                Image : image URL
-                Comment : comments
-                CategoryID : foreign key to Category model
+                SkinID : image ID
+                Motdepasse : password
+                Email : Email
         """
         
         # model properties
         self.ID = Data[0]
-        self.Name = Data[1]
-        self.Motdepasse = Data[2]
-        self.Email = Data[3]
-        self.SkinID = Data[4]
-        # self.ScoreJeux1ID = Data[5]
-        # self.ScoreJeux2ID = Data[6]
-        # self.ScoreJeux3ID = Data[7]
-        # self.ScoreJeux4ID = Data[8]
-        # self.ScoreJeux5ID = Data[9]
-        # self.ScoreJeux6ID = Data[10]
-
+        self.Motdepasse = Data[1]
+        self.Email = Data[2]
+        self.SkinID = Data[3]
+        self.Name = Data[4]
         
         # calculated properties
-        self.SkinName = [
-            Skin.Element.url_image 
+        self.Skinname = [
+            Element.url_image 
             for Element 
             in Skin.List 
             if Element.ID == self.SkinID][0]
+        
 
         # add object to collection
         Data_joueur.List.append(self)
@@ -58,4 +52,4 @@ class Data_joueur:
             return string
         """
 
-        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email})"
+        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, {self.Skinname})"
