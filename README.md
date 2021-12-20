@@ -59,4 +59,4 @@ The morbac is a morpion. Simply align the crosses or rounds horizontally, vertic
 
 ## Contribution
 
-@Plessixdavid @Lezard91 @jorjormanie @theyadev @petite-souris
+[@Plessixdavid](https://github.com/Plessixdavid) [@Lezard91](https://github.com/Lezard91) [@jorjormanie](https://github.com/jorjormanie) [@theyadev](https://github.com/theyadev) [@petite-souris](https://github.com/petite-souris)
