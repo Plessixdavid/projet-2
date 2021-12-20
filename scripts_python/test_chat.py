@@ -8,8 +8,8 @@ COLOR_ACTIVE = pygame.Color(48, 48, 48)
 class input_box:
 
     def __init__(self, text=''):
-        self.rect = pygame.Rect(1000, 320, 320, 32)
-        self.rect_2 = pygame.Rect(1000, 0, 320, 320)
+        self.rect = pygame.Rect(850, 320, 320, 32)
+        self.rect_2 = pygame.Rect(850, 0, 320, 320)
         
         self.color = COLOR_INACTIVE
         self.text = text

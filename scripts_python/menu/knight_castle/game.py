@@ -76,6 +76,10 @@ class Game3:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    game.pressed[event.key] = True
+                    if event.key == pygame.K_ESCAPE:
+                        self.running = False 
                 
 
             # screen.fill('grey')
