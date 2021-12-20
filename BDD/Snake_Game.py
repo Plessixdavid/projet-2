@@ -4,9 +4,9 @@
 from Data_joueur import Data_joueur
 
 # class
-class Pac_man:
+class Snake_Game:
     """
-        Model for Data_joueur table
+        Model for Snake_Game table
     """
     
     # class properties
@@ -21,7 +21,7 @@ class Pac_man:
             Args:
                 ID : primary key
                 Score : score
-                NameID : Name ID
+                NameID : image ID
                
         """
         
@@ -40,7 +40,7 @@ class Pac_man:
         
 
         # add object to collection
-        Pac_man.List.append(self)
+        Snake_Game.List.append(self)
 
 
     def __str__(self) -> str:
