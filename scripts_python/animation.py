@@ -4,7 +4,7 @@ import pygame
 
 class animate_sprite(pygame.sprite.Sprite):
 
-    firstnane = pseudo
+    firstnane = "player"
     def __init__(self, name):
         super().__init__()
         self.sprite_sheet = pygame.image.load(f"ressources/png/{name}.png")
@@ -51,5 +51,5 @@ class animate_sprite(pygame.sprite.Sprite):
     @classmethod
     def get_name(cls, surface):
             Name = pygame.font.Font('scripts_python/menu/spaceship/assets/FreckleFace-Regular.ttf', 20).render(f'name: {cls.firstnane}', True, (247, 255, 0 ))
-            surface.blit(Name, (25, 25))
+            # surface.blit(Name, (25, 25))
 

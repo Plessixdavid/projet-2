@@ -11,5 +11,5 @@ if __name__ == "__main__":
     mdp = input("Votre mot de passe?\n")
     if pseudo != None and mail != None and mdp != None:
         pygame.init()
-        Game().run()   
+        Game(pseudo=pseudo).run()   
     

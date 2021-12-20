@@ -10,7 +10,7 @@ from player_chat import chat_box
 
 class Game:
 
-    def __init__(self):
+    def __init__(self, pseudo):
         # créer la fenetre du jeu
         infoObject = pygame.display.Info()
         self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
@@ -24,6 +24,7 @@ class Game:
         #genere un boite de dialogue
         self.dialog_box = dialog_box()
         self.chat_player = None
+        self.player_name = pseudo
 
     # recuperation des touche pour le deplacement
     def handle_input(self):
@@ -71,10 +72,10 @@ class Game:
         try:
             sio.connect('http://109.11.96.12:8271/') # Public server
             # sio.connect('http://localhost:6969/') # Local server
-            self.chat_player = chat_box(sio=sio)
+            self.chat_player = chat_box(sio=sio, pseudo=self.player_name)
             connected = True
         except: 
-            self.chat_player = chat_box()
+            self.chat_player = chat_box(pseudo=self.player_name)
             pass
 
         # gerer les FPS
@@ -124,7 +125,7 @@ class Game:
             self.dialog_box.render(self.screen)
             self.chat_player.draw_chat(self.screen)
             
-            animate_sprite.get_name(self.screen)
+            # animate_sprite.get_name(self.screen)
             pygame.display.flip()
 
             for event in pygame.event.get(): # recuperation des events
