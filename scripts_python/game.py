@@ -29,26 +29,26 @@ class Game:
     def handle_input(self):
         pressed = pygame.key.get_pressed()
         
-        if pressed[pygame.K_UP]:
+        if pressed[pygame.K_UP]: # pour vers le haut
             self.player.move_up()
             self.player.change_animation("up")
 
-        elif pressed[pygame.K_DOWN]:
+        elif pressed[pygame.K_DOWN]: # pour vers le bas
             self.player.move_down()
             self.player.change_animation("down")
 
-        elif pressed[pygame.K_RIGHT]:
+        elif pressed[pygame.K_RIGHT]: # pour vers la droite
             self.player.move_right()
             self.player.change_animation("right")
 
-        elif pressed[pygame.K_LEFT]:
+        elif pressed[pygame.K_LEFT]: # pour vers la gauche
             self.player.move_left()
             self.player.change_animation("left")
         
         
 
 
-    def update(self):
+    def update(self): # pour rafraichire l'affichage de la map
         self.map_manager.update()
     
 
@@ -127,7 +127,7 @@ class Game:
             animate_sprite.get_name(self.screen)
             pygame.display.flip()
 
-            for event in pygame.event.get():
+            for event in pygame.event.get(): # recuperation des events
                 self.chat_player.handle_event(event)
                 if event.type == pygame.QUIT:
                     running = False
