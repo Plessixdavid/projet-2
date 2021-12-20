@@ -3,6 +3,7 @@ from menu.knight_castle.setting import *
 from menu.knight_castle.level import Level
 from menu.knight_castle.overworld import Overworld
 from menu.knight_castle.ui import UI
+from BDD.DBUtil import DBUtil
 
 
 class Game3:
@@ -13,6 +14,7 @@ class Game3:
         self.max_health = 100
         self.cur_health = 100
         self.coins = 0
+        self.maxcoins = 0
 
         # Audio
         self.level_bg_music = pygame.mixer.Sound('scripts_python/menu/knight_castle/audio/level_music.wav')
@@ -50,6 +52,10 @@ class Game3:
     def check_game_over(self):
         if self.cur_health <= 0:
             self.cur_health = 100
+            self.maxcoins = self.coins
+            Query = "INSERT INTO knight_castle (score, nameid ) VALUES (%s, %s)"
+            Values = (self.maxcoins, 1)
+            DBUtil.ExecuteQuery(Query, Values)
             self.coins = 0
             self.max_level = 0
             self.overworld = Overworld(0,self.max_level,screen,self.create_level)

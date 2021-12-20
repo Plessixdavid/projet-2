@@ -1,10 +1,11 @@
 # coding : utf-8
 
 import pygame
+from BDD.DBUtil import DBUtil
 
 class animate_sprite(pygame.sprite.Sprite):
 
-    firstnane = "David"
+    firstnane = "david"
     def __init__(self, name):
         super().__init__()
         self.sprite_sheet = pygame.image.load(f"ressources/png/{name}.png")
