@@ -113,7 +113,7 @@ class Game:
                         continue
 
                     # Create the guest
-                    guest = Player(player['pos'][0],player['pos'][1])
+                    guest = Player("player", player['pos'][0],player['pos'][1])
                     guest.update()
 
                     # Add the guest to the group at layer 99
