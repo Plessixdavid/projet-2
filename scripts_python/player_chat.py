@@ -65,9 +65,9 @@ class chat_box:
                     if len(self.messages) > 3:
                         self.messages.pop(0)
                         
-                    self.mess_surface = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[0]}", True, self.color_text)
-                    self.mess_surface_1 = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[1]}", True, self.color_text)
-                    self.mess_surface_2 = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[2]}", True, self.color_text)
+                    self.mess_surface = self.font.render(self.messages[0] if self.messages[0] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[0]}", True, self.color_text)
+                    self.mess_surface_1 = self.font.render(self.messages[1] if self.messages[1] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[1]}", True, self.color_text)
+                    self.mess_surface_2 = self.font.render(self.messages[2] if self.messages[2] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[2]}", True, self.color_text)
                     print(self.messages)
                     # pour l'afficher ensuite dans le rect qui ce trouve juste au-dessus
                     print(self.recent_message)
