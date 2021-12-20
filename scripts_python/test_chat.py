@@ -8,8 +8,8 @@ COLOR_ACTIVE = pygame.Color(48, 48, 48)
 class input_box:
 
     def __init__(self, text='', sio=None):
-        self.rect = pygame.Rect(1000, 320, 320, 32)
-        self.rect_2 = pygame.Rect(1000, 0, 320, 320)
+        self.rect = pygame.Rect(850, 320, 320, 32)
+        self.rect_2 = pygame.Rect(850, 0, 320, 320)
         
         self.sio = sio
         self.messages = []
@@ -38,6 +38,7 @@ class input_box:
                 self.active = not self.active
             else:
                 self.active = False
+                
             # change la couleur actuelle de la boite de saisie si elle est activer/desactiver
             self.color = COLOR_ACTIVE if self.active else COLOR_INACTIVE
         if event.type == pygame.KEYDOWN:

@@ -21,6 +21,7 @@ class Game:
         # generer un joueur
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
+        #genere un boite de dialogue
         self.dialog_box = dialog_box()
         self.chat_player = None
 
@@ -119,7 +120,6 @@ class Game:
                     # Add the guest to the group at layer 99
                     self.map_manager.get_group().add(guest, layer=99)
 
-            
             self.map_manager.draw()
             self.chat_player.update_chat()
             self.dialog_box.render(self.screen)
