@@ -13,8 +13,6 @@ def Menuconsole():
         Email = input("quelle est votre email")
         Motdepasse = input("Choisissez un mot de passe")
         print("Je vous remercie , je vous souhaite un bon moment dans ce monde merveilleux. ")
-        pygame.init()
-        Game().run()
     elif Choixmenu == 2 :
         pass
     elif Choixmenu == 3 :
@@ -25,7 +23,8 @@ def Menuconsole():
 
 # start code is here
 if __name__ == "__main__":
-    # Menuconsole()
-    print("hello world")
-       
+    Menuconsole()
+    pygame.init()
+    Game().run()
+    
     

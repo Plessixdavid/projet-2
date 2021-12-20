@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from menu.main_menu import start as start_menu
 import pygame, pytmx, pyscroll
 from player import PNJ
+from animation import animate_sprite
   
 
 @dataclass
@@ -38,7 +39,8 @@ class MapManager:
             Portal(from_world="world", teleport_point="enter_my_house", target_world="my_house", spawn_point="spawn_my_house"),
             Portal(from_world="world", teleport_point="teleporter", target_world="new_world", spawn_point="spawn_player")
             ],pnjs=[
-            PNJ("paul", nb_points=4, dialog=["Salut ça va?","Bonne journnée."])
+            PNJ("paul", nb_points=12, dialog=["Salut ça va ?","Bonne journnée."])
+            ,PNJ("hostess", nb_points=1, dialog=["Salut, comment ça va?", "Aurais-tu vue ma licorne?...Non?", "Bonne journnée."])
         ])
         self.register_map("my_house", portals=[
             Portal(from_world="my_house", teleport_point="exit_my_house", target_world="world", spawn_point="spawn_my_house_exit")
@@ -49,7 +51,7 @@ class MapManager:
         self.register_map("inn", portals=[
             Portal(from_world="inn", teleport_point="exit_inn", target_world="world", spawn_point="spawn_inn_exit")
         ], pnjs=[
-            PNJ("hostess", nb_points=1, dialog=["Salut, comment ça va?", "Bienvenue dans la salle d'arcade", "Bonne journnée."])
+            PNJ("hostess", nb_points=1, dialog=[f"Salut, comment ça va ?", "Bienvenue dans la salle d'arcade", "Bonne journnée."])
         ])
 
         

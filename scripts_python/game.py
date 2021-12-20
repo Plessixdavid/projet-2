@@ -6,12 +6,11 @@ from map import MapManager
 from player import Player
 from animation import animate_sprite
 from dialog import dialog_box
-from test_chat import input_box
+from player_chat import chat_box
 
 class Game:
 
     def __init__(self):
-        
         # créer la fenetre du jeu
         infoObject = pygame.display.Info()
         self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
@@ -22,33 +21,34 @@ class Game:
         # generer un joueur
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
+        #genere un boite de dialogue
         self.dialog_box = dialog_box()
-        self.chat_player = input_box()
+        self.chat_player = None
 
     # recuperation des touche pour le deplacement
     def handle_input(self):
         pressed = pygame.key.get_pressed()
         
-        if pressed[pygame.K_UP]:
+        if pressed[pygame.K_UP]: # pour vers le haut
             self.player.move_up()
             self.player.change_animation("up")
 
-        elif pressed[pygame.K_DOWN]:
+        elif pressed[pygame.K_DOWN]: # pour vers le bas
             self.player.move_down()
             self.player.change_animation("down")
 
-        elif pressed[pygame.K_RIGHT]:
+        elif pressed[pygame.K_RIGHT]: # pour vers la droite
             self.player.move_right()
             self.player.change_animation("right")
 
-        elif pressed[pygame.K_LEFT]:
+        elif pressed[pygame.K_LEFT]: # pour vers la gauche
             self.player.move_left()
             self.player.change_animation("left")
         
         
 
 
-    def update(self):
+    def update(self): # pour rafraichire l'affichage de la map
         self.map_manager.update()
     
 
@@ -71,8 +71,10 @@ class Game:
         try:
             sio.connect('http://109.11.96.12:8271/') # Public server
             # sio.connect('http://localhost:6969/') # Local server
+            self.chat_player = chat_box(sio=sio)
             connected = True
         except: 
+            self.chat_player = chat_box()
             pass
 
         # gerer les FPS
@@ -112,22 +114,20 @@ class Game:
                         continue
 
                     # Create the guest
-                    guest = Player(player['pos'][0],player['pos'][1])
+                    guest = Player("player", player['pos'][0],player['pos'][1])
                     guest.update()
 
                     # Add the guest to the group at layer 99
                     self.map_manager.get_group().add(guest, layer=99)
 
-            
             self.map_manager.draw()
-            self.chat_player.update_chat()
             self.dialog_box.render(self.screen)
             self.chat_player.draw_chat(self.screen)
             
             animate_sprite.get_name(self.screen)
             pygame.display.flip()
 
-            for event in pygame.event.get():
+            for event in pygame.event.get(): # recuperation des events
                 self.chat_player.handle_event(event)
                 if event.type == pygame.QUIT:
                     running = False
