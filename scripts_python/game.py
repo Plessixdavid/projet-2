@@ -6,7 +6,7 @@ from map import MapManager
 from player import Player
 from animation import animate_sprite
 from dialog import dialog_box
-from test_chat import input_box
+from player_chat import chat_box
 
 class Game:
 
@@ -71,10 +71,10 @@ class Game:
         try:
             sio.connect('http://109.11.96.12:8271/') # Public server
             # sio.connect('http://localhost:6969/') # Local server
-            self.chat_player = input_box(sio=sio)
+            self.chat_player = chat_box(sio=sio)
             connected = True
         except: 
-            self.chat_player = input_box()
+            self.chat_player = chat_box()
             pass
 
         # gerer les FPS
