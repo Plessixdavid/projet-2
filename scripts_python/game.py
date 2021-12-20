@@ -11,10 +11,6 @@ from test_chat import input_box
 class Game:
 
     def __init__(self):
-
-        
-        
-        
         # créer la fenetre du jeu
         infoObject = pygame.display.Info()
         self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
@@ -27,8 +23,7 @@ class Game:
         self.map_manager = MapManager(self.screen, self.player)
         #genere un boite de dialogue
         self.dialog_box = dialog_box()
-        #genere la boite à chat
-        self.chat_player = input_box()
+        self.chat_player = None
 
     # recuperation des touche pour le deplacement
     def handle_input(self):
@@ -76,8 +71,10 @@ class Game:
         try:
             sio.connect('http://109.11.96.12:8271/') # Public server
             # sio.connect('http://localhost:6969/') # Local server
+            self.chat_player = input_box(sio=sio)
             connected = True
         except: 
+            self.chat_player = input_box()
             pass
 
         # gerer les FPS
@@ -117,7 +114,7 @@ class Game:
                         continue
 
                     # Create the guest
-                    guest = Player(player['pos'][0],player['pos'][1])
+                    guest = Player("player", player['pos'][0],player['pos'][1])
                     guest.update()
 
                     # Add the guest to the group at layer 99
