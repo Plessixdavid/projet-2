@@ -66,8 +66,8 @@ class Entity (animate_sprite):
 
 class Player(Entity):
 
-    def __init__(self):
-        super().__init__("player", 0, 0)
+    def __init__(self, name: str = "player", x: int = 0, y: int = 0):
+        super().__init__(name, x, y)
         self.image = self.get_image(32, 0)
         self.image.set_colorkey([0, 0, 0])
 
