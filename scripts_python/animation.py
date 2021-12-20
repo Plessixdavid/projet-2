@@ -45,3 +45,6 @@ class animate_sprite(pygame.sprite.Sprite):
         image = pygame.Surface([32, 32])
         image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 32))
         return image
+
+    # get_image_for_pnj_motionless()
+    # get_images_for_pnj_motionless()
