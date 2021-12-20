@@ -4,7 +4,7 @@ import pygame
 
 class animate_sprite(pygame.sprite.Sprite):
 
-    firstnane = "David"
+    firstnane = pseudo
     def __init__(self, name):
         super().__init__()
         self.sprite_sheet = pygame.image.load(f"ressources/png/{name}.png")

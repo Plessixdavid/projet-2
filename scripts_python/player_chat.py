@@ -64,7 +64,7 @@ class chat_box:
                     # ajouter le message envoyer à la liste de message recent
                     if len(self.messages) > 3:
                         self.messages.pop(0)
-                        
+
                     self.mess_surface = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[0]}", True, self.color_text)
                     self.mess_surface_1 = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[1]}", True, self.color_text)
                     self.mess_surface_2 = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[2]}", True, self.color_text)
