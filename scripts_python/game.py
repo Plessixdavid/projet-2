@@ -121,7 +121,6 @@ class Game:
                     self.map_manager.get_group().add(guest, layer=99)
 
             self.map_manager.draw()
-            self.chat_player.update_chat()
             self.dialog_box.render(self.screen)
             self.chat_player.draw_chat(self.screen)
             

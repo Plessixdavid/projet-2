@@ -10,8 +10,8 @@ TEXT_COLOR = pygame.Color(48, 48, 48)
 class chat_box:
 
     def __init__(self, text='', sio=None):
-        self.rect = pygame.Rect(10, 720, 220, 32)
-        self.rect_2 = pygame.Rect(10, 597, 220, 120)
+        self.rect = pygame.Rect(10, 720, 260, 32)
+        self.rect_2 = pygame.Rect(10, 590, 260, 128)
         self.color = COLOR_INACTIVE
         self.color_text = TEXT_COLOR
         self.sio = sio
@@ -19,13 +19,16 @@ class chat_box:
         self.color_fill_on = 200
         self.color_fill = self.color_fill_off
         self.text = text
-        self.messages = ["", "", ""]
+        self.messages = ["", "", "", "", "", ""]
         self.recent_message = ''
         self.font = pygame.font.Font("./ressources/dialog_font.ttf", 15)
         self.txt_surface = self.font.render(self.text, True, self.color_text)
         self.mess_surface = self.font.render(self.messages[0], True, self.color_text)
         self.mess_surface_1 = self.font.render(self.messages[1], True, self.color_text)
         self.mess_surface_2 = self.font.render(self.messages[2], True, self.color_text)
+        self.mess_surface_3 = self.font.render(self.messages[3], True, self.color_text)
+        self.mess_surface_4 = self.font.render(self.messages[4], True, self.color_text)
+        self.mess_surface_5 = self.font.render(self.messages[5], True, self.color_text)
         self.active = False
 
         # GET All the chat ! And update the chat on new messages
@@ -64,10 +67,13 @@ class chat_box:
                     # ajouter le message envoyer à la liste de message recent
                     if len(self.messages) > 3:
                         self.messages.pop(0)
-
-                    self.mess_surface = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[0]}", True, self.color_text)
-                    self.mess_surface_1 = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[1]}", True, self.color_text)
-                    self.mess_surface_2 = self.font.render(f"{animate_sprite.firstnane} dit: {self.messages[2]}", True, self.color_text)
+                        
+                    self.mess_surface = self.font.render(self.messages[0] if self.messages[0] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[0]}", True, self.color_text)
+                    self.mess_surface_1 = self.font.render(self.messages[1] if self.messages[1] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[1]}", True, self.color_text)
+                    self.mess_surface_2 = self.font.render(self.messages[2] if self.messages[2] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[2]}", True, self.color_text)
+                    self.mess_surface_3 = self.font.render(self.messages[3] if self.messages[3] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[3]}", True, self.color_text)
+                    self.mess_surface_4 = self.font.render(self.messages[4] if self.messages[4] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[4]}", True, self.color_text)
+                    self.mess_surface_5 = self.font.render(self.messages[5] if self.messages[5] == "" "" else f"{animate_sprite.firstnane} dit: {self.messages[5]}", True, self.color_text)
                     print(self.messages)
                     # pour l'afficher ensuite dans le rect qui ce trouve juste au-dessus
                     print(self.recent_message)
@@ -88,6 +94,9 @@ class chat_box:
                 self.txt_surface = self.font.render(self.text, True, self.color_text) # et l'afficher dans le rect de saisie
 
     def update_chat(self):
+        """
+        fonction facultative
+        """
         # Redimensionnez la zone si le texte est trop long.
         width = max(320, self.txt_surface.get_width()+10)
         height = max(32, self.txt_surface.get_height()+10)
@@ -95,13 +104,17 @@ class chat_box:
         self.rect.h = height
 
     def draw_chat(self, screen):
+        """
+        affiche le chat
+        """
         # afficher le rect de saisie
         color_rect = pygame.Surface((self.rect.w-1.5, self.rect.h-1.5), pygame.SRCALPHA)
         color_rect.fill((175, 175, 175, self.color_fill))
         color_rect_2 = pygame.Surface((self.rect_2.w-1, self.rect_2.h-1), pygame.SRCALPHA)
         color_rect_2.fill((175, 175, 175, self.color_fill))
-        pygame.draw.rect(screen, self.color, self.rect, 4)
-        pygame.draw.rect(screen, self.color, self.rect_2, 3)
+        if self.active == True:
+            pygame.draw.rect(screen, self.color, self.rect, 4)
+            pygame.draw.rect(screen, self.color, self.rect_2, 3)
         # afficher les frappes du clavier
         screen.blit(color_rect, (self.rect.x+1, self.rect.y+1))
         screen.blit(self.txt_surface, (self.rect.x+5, self.rect.y+5))
@@ -109,7 +122,6 @@ class chat_box:
         screen.blit(self.mess_surface, (self.rect_2.x+5, self.rect_2.y+5))
         screen.blit(self.mess_surface_1, (self.rect_2.x+5, self.rect_2.y+25))
         screen.blit(self.mess_surface_2, (self.rect_2.x+5, self.rect_2.y+45))
-        # 1er essai pour rendre le rect du chat transparent
-        #s = pygame.Surface((self.rect_2.w,self.rect_2.h), pygame.SRCALPHA, )   # per-pixel alpha
-        #s.fill((175,175,175,128))                         # notice the alpha value in the color
-        #screen.blit(s, (self.rect_2.x, self.rect_2.y))
+        screen.blit(self.mess_surface_3, (self.rect_2.x+5, self.rect_2.y+65))
+        screen.blit(self.mess_surface_4, (self.rect_2.x+5, self.rect_2.y+85))
+        screen.blit(self.mess_surface_5, (self.rect_2.x+5, self.rect_2.y+105))
