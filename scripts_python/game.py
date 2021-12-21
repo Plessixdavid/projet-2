@@ -9,8 +9,11 @@ from dialog import dialog_box
 from player_chat import chat_box
 
 class Game:
-
-    def __init__(self, pseudo):
+    """
+    classe qui permet de faire tourner le jeu
+    (enfin je pense)
+    """
+    def __init__(self, pseudo): # sans commentaire
         # créer la fenetre du jeu
         infoObject = pygame.display.Info()
         self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
@@ -28,6 +31,10 @@ class Game:
 
     # recuperation des touche pour le deplacement
     def handle_input(self):
+        """
+        active les deplacements en fonctions des touches activer
+        et les animations qui vont avec
+        """
         pressed = pygame.key.get_pressed()
         
         if pressed[pygame.K_UP]: # pour vers le haut
@@ -46,14 +53,14 @@ class Game:
             self.player.move_left()
             self.player.change_animation("left")
         
-        
-
-
-    def update(self): # pour rafraichire l'affichage de la map
+    def update(self):
+        """pour rafraichire l'affichage de la map"""
         self.map_manager.update()
     
-
     def run(self):
+        """
+        lancement des fonctions essentiel et boucle du jeu
+        """
         # Creating Socket
         sio = socketio.Client()
 
@@ -125,7 +132,6 @@ class Game:
             self.dialog_box.render(self.screen)
             self.chat_player.draw_chat(self.screen)
             
-            # animate_sprite.get_name(self.screen)
             pygame.display.flip()
 
             for event in pygame.event.get(): # recuperation des events
