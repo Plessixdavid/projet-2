@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from menu.main_menu import start as start_menu
 import pygame, pytmx, pyscroll
-from player import PNJ
+from entity import PNJ
 from animation import animate_sprite
   
 
