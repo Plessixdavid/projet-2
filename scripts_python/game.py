@@ -3,7 +3,7 @@
 import pygame
 import socketio
 from map import MapManager
-from player import Player
+from entity import Player
 from animation import animate_sprite
 from dialog import dialog_box
 from player_chat import chat_box
