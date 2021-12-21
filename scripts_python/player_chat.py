@@ -8,6 +8,9 @@ COLOR_ACTIVE = pygame.Color(255, 0, 0)
 TEXT_COLOR = pygame.Color(48, 48, 48)
 
 class chat_box:
+    """
+    fenetre de chat pour les joueurs
+    """
 
     def __init__(self, text='', sio=None, pseudo=''):
         self.rect = pygame.Rect(10, 720, 260, 32)
