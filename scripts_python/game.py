@@ -13,7 +13,7 @@ class Game:
     def __init__(self):
         # créer la fenetre du jeu
         infoObject = pygame.display.Info()
-        self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
+        self.DISPLAY_W, self.DISPLAY_H = infoObject.current_w, infoObject.current_h
         self.screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         pygame.display.set_caption("hub")
