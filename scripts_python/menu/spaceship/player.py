@@ -2,6 +2,7 @@ import pygame
 from pygame import surface
 from menu.spaceship.projectile import Projectile
 from menu.spaceship.enemy import Enemy
+from BDD.DBUtil import DBUtil
 
 
 # Création du joueur.
@@ -10,17 +11,17 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, game):
         super().__init__()
         self.game = game
-        self.health = 100
-        self.max_health = 100
-        self.attack = 50
-        self.velocity = 5
+        self.health = DBUtil.ExecuteQuery('SELECT player_health FROM spaceship_settings')[0][0]
+        self.max_health = DBUtil.ExecuteQuery('SELECT player_health FROM spaceship_settings')[0][0]
+        self.attack = DBUtil.ExecuteQuery('SELECT attack_player FROM spaceship_settings')[0][0]
+        self.velocity = DBUtil.ExecuteQuery('SELECT player_velocity FROM spaceship_settings')[0][0]
         self.all_projectiles = pygame.sprite.Group()
         self.image = pygame.image.load("scripts_python/menu/spaceship/assets/ship.png")
         self.rect = self.image.get_rect()
         self.rect.x = 25
         self.rect.y = 360
         self.current_xp = 0
-        self.max_xp = 500
+        self.max_xp = DBUtil.ExecuteQuery('SELECT player_max_xp FROM spaceship_settings')[0][0]
         self.total_xp = 0
         self.current_level = 1
         
@@ -51,7 +52,7 @@ class Player(pygame.sprite.Sprite):
         if self.current_xp == self.max_xp:
             # self.current_xp = self.current_xp - self.max_xp
             self.current_level += 1
-            self.max_xp += 500
+            self.max_xp += DBUtil.ExecuteQuery('SELECT player_add_xp_level FROM spaceship_settings')[0][0]
             self.game.spawn_enemy(25)
             
             

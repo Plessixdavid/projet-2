@@ -2,6 +2,7 @@ import pygame
 from menu.spaceship.player import Player
 from menu.spaceship.enemy import Enemy
 import math
+from BDD.DBUtil import DBUtil
 # Création de la classe game.
 class Game1:
 
@@ -13,6 +14,7 @@ class Game1:
         self.all_enemy = pygame.sprite.Group()
         self.spawn_enemy(25) 
         self.spawn_enemy(25)
+        self.total_xp = None
         
         
         
@@ -30,6 +32,9 @@ class Game1:
         self.all_enemy = pygame.sprite.Group()
         self.player.health = self.player.max_health
         self.is_playing = False
+        Query = "INSERT INTO spaceship (score, nameid ) VALUES (%s, %s)"
+        Values = (self.current_xp, 16)
+        DBUtil.ExecuteQuery(Query, Values)
         self.current_xp = 0
         self.max_xp = 500
         self.total_xp = 0

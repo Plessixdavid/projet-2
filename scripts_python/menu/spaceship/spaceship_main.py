@@ -95,7 +95,7 @@ def spaceship_start():
             elif event.type == pygame.KEYDOWN:
                 game.pressed[event.key] = True
                 if event.key == pygame.K_LALT:
-                    
+                    menu_music.stop()
                     game.player.lunch_projectile()
                 if event.key == pygame.K_SPACE:
                     menu_music.stop()

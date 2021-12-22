@@ -1,18 +1,16 @@
 # coding : utf-8
 
 import pygame
-from animation import animate_sprite
+
+import var as var
 
 COLOR_INACTIVE = pygame.Color(175, 175 ,175)
 COLOR_ACTIVE = pygame.Color(255, 0, 0)
 TEXT_COLOR = pygame.Color(48, 48, 48)
 
 class chat_box:
-    """
-    fenetre de chat pour les joueurs
-    """
 
-    def __init__(self, text='', sio=None, pseudo=''):
+    def __init__(self, text='', sio=None, Pseudo=""):
         self.rect = pygame.Rect(10, 720, 260, 32)
         self.rect_2 = pygame.Rect(10, 590, 260, 128)
         self.color = COLOR_INACTIVE
@@ -21,13 +19,10 @@ class chat_box:
         self.color_fill_off = 60
         self.color_fill_on = 200
         self.color_fill = self.color_fill_off
-        self.pseudo = pseudo
         self.text = text
         self.messages = ["", "", "", "", "", ""]
         self.recent_message = ''
         self.font = pygame.font.Font("./ressources/dialog_font.ttf", 15)
-        self.pseudo_font = pygame.font.Font('scripts_python/menu/spaceship/assets/FreckleFace-Regular.ttf', 20)
-        self.print_player = self.pseudo_font.render(self.pseudo, True, (247, 255, 0))
         self.txt_surface = self.font.render(self.text, True, self.color_text)
         self.mess_surface = self.font.render(self.messages[0], True, self.color_text)
         self.mess_surface_1 = self.font.render(self.messages[1], True, self.color_text)
@@ -74,19 +69,19 @@ class chat_box:
                     if len(self.messages) > 3:
                         self.messages.pop(0)
                         
-                    self.mess_surface = self.font.render(self.messages[0] if self.messages[0] == "" "" else f"{self.pseudo} dit: {self.messages[0]}", True, self.color_text)
-                    self.mess_surface_1 = self.font.render(self.messages[1] if self.messages[1] == "" "" else f"{self.pseudo} dit: {self.messages[1]}", True, self.color_text)
-                    self.mess_surface_2 = self.font.render(self.messages[2] if self.messages[2] == "" "" else f"{self.pseudo} dit: {self.messages[2]}", True, self.color_text)
-                    self.mess_surface_3 = self.font.render(self.messages[3] if self.messages[3] == "" "" else f"{self.pseudo} dit: {self.messages[3]}", True, self.color_text)
-                    self.mess_surface_4 = self.font.render(self.messages[4] if self.messages[4] == "" "" else f"{self.pseudo} dit: {self.messages[4]}", True, self.color_text)
-                    self.mess_surface_5 = self.font.render(self.messages[5] if self.messages[5] == "" "" else f"{self.pseudo} dit: {self.messages[5]}", True, self.color_text)
+                    self.mess_surface = self.font.render(self.messages[0] if self.messages[0] == "" "" else f"{var.Pseudo} dit: {self.messages[0]}", True, self.color_text)
+                    self.mess_surface_1 = self.font.render(self.messages[1] if self.messages[1] == "" "" else f"{var.Pseudo} dit: {self.messages[1]}", True, self.color_text)
+                    self.mess_surface_2 = self.font.render(self.messages[2] if self.messages[2] == "" "" else f"{var.Pseudo} dit: {self.messages[2]}", True, self.color_text)
+                    self.mess_surface_3 = self.font.render(self.messages[3] if self.messages[3] == "" "" else f"{var.Pseudo} dit: {self.messages[3]}", True, self.color_text)
+                    self.mess_surface_4 = self.font.render(self.messages[4] if self.messages[4] == "" "" else f"{var.Pseudo} dit: {self.messages[4]}", True, self.color_text)
+                    self.mess_surface_5 = self.font.render(self.messages[5] if self.messages[5] == "" "" else f"{var.Pseudo} dit: {self.messages[5]}", True, self.color_text)
                     print(self.messages)
                     # pour l'afficher ensuite dans le rect qui ce trouve juste au-dessus
                     print(self.recent_message)
                     # puis vider la variable qui sert à afficher le texte saisie
                     # Send message to the server
                     if self.sio is not None:
-                        self.sio.emit('NEW MESSAGE', f"{animate_sprite.firstnane} dit: {self.recent_message}")
+                        self.sio.emit('NEW MESSAGE', f"{var.Pseudo} dit: {self.recent_message}")
                     self.text = ''
                     self.recent_message = ''
                 elif event.key == pygame.K_BACKSPACE: # si on appuie sur la touche "retour arriere"
@@ -131,4 +126,3 @@ class chat_box:
         screen.blit(self.mess_surface_3, (self.rect_2.x+5, self.rect_2.y+65))
         screen.blit(self.mess_surface_4, (self.rect_2.x+5, self.rect_2.y+85))
         screen.blit(self.mess_surface_5, (self.rect_2.x+5, self.rect_2.y+105))
-        screen.blit(self.print_player, (25, 25))

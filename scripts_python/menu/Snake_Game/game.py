@@ -4,6 +4,7 @@
 import pygame
 import sys
 import random
+from BDD.DBUtil import DBUtil
 
 # New class : Game :
 class Game4 :
@@ -115,7 +116,11 @@ class Game4 :
             if (self.snake_position_x <= 100) or (self.snake_position_x >= 700) \
                 or (self.snake_position_y <= 100) or (self.snake_position_y >= 600) :
                 print("Ton 🐍 s'est pris un mur, tu as donc perdu.")
+                Query = "INSERT INTO snake_game (score, nameid ) VALUES (%s, %s)"
+                Values = (self.score, 16)
+                DBUtil.ExecuteQuery(Query, Values)
                 self.game_running = False
+
 
             # Movements of the snake :
             self.snake_movement()
@@ -200,6 +205,9 @@ class Game4 :
         # We said self.positions_snake[:-1] because he can't bite his head.
         for part_snake in self.positions_snake[:-1]:
             if part_snake == head_snake :
+                Query = "INSERT INTO snake_game (score, nameid ) VALUES (%s, %s)"
+                Values = (self.score, 16)
+                DBUtil.ExecuteQuery(Query, Values)
                 self.game_running = False
                 print("Ton 🐍 s'est mordu la queue, tu as perdu.")
 
