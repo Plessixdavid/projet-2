@@ -9,7 +9,7 @@ def spaceship_start():
     pygame.init()
 
     
-    # génère la fenêtre du jeu et charge des images en memoire et change le nom de la fenêtre ainsi que l'icon.
+    # génère la fenêtre du jeu et charge des images en mémoire et change le nom de la fenêtre ainsi que l'icon.
     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     icons = pygame.image.load("scripts_python/menu/spaceship/assets/icons/bender.png")
     background = pygame.image.load("scripts_python/menu/spaceship/assets/bg4.png")
@@ -57,7 +57,7 @@ def spaceship_start():
         for event in pygame.event.get():
             if event.type == pygame.JOYHATMOTION:
                 print(event)
-                # Permet d'actionner la croix  directionnel de la manette.
+                # Permet d'actionner la croix  directionnelle de la manette.
                 if event.value[0] == 1:
                     game.pressed["DPAD_RIGHT"] = True
                 if event.value[0] == -1:
@@ -70,7 +70,7 @@ def spaceship_start():
                 if event.value[0] == 0:
                     game.pressed["DPAD_RIGHT"] = False
                     game.pressed["DPAD_LEFT"] = False
-                # Permet de rest les commandes en Y
+                # Permet de reset les commandes en Y
                 if event.value[1] == 0:
                     game.pressed["DPAD_UP"] = False
                     game.pressed["DPAD_DOWN"] = False

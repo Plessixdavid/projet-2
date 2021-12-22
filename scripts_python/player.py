@@ -21,13 +21,13 @@ class Entity (animate_sprite):
 
     def save_location(self):
         """
-        sauvegarde la position de l'entite pour eviter le plantage si elle rentre en collision alors qu'elle est en mouvement
+        sauvegarde la position de l'entité pour éviter le plantage si elle rentre en collision alors qu'elle est en mouvement
         """
         self.old_position = self.position.copy()
 
     def move_up(self): 
         """
-        deplacement vers le haut
+        déplacement vers le haut
         """
         pressed = pygame.key.get_pressed()
         self.change_animation("up")
@@ -40,7 +40,7 @@ class Entity (animate_sprite):
 
     def move_down(self): 
         """
-        deplacement vers le bas
+        déplacement vers le bas
         """
         pressed = pygame.key.get_pressed()
         self.change_animation("down")
@@ -53,7 +53,7 @@ class Entity (animate_sprite):
 
     def move_right(self): 
         """
-        deplacement vers la droite
+        déplacement vers la droite
         """
         pressed = pygame.key.get_pressed()
         self.change_animation("right")
@@ -66,7 +66,7 @@ class Entity (animate_sprite):
 
     def move_left(self): 
         """
-        deplacement vers la gauche
+        déplacement vers la gauche
         """
         pressed = pygame.key.get_pressed()
         self.change_animation("left")
@@ -79,15 +79,15 @@ class Entity (animate_sprite):
         
     def update(self):
         """
-        mise a jour des donnees de position
+        mise a jour des données de position
         """
         self.rect.topleft = self.position
         self.feet.midbottom = self.rect.midbottom
 
     def move_back(self):
         """
-        en complement de la fonction 'save_location'
-        permet a l'entite de rester sur place tant qu'elle est en collision
+        en complément de la fonction 'save_location'
+        permet a l'entité de rester sur place tant qu'elle est en collision
         """
         self.position = self.old_position
         self.rect.topleft = self.position
@@ -95,14 +95,14 @@ class Entity (animate_sprite):
 
 class Player(Entity): # sans commentaire
 
-    def __init__(self, name: str = "player", x: int = 0, y: int = 0): # prend les parametres necessaires pour constituer un joueur
+    def __init__(self, name: str = "player", x: int = 0, y: int = 0): # prend les paramètres nécessaires pour constituer un joueur
         super().__init__(name, x, y)
         self.image = self.get_image(32, 0)
         self.image.set_colorkey([0, 0, 0])
 
 class PNJ(Entity):
 
-    def __init__(self, name, nb_points, dialog): # prend les parametres necessaires pour constituer un PNJ et le deplacer
+    def __init__(self, name, nb_points, dialog): # prend les paramètres nécessaires pour constituer un PNJ et le déplacer
         super().__init__(name, 0, 0)
         self.nb_points = nb_points
         self.dialog = dialog
@@ -113,7 +113,7 @@ class PNJ(Entity):
 
     def move(self):
         """
-        deplacement d'un PNJ et animation si besoin
+        déplacement d'un PNJ et animation si besoin
         """
         current_point = self.current_point
         target_point = self.current_point + 1

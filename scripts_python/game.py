@@ -16,25 +16,25 @@ class Game:
     """
 
     def __init__(self): # sans commentaire
-        # créer la fenetre du jeu
+        # créer la fenêtre du jeu
         infoObject = pygame.display.Info()
         self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
         self.screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         pygame.display.set_caption("hub")
 
-        # generer un joueur
+        # générer un joueur
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
-        #genere un boite de dialogue
+        # génère une boite de dialogue
         self.dialog_box = dialog_box()
         self.chat_player = None
         
 
-    # recuperation des touche pour le deplacement
+    # récuperation des touches pour le déplacement
     def handle_input(self):
         """
-        active les deplacements en fonctions des touches activer
+        active les déplacements en fonction des touches activées
         et les animations qui vont avec
         """
         pressed = pygame.key.get_pressed()
@@ -56,12 +56,12 @@ class Game:
             self.player.change_animation("left")
         
     def update(self):
-        """pour rafraichire l'affichage de la map"""
+        """pour rafraîchir l'affichage de la map"""
         self.map_manager.update()
     
     def run(self):
         """
-        lancement des fonctions essentiel et boucle du jeu
+        lancement des fonctions essentielles et boucle du jeu
         """
         # Creating Socket
         sio = socketio.Client()
@@ -87,7 +87,7 @@ class Game:
             self.chat_player = chat_box()
             pass
 
-        # gerer les FPS
+        # gérer les FPS
         clock = pygame.time.Clock()
         
         # boucle du jeu

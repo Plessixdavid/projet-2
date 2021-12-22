@@ -8,7 +8,7 @@ class PiegePik(AnimatedTile):
         self.rect.y += size - self.image.get_size()[1]
         self.speed = randint(3,5)
 
-#creation de la fonction mouvement.
+#création de la fonction mouvement.
     def move(self):
         self.rect.y += self.speed 
 #fonctionne avec le randint qui permet une variation de la vitesse.

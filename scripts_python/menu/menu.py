@@ -21,14 +21,14 @@ class Menu():
         self.game.draw_text('*', 40, self.cursor_rect.x, self.cursor_rect.y)
     
 
-    # Création de l'ecran d'affichage.
+    # Création de l'écran d'affichage.
     def blit_screen(self):
         self.game.window.blit(self.game.display,(0,0))
         self.game.display.fill((0, 0, 0))
         pygame.display.update()
         self.game.reset_keys()
 
-# Création du menu et configuration des elements.
+# Création du menu et configuration des éléments.
 class MainMenu(Menu):
     def __init__(self, game, spaceship_start, knight_start, Pacman_start, puissance4_start, Snake_start, Morbac_start):
         Menu.__init__(self, game)
@@ -43,7 +43,7 @@ class MainMenu(Menu):
 
         
 
-    # Affichage des elements du menu
+    # Affichage des éléments du menu
     def display_menu(self):
         
         self.run_display = True

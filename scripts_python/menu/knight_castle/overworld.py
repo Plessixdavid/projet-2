@@ -61,7 +61,7 @@ class Overworld:
         self.setup_icon()
         
 
-        # Timer de l'overworld qui evite la capture du dernier mouvement.
+        # Timer de l'overworld qui évite la capture du dernier mouvement.
         self.start_time = pygame.time.get_ticks()
         self.allow_input = False
         self.timer_lenght = 300
@@ -77,12 +77,12 @@ class Overworld:
             self.nodes.add(node_sprite)
            
     def draw_paths(self):
-        # comprehension permettant de parcourir la liste de position des nodes et de verifier 
-        # si le chemin s'arrete bien au level max.
+        # compréhension permettant de parcourir la liste de position des nodes et de vérifier 
+        # si le chemin s'arrête bien au level max.
         points = [ node ['node_pos'] for index, node in enumerate(levels.values()) if index <= self.max_level]
 
         if (len(points) == 1): return
-        #permet de dessiner les lignes reliant les levels( la surface, la couleur de la ligne, l'epaisseur)
+        #permet de dessiner les lignes reliant les levels( la surface, la couleur de la ligne, l'épaisseur)
         pygame.draw.lines(self.display_surface,'#ffd700',False,points,6)
 
     def setup_icon(self):

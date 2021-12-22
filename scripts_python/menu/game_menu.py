@@ -14,7 +14,7 @@ class Game_Menu():
         self.running, self.playing = True, False
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
 
-        # InfoObject permet de recuperer les info du display x et y
+        # InfoObject permet de récupérer les info du display x et y
         infoObject = pygame.display.Info()
 
         #display.set_mode permet d'utiliser les infos de infoObject et de les utiliser avec le current_w et current_x

@@ -5,7 +5,7 @@ import var as var
 
 class animate_sprite(pygame.sprite.Sprite):
 
-    def __init__(self, name): # ai-je vraiment besoin de preciser ce que fais cette fonction ?
+    def __init__(self, name): # ai-je vraiment besoin de préciser ce que fait cette fonction ?
         super().__init__()
         self.sprite_sheet = pygame.image.load(f"ressources/png/{name}.png")
         self.animation_index = 1
@@ -21,7 +21,7 @@ class animate_sprite(pygame.sprite.Sprite):
         
     def change_animation(self, name):
         """
-        pour afficher l'animation en fonction de la direction de l'entite
+        pour afficher l'animation en fonction de la direction de l'entité
         """
         self.image = self.images[name][self.animation_index]
         self.image.set_colorkey((0, 0, 0))
@@ -38,7 +38,7 @@ class animate_sprite(pygame.sprite.Sprite):
 
     def get_images(self, y):
         """
-        en complement de la fonction "get_image"
+        en complément de la fonction "get_image"
         """
         images = []
         for i in range(0, 4):
@@ -50,9 +50,9 @@ class animate_sprite(pygame.sprite.Sprite):
 
     def get_image(self, x, y):
         """
-        pour recuperer une image selon un model (voir le fichier ressource 'player.png') 
-        et en afficher une seule partie a la fois afin de creer une animation
-        (a completer avec la fonction 'get_images')
+        pour récuperer une image selon un modèle (voir le fichier ressource 'player.png') 
+        et en afficher une seule partie à la fois afin de créer une animation
+        (à compléter avec la fonction 'get_images')
         """
         image = pygame.Surface([32, 32])
         image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 32))

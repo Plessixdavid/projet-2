@@ -17,9 +17,9 @@ class dialog_box:
 
     def execute(self, dialog=[]):
         """
-        utilise la fonction 'change_text' en complement.
+        utilise la fonction 'change_text' en complément.
         permet d'enclencher la boite de dialogue et le changement de texte sur commande
-        et de remettre la valeur 'text_index' a zero quand la boite de dialogue est desactiver
+        et de remettre la valeur 'text_index' à zéro quand la boite de dialogue est désactivée
         """
         if self.reading:
             self.change_text()
@@ -31,9 +31,9 @@ class dialog_box:
 
     def render(self, screen):
         """
-        affiche ou enleve la boite de dialogue
-        - affiche si il n'y a pas deja une boite de dialogue en cours
-        - enleve si le texte du PNJ est terminer
+        affiche ou enlève la boite de dialogue
+        - affiche si il n'y a pas déjà une boite de dialogue en cours
+        - enlève si le texte du PNJ est terminé
         """
         if self.reading:
             self.letter_index += 1
