@@ -134,7 +134,17 @@ Then, we have :
 
 ![All folders in spaceship](ressources_read.me\5.png
 )
+### Puissance 4
+### Pac-Man
+### The Snake
 
+
+### The Morbac
+
+For the minigame of the moprion, you can't change it. 
+In the background.py file, we initiate the grid and the display of crosses and circles, and set the value at None.
+In the game.py file, we start the game, create conditions accroding to how crosses and circles are aligned to find out chether the player has won or not (horizontally, vertically, and diagonally), and take care of the restart.
+In the main.py file, we launch the game.
 
 ## Contribution
 
