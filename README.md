@@ -90,6 +90,11 @@ And then, you have different folders and files :
 
 ### BDD
 
+In the BDD folder, we have all the files needed for the database :
+- A Data_joueur.py file that initiates the player's data (name, email, password).
+- A DBUtil.py file that allows the connection between the game and the database.
+- A file for each game to create a table for them in the database.
+
 ![Files on the folder BDD.](ressources_read.me\10.png)
 
 #### Knight Castle
