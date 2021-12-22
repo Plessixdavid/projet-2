@@ -161,6 +161,18 @@ In the Puissance 4 folder, you have 3 files :
 ![Folder Puissance4.](ressources_read.me\11.png)
 
 #### Pac-Man
+
+In the PacMan folder, you will find :
+- A song folder with all the music of the game.
+- An app_class.py file that initiates the walls, the enemies, the grid, the rooms, as well as all the functions related to the game (start, game over, restart, score).
+- An enemy_class.py file that initiates enemies (color, position, speed, path, collisions). You can change their speed in this file because it corresponds to a personnality unique to each enemy : speedy, scared, slow or random.
+- The main.py file that launch the game.
+- Two images : the background for the intro and the maze.
+- A player_class.py file that initiates the player with his positio, speed, moves, action to be performed when he collides with coins (eating them score increases), and collisions with walls.
+- A settings.py file that gathers details of colors and scree sizes.
+- A walls.txt file that corresponds to the text file that allows us to create the labyrinth.
+
+![Folder PacMan.](ressources_read.me\9.png)
 #### The Snake
 
 For the Snake game, we have two images : head_snake which corresponds to the head of the snake, and snake-game which is the image in the game menu.
