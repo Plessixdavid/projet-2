@@ -31,7 +31,7 @@ class MapManager:
 
     def __init__(self, screen, player): 
         """nom explicite"""
-        self.maps = dict(Map) # "house" -> Map("house", walls, group, portals)
+        self.maps = dict() # "house" -> Map("house", walls, group, portals)
         self.screen = screen
         self.player = player
         self.current_map = "world"
