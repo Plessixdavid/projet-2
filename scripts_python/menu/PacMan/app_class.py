@@ -2,6 +2,7 @@ import pygame , sys, copy
 from menu.PacMan.settings import *
 from menu.PacMan.player_class import*
 from menu.PacMan.enemy_class import *
+from BDD.DBUtil import DBUtil
 
 
 
@@ -187,6 +188,9 @@ class App:
         if self.player.lives == 0 :
             if self.player.current_score > self.High_Score :
                 self.High_Score = self.player.current_score
+                Query = "INSERT INTO pac_man (score, nameid ) VALUES (%s, %s)"
+                Values = (self.High_Score, 1)
+                DBUtil.ExecuteQuery(Query, Values)
             self.state = "game over"
         else:
             self.player.grid_pos = vec(self.player.starting_pos)

@@ -141,8 +141,8 @@ Then, we have :
 - The projectile.py file initiates movements on projectiles.
 - The spaceship_main.py file that starts with the start function, and the import of all necessary paths (icons, background, level up, banners, musics, position). Then, we have the loop of the game with the use of either the keys of the keyboard or the joystick of a controller (with the pygame function JOYHATMOTION). We also manage the speed of the projectiles with velocity (chich can be increased or decreased), the collisions (damage and enemy disappearing to get oof the screen (you can change this if you want the enemy to disappear sooner or later.))
 
-![All folders in spaceship](ressources_read.me\5.png
-)
+![All folders in spaceship](ressources_read.me\5.png)
+
 ### Puissance 4
 ### Pac-Man
 ### The Snake
