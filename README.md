@@ -61,7 +61,7 @@ The morbac is a morpion. Simply align the crosses or rounds horizontally, vertic
 
 In the Knight Casstle file; you have several folders.
 
-![Files of Knight Castle](ressources_read.me\1.png)
+! [Files of Knight Castle](ressources_read.me\1.png)
 
 First of all, you have all the files related to external data you need :
 - the audios,
@@ -73,14 +73,17 @@ In this level file, you can add graphics if you want to add levels to the game :
 - put the tmx files in the level data folder,
 - the tsx files in the tileset folder,
 - and create a folder with the number of your level with all the csv files inside.
-![Files of some necessities external of Knight Castle](ressources_read.me\2.png)
+
+! [Files of some necessities external of Knight Castle](ressources_read.me\2.png)
 
 If you want to change the font, put it in the root of the Knight Castle file or it will not be effective.
 
 TO go into the code of the other files in detail :
 - The enemy.py file corresponds to the code that handles enemies : position, speed, life.
 - The game_data.py file is a file that includes dictionaries corresponding to the levels. As shown in the picture below, there is the name of the level and each keyword corresponds to a csv path. If you want to add a level, you will need to create a new dictionary in that file with the number of your level and add all the necessary csv files.
-![game_data.py](ressources_read.me\3.png)
+
+! [game_data.py](ressources_read.me\3.png)
+
 - The game.py file handles the whole game itself.
 - The level.py file corresponds to the level of the game : the player's position when logging on the overworld, the differents imports (audios and csv), the display of tiles in groups (terrain, piegepik, objects, coins, enemies, constraints, backgrounds), the player himself (life at 100 pv, 0 coins, display), collisions (enemies and walls), the scroll_x (a bit like pyscroll but here, we follow the player only on the x position), gravity (check if the character is on the ground or not) and check if the player wins or loses.
 - The overwolrd.py file corresponds to the nodes of the game : display them, animate them and update their lives according to he damage caused by the player.
