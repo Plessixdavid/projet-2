@@ -57,6 +57,44 @@ The morbac is a morpion. Simply align the crosses or rounds horizontally, vertic
 
 ## Useful Functions
 
+### Knight Castle
+
+In the Knight Casstle file; you have several folders.
+
+![Files of Knight Castle](ressources_read.me\1.png)
+
+First of all, you have all the files related to external data you need :
+- the audios,
+- sound effects,
+- the necessary graphics (decorations, enemies, items, coins, etc.),
+- as well as graphs for levels with tmx and csv files.
+
+In this level file, you can add graphics if you want to add levels to the game :
+- put the tmx files in the level data folder,
+- the tsx files in the tileset folder,
+- and create a folder with the number of your level with all the csv files inside.
+![Files of some necessities external of Knight Castle](ressources_read.me\2.png)
+
+If you want to change the font, put it in the root of the Knight Castle file or it will not be effective.
+
+TO go into the code of the other files in detail :
+- The enemy.py file corresponds to the code that handles enemies : position, speed, life.
+- The game_data.py file is a file that includes dictionaries corresponding to the levels. As shown in the picture below, there is the name of the level and each keyword corresponds to a csv path. If you want to add a level, you will need to create a new dictionary in that file with the number of your level and add all the necessary csv files.
+![game_data.py](ressources_read.me\3.png)
+- The game.py file handles the whole game itself.
+- The level.py file corresponds to the level of the game : the player's position when logging on the overworld, the differents imports (audios and csv), the display of tiles in groups (terrain, piegepik, objects, coins, enemies, constraints, backgrounds), the player himself (life at 100 pv, 0 coins, display), collisions (enemies and walls), the scroll_x (a bit like pyscroll but here, we follow the player only on the x position), gravity (check if the character is on the ground or not) and check if the player wins or loses.
+- The overwolrd.py file corresponds to the nodes of the game : display them, animate them and update their lives according to he damage caused by the player.
+- The particles.py file is the code that handles particles when the player jumps, falls or explodes enemies.
+- The piegepik.py file corresponds to the code that handles the traps : position and speed.
+- The player.py file corresponds to the code that handles all the details of the character himself : the particles, the movements, the positions, the life, the damage he deals or receives, and the animation of the character.
+- The setting.py file corresponds to the variables needed for the display : the number of tiles in height, the width of the tiles and the width of the screen (number of tiles by the width of the tiles). You can change this data if you wish.
+- The support.py file corresponds to how the screen is cut out and how the computer should read it : to be simpler, it is how the computer should read and display the files for a graphic rendering.
+- The tiles.py file corresponds to the explanation of what a tile is and how to use them : static or animated. It also includes animating coins that rotate on themselves.
+- The ui.py file corresponds to the display and use of screen display in addition : life bar, coins, etc.
+
+### Spaceship
+
+
 
 ## Contribution
 
