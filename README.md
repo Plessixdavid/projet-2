@@ -72,6 +72,15 @@ The tmx_tsx folder which includes tmx and tsx files from the house, and the worl
 
 ![Ressources folder.](ressources_read.me\7.png)
 
+And then, you have different folders and files :
+- The menu folder that includes the mini-games menu as well as all mini-games.
+- The animation.py file that initiates the animation of the player according to his movements : right, left, front and back. According to each position, its image changes.
+- The dialog.py file that initiates the dialog boxes of the PNJs.
+- The entity.py file that initiates the PNJs and the player (movement, spawn). This file also saves the position if there is a collision.
+- The game.py file that initiates the game itself.
+- The main.py file that starts the game.
+- The map.py file that initiates the map with portals, map (data, relative functions and display). Similarly, collisions with the PNJs and the player are handled with this file, but also in the map. We also load all the data from the tmx file here to display the mao.
+- The player_chat.py file initiates the chat for players.
 
 ![Other files](ressources_read.me\8.png)
 
