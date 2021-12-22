@@ -57,6 +57,24 @@ The morbac is a morpion. Simply align the crosses or rounds horizontally, vertic
 
 ## Useful Functions
 
+When you download the folder, you get these files :
+
+![All folders.](ressources_read.me\6.png)
+
+### Ressources
+
+In the ressources folder, you will find several folders and files :
+- The fichiers-tmx folder which includes the card and home tmx files.
+- The png folder which includes pngs.
+The tmx_tsx folder which includes tmx and tsx files from the house, and the world.
+- Font files.
+- png and tsx files in relation to the character, the house and the world.
+
+![Ressources folder.](ressources_read.me\7.png)
+
+
+![Other files](ressources_read.me\8.png)
+
 ### Knight Castle
 
 In the Knight Casstle file; you have several folders.
@@ -116,6 +134,7 @@ Then, we have :
 
 ![All folders in spaceship](ressources_read.me\5.png
 )
+
 
 ## Contribution
 
