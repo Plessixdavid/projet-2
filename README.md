@@ -138,6 +138,9 @@ Then, we have :
 ### Pac-Man
 ### The Snake
 
+For the Snake game, we have two images : head_snake which corresponds to the head of the snake, and snake-game which is the image in the game menu.
+In the game.py file, the snake's position and speed are first initiated (you can change it if you want). For the position of the apple, we use a random so that it appears randomly. Then, we initiate the keyboard keys so that with each movement of the snake, its position changes. We create a condition for collisions with the walls and if he eats his tail. And another conditon that increases the score when he eats an apple and his body lengthens.
+In the main.py file, we launch the game.
 
 ### The Morbac
 
