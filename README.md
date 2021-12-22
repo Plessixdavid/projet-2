@@ -31,28 +31,28 @@ Just download all the folder and launch the main.py file.
 
 In the red house, you have a computer at the right. If you "arrive" on him, a game menu is opening with all mini games created. 
 
-### Knight Castle
+##### Knight Castle
 
 This game is an adventure game on several levels. At each level, the monsters are stronger and it will be harder for you to recover the coins. Be careful, if you lose a level, you go back to the lower level.
 
-### Space Ship
+##### Space Ship
 
 You’re being invaded by aliens. It’s up to you to destroy them before they destroy your planet.
 
-### Puissance 4
+##### Puissance 4
 
 You all know the classic Power 4 game: you have to line up 4 red or yellow chips horizontally, vertically or diagonally to win.
 This game is usually played by two.
 
-### Pac-Man
+##### Pac-Man
 
 In a maze, you must retrieve all the coins without being eaten by the ghosts. You’re the yellow player, and the others are the ghosts. Be careful, each ghost has a specific speed and response.
 
-### Snake
+##### Snake
 
 The little snake feeds on apples. Point it towards them by moving through the arrows on your keyboard. Be careful, if you collide with the frame or if you bite your tail, you have lost.
 
-### Morbac
+##### Morbac
 
 The morbac is a morpion. Simply align the crosses or rounds horizontally, vertically or diagonally to win.
 
@@ -73,6 +73,8 @@ The tmx_tsx folder which includes tmx and tsx files from the house, and the worl
 
 ![Ressources folder.](ressources_read.me\7.png)
 
+### Scripts Python
+
 And then, you have different folders and files :
 - The menu folder that includes the mini-games menu as well as all mini-games.
 - The animation.py file that initiates the animation of the player according to his movements : right, left, front and back. According to each position, its image changes.
@@ -84,13 +86,17 @@ And then, you have different folders and files :
 - The player_chat.py file initiates the chat for players.
 - The var.py file is a file with variables about the player.
 
-![Other files](ressources_read.me\8.png)
+![Other files.](ressources_read.me\8.png)
 
-### Knight Castle
+### BDD
+
+![Files on the folder BDD.](ressources_read.me\10.png)
+
+#### Knight Castle
 
 In the Knight Casstle file; you have several folders.
 
-![Files of Knight Castle](ressources_read.me\1.png)
+![Files of Knight Castle.](ressources_read.me\1.png)
 
 First of all, you have all the files related to external data you need :
 - the audios,
@@ -124,7 +130,7 @@ TO go into the code of the other files in detail :
 - The tiles.py file corresponds to the explanation of what a tile is and how to use them : static or animated. It also includes animating coins that rotate on themselves.
 - The ui.py file corresponds to the display and use of screen display in addition : life bar, coins, etc.
 
-### Spaceship
+#### Spaceship
 
 Now, let's move on to the game Spaceship.
 
@@ -145,15 +151,23 @@ Then, we have :
 
 ![All folders in spaceship](ressources_read.me\5.png)
 
-### Puissance 4
-### Pac-Man
-### The Snake
+#### Puissance 4
+
+In the Puissance 4 folder, you have 3 files :
+- The puissance4.py file that creates the game matrix to display the board. The conditions are also checked to find out if the game is winning or null (vertical, horizontal, and diagonale right and left position).
+- The puissance4Pygame.py file which will first display the board and the tokens. Then, there is the loop of the game so that the chip moves with the movement of the mouse and gets intos the board. On the next player's turn, the colour of the chip changes (betweeen red or yellow (you can change them if you wish)).
+- An audio file.
+
+![Folder Puissance4.](ressources_read.me\11.png)
+
+#### Pac-Man
+#### The Snake
 
 For the Snake game, we have two images : head_snake which corresponds to the head of the snake, and snake-game which is the image in the game menu.
 In the game.py file, the snake's position and speed are first initiated (you can change it if you want). For the position of the apple, we use a random so that it appears randomly. Then, we initiate the keyboard keys so that with each movement of the snake, its position changes. We create a condition for collisions with the walls and if he eats his tail. And another conditon that increases the score when he eats an apple and his body lengthens.
 In the main.py file, we launch the game.
 
-### The Morbac
+#### The Morbac
 
 For the minigame of the moprion, you can't change it. 
 In the background.py file, we initiate the grid and the display of crosses and circles, and set the value at None.
