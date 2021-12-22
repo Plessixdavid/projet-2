@@ -21,6 +21,7 @@ You can play in multi player to some mini games presented in the red house "Host
 
 - The new windows terminal, just click on [this link](https://www.microsoft.com/fr-fr/p/windows-terminal/9n0dx20hk701#activetab=pivot:overviewtab) to download it from the windows store
 - Python 3.10
+- Install all modules in the file requirements.txt.
 
 ## Installation
 
@@ -81,8 +82,17 @@ And then, you have different folders and files :
 - The main.py file that starts the game.
 - The map.py file that initiates the map with portals, map (data, relative functions and display). Similarly, collisions with the PNJs and the player are handled with this file, but also in the map. We also load all the data from the tmx file here to display the mao.
 - The player_chat.py file initiates the chat for players.
+- The var.py file is a file with variables about the player.
 
 ![Other files](ressources_read.me\8.png)
+
+If you want to add a new house to the map, you need to add a map (preferably done with Tiled) and put it the tmx_tsx folder in the resources folder. 
+Next, you need to create a rectangle to create a portal on the world map : either in the tmx file named world, or by opening the world map with Tiled.
+Finally, in the map file, you add your house. To do this, you can add the following line : 
+Portal (from_world = “world”, teleport_point = “enter_my_house”, target_world = “my_house”, spawn_point = “spawn_my_house”) 
+to the level of self. register_map (“world”, portals = []) (line 42) as shown in the picture below.
+
+![Place where you can put the code of a new house.](ressources_read.me\11.png)
 
 ### Knight Castle
 
