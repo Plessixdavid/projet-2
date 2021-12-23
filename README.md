@@ -60,7 +60,7 @@ The morbac is a morpion. Simply align the crosses or rounds horizontally, vertic
 
 When you download the folder, you get these files :
 
-![All folders.](ressources_read.me\6.png)
+![All folders.](ressources_read.me/6.png)
 
 ### Ressources
 
@@ -71,7 +71,7 @@ In the **_ressources_** folder, you will find several folders and files :
 - Font files.
 - *png* and *tsx* files in relation to the character, the house and the world.
 
-![Ressources folder.](ressources_read.me\7.png)
+![Ressources folder.](ressources_read.me/7.png)
 
 ### Scripts Python
 
@@ -86,7 +86,7 @@ And then, you have different folders and files :
 - The *player_chat.py* file initiates the chat for players.
 - The *var.py* file is a file with variables about the player.
 
-![Other files.](ressources_read.me\8.png)
+![Other files.](ressources_read.me/8.png)
 
 ### BDD
 
@@ -95,13 +95,13 @@ In the **_BDD_** folder, we have all the files needed for the database :
 - A *DBUtil.py* file that allows the connection between the game and the database.
 - A file for each game to create a table for them in the database.
 
-![Files on the folder BDD.](ressources_read.me\10.png)
+![Files on the folder BDD.](ressources_read.me/10.png)
 
 #### Knight Castle
 
 In the Knight Casstle file; you have several folders.
 
-![Files of Knight Castle.](ressources_read.me\1.png)
+![Files of Knight Castle.](ressources_read.me/1.png)
 
 First of all, you have all the files related to external data you need :
 - the audios,
@@ -114,7 +114,7 @@ In this *level* file, you can add graphics if you want to add levels to the game
 - the tsx files in the tileset folder,
 - and create a folder with the number of your level with all the csv files inside.
 
-![Files of some necessities external of Knight Castle](ressources_read.me\2.png)
+![Files of some necessities external of Knight Castle](ressources_read.me/2.png)
 
 If you want to change the font, put it in the root of the Knight Castle file or it will not be effective.
 
@@ -122,7 +122,7 @@ TO go into the code of the other files in detail :
 - The *enemy.py* file corresponds to the code that handles enemies : position, speed, life.
 - The *game_data.py* file is a file that includes dictionaries corresponding to the levels. As shown in the picture below, there is the name of the level and each keyword corresponds to a csv path. If you want to add a level, you will need to create a new dictionary in that file with the number of your level and add all the necessary csv files.
 
-![game_data.py](ressources_read.me\3.png)
+![game_data.py](ressources_read.me/3.png)
 
 - The *game.py* file handles the whole game itself.
 - The *level.py* file corresponds to the level of the game : the player's position when logging on the overworld, the differents imports (audios and csv), the display of tiles in groups (terrain, piegepik, objects, coins, enemies, constraints, backgrounds), the player himself (life at 100 pv, 0 coins, display), collisions (enemies and walls), the scroll_x (a bit like pyscroll but here, we follow the player only on the x position), gravity (check if the character is on the ground or not) and check if the player wins or loses.
@@ -145,7 +145,7 @@ In the assets folders, you have :
 - Images in PNG.
 - The handwriting font.
 
-![Assets folders](ressources_read.me\4.png)
+![Assets folders](ressources_read.me/4.png)
 
 Then, we have : 
 - The *enemy.py* file initiates all the values of each enemy : the max life, the attack points, the PNG's, the size (can be changed), the position (in x only because in y, you have a randint so that they appear in different places), the damage (with the xp removed and the noises), the life bar and the moves with a function named forward which allows to make an oscillation system.
@@ -154,7 +154,7 @@ Then, we have :
 - The *projectile.py* file initiates movements on projectiles.
 - The *spaceship_main.py* file that starts with the start function, and the import of all necessary paths (icons, background, level up, banners, musics, position). Then, we have the loop of the game with the use of either the keys of the keyboard or the joystick of a controller (with the pygame function JOYHATMOTION). We also manage the speed of the projectiles with velocity (chich can be increased or decreased), the collisions (damage and enemy disappearing to get oof the screen (you can change this if you want the enemy to disappear sooner or later.))
 
-![All folders in spaceship](ressources_read.me\5.png)
+![All folders in spaceship](ressources_read.me/5.png)
 
 #### Puissance 4
 
@@ -163,7 +163,7 @@ In the Puissance 4 folder, you have 3 files :
 - The *puissance4Pygame.py* file which will first display the board and the tokens. Then, there is the loop of the game so that the chip moves with the movement of the mouse and gets intos the board. On the next player's turn, the colour of the chip changes (betweeen red or yellow (you can change them if you wish)).
 - An audio file.
 
-![Folder Puissance4.](ressources_read.me\11.png)
+![Folder Puissance4.](ressources_read.me/11.png)
 
 #### Pac-Man
 
@@ -177,7 +177,7 @@ In the PacMan folder, you will find :
 - A *settings.py* file that gathers details of colors and scree sizes.
 - A *walls.txt file* that corresponds to the text file that allows us to create the labyrinth.
 
-![Folder PacMan.](ressources_read.me\9.png)
+![Folder PacMan.](ressources_read.me/9.png)
 #### The Snake
 
 For the Snake game, we have two images : *head_snake* which corresponds to the head of the snake, and *snake-game* which is the image in the game menu.
