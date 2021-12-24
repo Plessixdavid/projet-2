@@ -43,13 +43,13 @@ class Game1:
 
 
     def update(self, screen):
-        # affiche la bar de santé
+        # affiche la barre de santé
         self.player.update_health_bar(screen)
 
-        #affiche la bar de level
+        #affiche la barre de level
         self.player.update_level_bar(screen)
 
-        # recupère les projectile du joueur.
+        # récupère les projectiles du joueur.
         for projectile in self.player.all_projectiles:
             projectile.move()
 
@@ -58,13 +58,13 @@ class Game1:
             enemy.forward()
             enemy.update_health_bar(screen)
 
-        # Applique le projectile sur le screen derriere le joueur.
+        # Applique le projectile sur le screen derrière le joueur.
         self.player.all_projectiles.draw(screen)
 
         # Applique l'image du joueur.
         screen.blit(self.player.image, self.player.rect)
 
-        # Applique les enemies.
+        # Applique les ennemis.
         self.all_enemy.draw(screen)
 
         if (self.pressed.get(pygame.K_d) or self.pressed.get("DPAD_RIGHT")) and self.player.rect.x + self.player.rect.width < screen.get_width():

@@ -9,6 +9,9 @@ COLOR_ACTIVE = pygame.Color(255, 0, 0)
 TEXT_COLOR = pygame.Color(48, 48, 48)
 
 class chat_box:
+    """
+    fenêtre de chat pour les joueurs
+    """
 
     def __init__(self, text='', sio=None, Pseudo=""):
         self.rect = pygame.Rect(10, 720, 260, 32)
@@ -55,17 +58,17 @@ class chat_box:
                 self.color_fill = self.color_fill_on
             else:
                 self.color_fill = self.color_fill_off
-            # change la couleur actuelle de la boite de saisie si elle est activer/desactiver
+            # change la couleur actuelle de la boite de saisie si elle est activée/désactivée
             self.color = COLOR_ACTIVE if self.active else COLOR_INACTIVE
             
         if event.type == pygame.KEYDOWN:
             if self.active:
                 if event.key == pygame.K_RETURN: # envoyer le texte si on presse "enter"
-                    # afficher le texte en console pour verifier le fonctionnement
+                    # afficher le texte en console pour vérifier le fonctionnement
                     print(self.text)
                     # self.mess_surface = self.font.render(self.recent_message, True, self.color_text)
                     self.messages.append(self.text)
-                    # ajouter le message envoyer à la liste de message recent
+                    # ajouter le message envoyé à la liste de messages récents
                     if len(self.messages) > 3:
                         self.messages.pop(0)
                         
@@ -76,16 +79,16 @@ class chat_box:
                     self.mess_surface_4 = self.font.render(self.messages[4] if self.messages[4] == "" "" else f"{var.Pseudo} dit: {self.messages[4]}", True, self.color_text)
                     self.mess_surface_5 = self.font.render(self.messages[5] if self.messages[5] == "" "" else f"{var.Pseudo} dit: {self.messages[5]}", True, self.color_text)
                     print(self.messages)
-                    # pour l'afficher ensuite dans le rect qui ce trouve juste au-dessus
+                    # pour l'afficher ensuite dans le rect qui se trouve juste au-dessus
                     print(self.recent_message)
-                    # puis vider la variable qui sert à afficher le texte saisie
+                    # puis vider la variable qui sert à afficher le texte saisi
                     # Send message to the server
                     if self.sio is not None:
                         self.sio.emit('NEW MESSAGE', f"{var.Pseudo} dit: {self.recent_message}")
                     self.text = ''
                     self.recent_message = ''
-                elif event.key == pygame.K_BACKSPACE: # si on appuie sur la touche "retour arriere"
-                    # alors supprime le dernier charactere de la str stocker dans la variable "text"
+                elif event.key == pygame.K_BACKSPACE: # si on appuie sur la touche "retour arrière"
+                    # alors supprime le dernier caractère de la str stockée dans la variable "text"
                     self.text = self.text[:-1]
                     self.recent_message = self.recent_message[:-1]
                 else:

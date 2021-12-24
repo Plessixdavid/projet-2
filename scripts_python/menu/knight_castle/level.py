@@ -62,7 +62,7 @@ class Level:
         enemy_layout =  import_csv_layout(level_data['enemies'])
         self.enemy_sprites = self.create_tile_group(enemy_layout, 'enemies')
 
-        # constraint element de contrainte pour les enemies
+        # constraint element de contrainte pour les ennemis
         constraint_layout = import_csv_layout(level_data['constraints'])
         self.constraint_sprites = self.create_tile_group(constraint_layout,'constraints')
 

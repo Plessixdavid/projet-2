@@ -14,9 +14,13 @@ from player_chat import chat_box
 import var
 
 class Game:
+    """
+    classe qui permet de faire tourner le jeu
+    (enfin je pense)
+    """
 
-    def __init__(self):
-        # créer la fenetre du jeu
+    def __init__(self): # sans commentaire
+        # créer la fenêtre du jeu
         infoObject = pygame.display.Info()
         self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
         var.DISPLAY_H = self.DISPLAY_H
@@ -25,16 +29,20 @@ class Game:
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         pygame.display.set_caption("hub")
 
-        # generer un joueur
+        # générer un joueur
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
-        #genere un boite de dialogue
+        # génère une boite de dialogue
         self.dialog_box = dialog_box()
         self.chat_player = None
         
 
-    # recuperation des touche pour le deplacement
+    # récuperation des touches pour le déplacement
     def handle_input(self):
+        """
+        active les déplacements en fonction des touches activées
+        et les animations qui vont avec
+        """
         pressed = pygame.key.get_pressed()
         
         if pressed[pygame.K_UP]: # pour vers le haut
@@ -58,10 +66,16 @@ class Game:
 
 
     def update(self): # pour rafraichire l'affichage de la map
+            self.player.change_animation("left")
+        
+    def update(self):
+        """pour rafraîchir l'affichage de la map"""
         self.map_manager.update()
     
-
     def run(self):
+        """
+        lancement des fonctions essentielles et boucle du jeu
+        """
         # Creating Socket
         sio = socketio.Client()
 
@@ -86,7 +100,7 @@ class Game:
             self.chat_player = chat_box()
             pass
 
-        # gerer les FPS
+        # gérer les FPS
         clock = pygame.time.Clock()
         
         # boucle du jeu

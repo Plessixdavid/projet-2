@@ -8,12 +8,12 @@ class Enemy(AnimatedTile):
         self.rect.y += size - self.image.get_size()[1]
         self.speed = randint(3,5)
 
-#creation de la fonction mouvement.
+#création de la fonction mouvement.
     def move(self):
         self.rect.x += self.speed 
 #fonctionne avec le randint qui permet une variation de la vitesse.
 
-#creation de la fonction reverse qui permet un flip de l'ennemie.
+#création de la fonction reverse qui permet un flip de l'ennemi.
     def reverse_image(self):
         if self.speed > 0:
             self.image = pygame.transform.flip(self.image,True,False)

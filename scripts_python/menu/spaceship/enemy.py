@@ -3,7 +3,7 @@ from random import randint
 from BDD.DBUtil import DBUtil
 
 
-# Création de la classe des enemies
+# Création de la classe des ennemis
 class Enemy(pygame.sprite.Sprite):
 
     def __init__(self, game, xp):
