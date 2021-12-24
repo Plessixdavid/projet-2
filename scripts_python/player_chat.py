@@ -126,3 +126,6 @@ class chat_box:
         screen.blit(self.mess_surface_3, (self.rect_2.x+5, self.rect_2.y+65))
         screen.blit(self.mess_surface_4, (self.rect_2.x+5, self.rect_2.y+85))
         screen.blit(self.mess_surface_5, (self.rect_2.x+5, self.rect_2.y+105))
+
+
+

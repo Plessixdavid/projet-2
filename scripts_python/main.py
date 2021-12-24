@@ -24,8 +24,8 @@ def Menuconsole():
         
 
     elif Choixmenu == "2" :
-        answer = False
-        while answer == False:
+        var.answer = False
+        while var.answer == False:
             var.Pseudo = input("pseudo:")
             var.Motdepasse = input("mot de passe:")
             list = DBUtil.ExecuteQuery("SELECT * FROM data_joueur")
@@ -34,7 +34,7 @@ def Menuconsole():
             if (var.Pseudo in itertools.chain(*list) and var.Motdepasse in itertools.chain(*list)):
                 print(f"bienvenu {Pseudo}" )
                 
-                answer = True
+                var.answer = True
             else:
                 print("mot de passe ou pseudo incorrect.")
                               

@@ -25,6 +25,7 @@ class Game_Menu():
         
         self.BLACK,self.WHITE = (0,0,0), (255,255,255)
         self.main_menu = MainMenu(self, Game1, knight_start, App, puissance4_start, Game4, Game5)
+        self.score_menu = Score_Table(self)
         self.curr_menu = self.main_menu
         
     def game_loop(self):
@@ -53,6 +54,8 @@ class Game_Menu():
                     self.BACK_KEY = False
                     self.running, self.playing = False, False
                     self.curr_menu.run_display = False
+                    print(self.curr_menu.run_display)
+                    self.score_menu.run_display = False
                     # return
                 if event.key == pygame.K_DOWN:
                     self.DOWN_KEY = True

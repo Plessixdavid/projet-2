@@ -12,8 +12,8 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.game = game
         self.health = DBUtil.ExecuteQuery('SELECT player_health FROM spaceship_settings')[0][0]
-        self.max_health = DBUtil.ExecuteQuery('SELECT player_health FROM spaceship_settings')[0][0]
-        self.attack = DBUtil.ExecuteQuery('SELECT attack_player FROM spaceship_settings')[0][0]
+        self.max_health = DBUtil.ExecuteQuery('SELECT max_health FROM spaceship_settings')[0][0]
+        self.attack = DBUtil.ExecuteQuery('SELECT player_attack FROM spaceship_settings')[0][0]
         self.velocity = DBUtil.ExecuteQuery('SELECT player_velocity FROM spaceship_settings')[0][0]
         self.all_projectiles = pygame.sprite.Group()
         self.image = pygame.image.load("scripts_python/menu/spaceship/assets/ship.png")
@@ -46,7 +46,7 @@ class Player(pygame.sprite.Sprite):
         level_text = pygame.font.Font('scripts_python/menu/spaceship/assets/FreckleFace-Regular.ttf', 40).render(f'Level: {self.current_level}', True, (247, 255, 0 ))
         surface.blit(level_text, (50, surface.get_height() - 200))
 
-    def gain_xp(self, xp, ):
+    def gain_xp(self, xp):
         self.current_xp += xp
         self.total_xp += self.current_xp
         if self.current_xp == self.max_xp:

@@ -21,7 +21,7 @@ class Enemy(pygame.sprite.Sprite):
         self.minus_rect_y = self.rect.y - 50 
         self.velocity = randint(2,5)
         self.velocity_y = DBUtil.ExecuteQuery('SELECT enemy_velocity FROM spaceship_settings')[0][0]
-        self.xp = DBUtil.ExecuteQuery('SELECT enemy_attack FROM spaceship_settings')[0][0]
+        self.xp = DBUtil.ExecuteQuery('SELECT enemy_xp FROM spaceship_settings')[0][0]
 
     def damage(self, amount, player):
         self.health -= amount

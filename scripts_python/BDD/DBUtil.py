@@ -12,7 +12,7 @@ class DBUtil:
     @classmethod
     def Connect(
         cls, 
-        DBNames : str):
+        postgres : str):
         """
             Connect to named Postgre database
             
@@ -26,10 +26,10 @@ class DBUtil:
                 password="biscotte61",
                 host="localhost",
                 port="5432",
-                database = DBNames)
+                database = postgres)
                     
         except(Exception, psycopg2.Error) as error:
-            print(f"Impossible de se connecter à la base Postgre {DBNames}\n{error}")
+            print(f"Impossible de se connecter à la base Postgre {postgres}\n{error}")
 
     @classmethod
     def ExecuteQuery(
@@ -44,7 +44,7 @@ class DBUtil:
                 
             Returns a list of tuples
         """
-        DBUtil.Connect("DBNames")
+        DBUtil.Connect("postgres")
 
         if cls.Connection is None:
             return

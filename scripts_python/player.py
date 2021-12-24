@@ -1,6 +1,7 @@
 # coding : utf-8​
 import pygame
 from animation import animate_sprite
+
 class Entity (animate_sprite):
 
     def __init__(self, name, x, y):
@@ -63,6 +64,8 @@ class Entity (animate_sprite):
         self.position = self.old_position
         self.rect.topleft = self.position
         self.feet.midbottom = self.rect.midbottom
+
+    
 
 class Player(Entity):
 

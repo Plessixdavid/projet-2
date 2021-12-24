@@ -9,12 +9,18 @@ from animation import animate_sprite
 from dialog import dialog_box
 from player_chat import chat_box
 
+
+
+import var
+
 class Game:
 
     def __init__(self):
         # créer la fenetre du jeu
         infoObject = pygame.display.Info()
         self.DISPLAY_W, self.DISPLAY_H =  infoObject.current_w, infoObject.current_h
+        var.DISPLAY_H = self.DISPLAY_H
+        var.DISPLAY_W = self.DISPLAY_W
         self.screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         pygame.display.set_caption("hub")
@@ -45,8 +51,9 @@ class Game:
 
         elif pressed[pygame.K_LEFT]: # pour vers la gauche
             self.player.move_left()
-            self.player.change_animation("left")
-        
+            self.player.change_animation("left") 
+
+               
         
 
 
@@ -126,6 +133,7 @@ class Game:
             self.dialog_box.render(self.screen)
             self.chat_player.draw_chat(self.screen)
             
+            
             animate_sprite.get_name(self, surface = self.screen)
             pygame.display.flip()
 
@@ -139,6 +147,10 @@ class Game:
                     elif event.key == pygame.K_ESCAPE:
                         running = False
                         pygame.quit()
+                        
+
+                        
+                        
 
             # Remove every element at layer 99 (all our guests)
             self.map_manager.get_group().remove_sprites_of_layer(99)
