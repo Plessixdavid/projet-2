@@ -5,6 +5,7 @@ from menu.main_menu import start as start_menu
 import pygame, pytmx, pyscroll
 from player import PNJ
 from animation import animate_sprite
+
   
 
 @dataclass
@@ -38,6 +39,8 @@ class MapManager:
         self.screen = screen
         self.player = player
         self.current_map = "world"
+        
+        
 
         # enregistre les maps avec leur spécifications propres
         # ex: si il y a des PNJs
@@ -101,8 +104,10 @@ class MapManager:
             if sprite.feet.collidelist(self.get_walls()) > -1:
                 sprite.move_back()
             # pour les objets qui lance le menu des mini-jeux
-            if sprite.feet.collidelist(self.get_lunchs()) > -1:
+            if sprite.feet.collidelist(self.get_lunchs()) > -1:    
                 start_menu()
+
+                
                 sprite.move_back()
 
     def teleport_player(self, name):
@@ -151,6 +156,7 @@ class MapManager:
                 walls_list.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
             if obj.type == "luncher":
                 lunchs_list.append(pygame.Rect( obj.x, obj.y, obj.width, obj.height))
+                
             
                                 
         # dessiner le groupe de calques

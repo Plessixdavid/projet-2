@@ -1,8 +1,10 @@
 import pygame
+from menu.menu import *
 from pygame import joystick
 from pygame.constants import JOYAXISMOTION, JOYBUTTONDOWN, JOYBUTTONUP, JOYHATMOTION
 from menu.spaceship.player import Player
 from menu.spaceship.game import Game1 
+import var
 import math
 
 def spaceship_start():
@@ -10,7 +12,11 @@ def spaceship_start():
 
     
     # génère la fenêtre du jeu et charge des images en mémoire et change le nom de la fenêtre ainsi que l'icon.
-    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    infoObject = pygame.display.Info()
+    DISPLAY_W, DISPLAY_H =  infoObject.current_w, infoObject.current_h
+    var.DISPLAY_H = DISPLAY_H
+    var.DISPLAY_W = DISPLAY_W
+    screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
     icons = pygame.image.load("scripts_python/menu/spaceship/assets/icons/bender.png")
     background = pygame.image.load("scripts_python/menu/spaceship/assets/bg4.png")
     level_up = pygame.image.load("scripts_python/menu/spaceship/assets/level_up.png")
@@ -81,7 +87,8 @@ def spaceship_start():
                     menu_music.stop()
                 if event.button == 8 :
                     running = False
-                    pygame.quit()
+                    # pygame.quit()
+                    
                 elif event.button == 1 or 2 or 3 or 0 :
                     game.player.lunch_projectile()
                     projectile_music = pygame.mixer.Sound('scripts_python/menu/spaceship/assets/sounds/tir.ogg')
@@ -91,6 +98,7 @@ def spaceship_start():
                 menu_music.stop()
                 running = False
                 pygame.quit()
+                
 
             elif event.type == pygame.KEYDOWN:
                 game.pressed[event.key] = True
@@ -103,7 +111,7 @@ def spaceship_start():
                 elif event.key == pygame.K_ESCAPE:
                     running = False
                     menu_music.stop()
-                    return
+                    # return
             elif event.type == pygame.KEYUP:
                 game.pressed[event.key] = False
             elif event.type == pygame.MOUSEBUTTONDOWN:

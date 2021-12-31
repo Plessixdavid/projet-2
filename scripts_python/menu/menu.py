@@ -14,8 +14,10 @@ import var
 class Menu():
     def __init__(self, game):
         self.game = game
+        self.hub_music = pygame.mixer.Sound('scripts_python/menu/spaceship/assets/sounds/menu.wav')
         self.mid_w, self.mid_h = self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2
-        self.run_display = True
+        self.run_display_menu = True
+        self.run_display_score = True
         self.cursor_rect = pygame.Rect(0, 0, 50, 50)
         self.offset = -250
 
@@ -26,6 +28,7 @@ class Menu():
 
     # Création de l'écran d'affichage.
     def blit_screen(self):
+        self.hub_music.stop()
         self.game.window.blit(self.game.display,(0,0))
         self.game.display.fill((0, 0, 0))
         pygame.display.update()
@@ -45,20 +48,18 @@ class MainMenu(Menu):
         self.Scorex, self.Scorey = self.mid_w, self.mid_h + 225
         self.cursor_rect.midtop = (self.planet_expressx + self.offset, self.planet_expressy)
 
-        
-
     # Affichage des éléments du menu
     def display_menu(self):
         
-        self.run_display = True
+        self.run_display_menu = True
         self.image = pygame.image.load("scripts_python/menu/a415uP.jpeg")
         
-        while self.run_display:
+        while self.run_display_menu:     
             self.game.display.blit(self.image, (0, 0))
             self.game.check_events()
             self.check_input()
             self.game.display.blit(self.image,(0,0))
-            self.game.draw_text("Menu Principal", 70, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2 - 300)
+            self.game.draw_text("Menu Principal", 70, self.mid_w / 2, self.mid_h / 2 - 300)
             self.game.draw_text("Planet Express", 50, self.planet_expressx, self.planet_expressy)
             self.game.draw_text("Knight Castle", 50, self.Knight_Castlex, self.Knight_Castley)
             self.game.draw_text("Pacman", 50, self.Pacmanx, self.Pacmany)
@@ -93,30 +94,14 @@ class MainMenu(Menu):
             elif self.state == "Tableau des scores":
                 self.cursor_rect.midtop = (self.planet_expressx + self.offset, self.planet_expressy)
                 self.state = "Planet Express"
-            
-        # elif self.game.UP_KEY:
-        #     if self.state == "Knight Castle":
-        #         self.cursor_rect.midtop = (self.planet_expressx + self.offset, self.planet_expressy)
-        #         self.state = "Planet Express"
-        #     elif self.state == "Pacmans":
-        #         self.cursor_rect.midtop = (self.Knight_Castlex + self.offset, self.Knight_Castley)
-        #         self.state = "Knight Castle"
-        #     elif self.state == "Puissance 4":
-        #         self.cursor_rect.midtop = (self.Pacmanx + self.offset, self.Pacmany)
-        #         self.state = "Pacmans"
-        #     elif self.state == "Snake":
-        #         self.cursor_rect.midtop = (self.planet_expressx + self.offset, self.planet_expressy)
-        #         self.state = "Morbac"
-        #      elif self.state == "Morbac":
-        #          self.cursor_rect.midtop = (self.Pacmanx + self.offset, self.Pacmany)
-        #          self.state = "Morbac"
-        #      elif self.state == "Morbac":
-        #          self.cursor_rect.midtop = (self.Pacmanx + self.offset, self.Pacmany)
-        #          self.state = "Planet Express"
 
     def check_input(self):
         self.move_cursor()
-        if self.game.START_KEY:
+        if self.game.BACK_KEY:
+            self.run_display_menu = False 
+            self.run_display_score = False
+            return
+        elif self.game.START_KEY:
             if self.state == "Planet Express":
                 spaceship_start()
             elif self.state == "Knight Castle":
@@ -130,10 +115,8 @@ class MainMenu(Menu):
             elif self.state == "Morbac":
                 Morbac_start()
             elif self.state == "tableau des scores":
-                Score_Table.display_menu_score()
-            self.run_display = False
-
-
+                self.Score_Table.display_menu_score()
+            self.run_display_menu = False
 class Score_Table(Menu):
 
     def __init__(self, game):
@@ -143,15 +126,15 @@ class Score_Table(Menu):
         self.Knight_Castlex, self.Knight_Castley = self.mid_w - 200, self.mid_h 
         self.Pacmanx, self.Pacmany = self.mid_w - 200, self.mid_h + 100
         self.Morbacx, self.Morbacy = self.mid_w -200, self.mid_h + 200
+        self.quitx , self.quity = self.mid_w , self.mid_h + 250
 
     def display_menu_score(self):
 
-        self.run_display = True
+        self.run_display_score = True
         self.image = pygame.image.load("scripts_python/menu/a415uP.jpeg")
-        while self.run_display:
-            
+        while self.run_display_score:
             self.game.check_events()
-
+            self.check_input_score()
             self.game.display.blit(self.image, (0, 0))
             var.spaceship_score = DBUtil.ExecuteQuery(f"SELECT score FROM spaceship INNER JOIN data_joueur ON data_joueur.id = spaceship.id WHERE data_joueur.name = '{var.Pseudo}'")
             var.knight_castle_score = DBUtil.ExecuteQuery(f"SELECT score FROM knight_castle INNER JOIN data_joueur ON data_joueur.id = knight_castle.id WHERE data_joueur.name = '{var.Pseudo}'")
@@ -162,10 +145,20 @@ class Score_Table(Menu):
             self.game.draw_text(f"Knight Castel : {var.knight_castle_score[0][0]}", 60, self.Knight_Castlex, self.Knight_Castley)
             self.game.draw_text(f"Pac-Man : {var.pac_man_score[0][0]}", 60, self.Pacmanx, self.Pacmany)
             self.game.draw_text(f"Snake : {var.snake_score[0][0]}", 60, self.Morbacx, self.Morbacy)
-            
+            self.game.draw_text("QUIT (espace pour quitter)", 60, self.quitx, self.quity)
+            self.draw_cursor()
             self.blit_screen()
 
-
+    def stay_cursor(self):
+        if self.game.DOWN_KEY:
+            if self.state == "QUIT":
+                self.cursor_rect.midtop = (self.quitx + self.offset, self.quity)
+                self.state = "QUIT"
+            
+    def check_input_score(self):
+        self.stay_cursor()   
+        if self.game.BACK_KEY:
+            self.run_display_score = False     
     
 
 

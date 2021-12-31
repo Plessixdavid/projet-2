@@ -39,12 +39,15 @@ class Game5 :
                     # Quit the game :
                     if event.type == pygame.QUIT:
                         self.game_running = False
-                        return 
+                     
 
                     # Display the display of the game when player clicks on space :
                     if event.type == pygame.KEYDOWN:
-                       if event.key == pygame.K_SPACE:
-                           self.screen_begin = False
+                        if event.key == pygame.K_SPACE:
+                            self.screen_begin = False
+                        if event.key == pygame.K_ESCAPE:
+                            self.game_running = False
+
 
                 # Background for the display of the beginning :
                 self.display.fill((240, 240, 240))

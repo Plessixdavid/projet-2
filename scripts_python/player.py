@@ -2,6 +2,7 @@
 
 import pygame
 from animation import animate_sprite
+import var
 
 class Entity (animate_sprite):
     """

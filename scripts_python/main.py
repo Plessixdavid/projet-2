@@ -18,7 +18,7 @@ def Menuconsole():
         var.Email = input("Quel est votre adresse email ?")
         var.Motdepasse = input("Choisissez un mot de passe.")
         print("Je vous remercie. Je vous souhaite un bon moment dans ce monde merveilleux. ")
-        Query = "INSERT INTO data_joueur (mot_de_passe, email, Name ) VALUES (%s, %s, %s)"
+        Query = "INSERT INTO data_joueur (mot_de_passe, email, Name) VALUES (%s, %s, %s)"
         Values = (var.Motdepasse, var.Email, var.Pseudo)
         DBUtil.ExecuteQuery(Query, Values)
         
@@ -28,6 +28,8 @@ def Menuconsole():
         while var.answer == False:
             var.Pseudo = input("pseudo:")
             var.Motdepasse = input("mot de passe:")
+            
+            
             list = DBUtil.ExecuteQuery("SELECT * FROM data_joueur")
             print(list)
             

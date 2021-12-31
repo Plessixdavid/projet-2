@@ -21,9 +21,9 @@ class Data_joueur:
             Args:
                 ID : primary key
                 Name : name
-                SkinID : image ID
                 Motdepasse : password
                 Email : Email
+                Skin : Skin
         """
         
         # model properties
@@ -31,6 +31,7 @@ class Data_joueur:
         self.Motdepasse = Data[1]
         self.Email = Data[2]
         self.Name = Data[3]
+        self.Skin = Data[4]
         
         # calculated properties
         
@@ -47,4 +48,4 @@ class Data_joueur:
             return string
         """
 
-        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, {self.Skinname})"
+        return f"({self.ID}, {self.Name}, {self.Motdepasse}, {self.Email}, {self.Skin})"

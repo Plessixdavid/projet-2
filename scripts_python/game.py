@@ -8,6 +8,7 @@ from player import Player
 from animation import animate_sprite
 from dialog import dialog_box
 from player_chat import chat_box
+import var
 
 
 
@@ -26,15 +27,18 @@ class Game:
         var.DISPLAY_H = self.DISPLAY_H
         var.DISPLAY_W = self.DISPLAY_W
         self.screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
-        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        pygame.display.set_caption("hub")
+        pygame.display.set_caption("Home")
 
         # générer un joueur
         self.player = Player()
         self.map_manager = MapManager(self.screen, self.player)
-        # génère une boite de dialogue
+
+        # génère une boite de dialogue.
         self.dialog_box = dialog_box()
         self.chat_player = None
+
+        # charge et joue la musique du hub.
+        
         
 
     # récuperation des touches pour le déplacement
@@ -78,6 +82,7 @@ class Game:
         """
         # Creating Socket
         sio = socketio.Client()
+        
 
         # This event is triggered when the socket connects for the first time
         @sio.event
