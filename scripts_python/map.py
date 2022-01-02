@@ -49,6 +49,7 @@ class MapManager:
         self.register_map("world", portals=[
             Portal(from_world="world", teleport_point="enter_inn", target_world="inn", spawn_point="spawn_inn"),
             Portal(from_world="world", teleport_point="enter_my_house", target_world="my_house", spawn_point="spawn_my_house"),
+            Portal(from_world="world", teleport_point="enter_my_house2", target_world="my_house2", spawn_point="spawn_my_house2"),
             Portal(from_world="world", teleport_point="teleporter", target_world="new_world", spawn_point="spawn_player")
             ],pnjs=[
             PNJ("paul", nb_points= 12, dialog=["Salut ça va ?","Bonne journnée."]),
@@ -59,6 +60,9 @@ class MapManager:
         # suivie des autres maps
         self.register_map("my_house", portals=[
             Portal(from_world="my_house", teleport_point="exit_my_house", target_world="world", spawn_point="spawn_my_house_exit")
+        ])
+        self.register_map("my_house2", portals=[
+            Portal(from_world="my_house2", teleport_point="exit_my_house2", target_world="world", spawn_point="spawn_my_house_exit2")
         ])
         self.register_map("new_world", portals=[
             Portal(from_world="new_world", teleport_point="teleporter", target_world="world", spawn_point="spawn_player")
@@ -150,6 +154,9 @@ class MapManager:
 
         elif name == "inn":
             map_layer.zoom = 2.2
+
+        elif name == "my_house2":
+            map_layer.zoom = 2.4
 
         # définir une liste qui va stocker les rectangles de collisions
         walls_list = []
