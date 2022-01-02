@@ -7,7 +7,7 @@ def start():
     
 
     while g.running:
-        g.curr_menu.display_menu()
+        g.curr_menu.display_menu(g)
         g.score_menu.display_menu_score()
 
 

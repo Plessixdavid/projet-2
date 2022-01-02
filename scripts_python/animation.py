@@ -58,7 +58,3 @@ class animate_sprite(pygame.sprite.Sprite):
         image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 32))
         return image
 
-    def get_name(self, surface):
-
-        Name = pygame.font.Font('scripts_python/menu/spaceship/assets/FreckleFace-Regular.ttf', 20).render(f'name: {var.Pseudo}', True, (247, 255, 0 ))
-        surface.blit(Name, (25, 25))

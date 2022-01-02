@@ -49,7 +49,7 @@ class MainMenu(Menu):
         self.cursor_rect.midtop = (self.planet_expressx + self.offset, self.planet_expressy)
 
     # Affichage des éléments du menu
-    def display_menu(self):
+    def display_menu(self, g):
         
         self.run_display_menu = True
         self.image = pygame.image.load("scripts_python/menu/a415uP.jpeg")

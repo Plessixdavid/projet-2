@@ -5,6 +5,7 @@ from menu.main_menu import start as start_menu
 import pygame, pytmx, pyscroll
 from player import PNJ
 from animation import animate_sprite
+import var
 
   
 
@@ -50,8 +51,10 @@ class MapManager:
             Portal(from_world="world", teleport_point="enter_my_house", target_world="my_house", spawn_point="spawn_my_house"),
             Portal(from_world="world", teleport_point="teleporter", target_world="new_world", spawn_point="spawn_player")
             ],pnjs=[
-            PNJ("paul", nb_points=12, dialog=["Salut ça va ?","Bonne journnée."])
-            ,PNJ("hostess", nb_points=1, dialog=["Salut, comment ça va?", "Aurais-tu vue ma licorne?...Non?", "Bonne journnée."])
+            PNJ("paul", nb_points= 12, dialog=["Salut ça va ?","Bonne journnée."]),
+            PNJ("unicorn", nb_points= 11, dialog=[f"Salut, {var.Pseudo} ça va ?","tu veux des m&n's?","Bonne journnée."]),
+            PNJ("annah", nb_points= 3, dialog=[f"C'est trop calme {var.Pseudo}... j'aime pas trop beaucoup ça...","J'préfère quand c'est un peu trop plus moins calme..."]),
+            PNJ("hostess", nb_points=1, dialog=[f"Salut {var.Pseudo}, comment ça va?", "Aurais-tu vue ma licorne?...Non?", "Bonne journnée."])
         ])
         # suivie des autres maps
         self.register_map("my_house", portals=[
@@ -59,6 +62,8 @@ class MapManager:
         ])
         self.register_map("new_world", portals=[
             Portal(from_world="new_world", teleport_point="teleporter", target_world="world", spawn_point="spawn_player")
+        ],pnjs=[
+            PNJ("annah", nb_points= 11, dialog=[f"C'est trop calme {var.Pseudo}... Winter is coming...","Les Licornes parlent et les mouettes pètes ,écoutes les présages."])
         ])
         self.register_map("inn", portals=[
             Portal(from_world="inn", teleport_point="exit_inn", target_world="world", spawn_point="spawn_inn_exit")

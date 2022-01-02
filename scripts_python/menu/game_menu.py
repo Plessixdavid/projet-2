@@ -66,7 +66,7 @@ class Game_Menu():
         self.UP_Key, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
 
     def draw_text(self, text, size, x, y):
-        pygame.init()
+        pygame.font.init()
         toto = pygame.font.Font("scripts_python/menu/FreckleFace-Regular.ttf", size)
         text_surface = toto.render(text,True,self.WHITE)
         text_rect = text_surface.get_rect()

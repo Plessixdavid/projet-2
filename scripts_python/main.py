@@ -14,12 +14,13 @@ def Menuconsole():
         print("Bienvenu dans ce nouveau monde. Mais avant d'y accéder, j'ai besoin de quelques informations./n ")
         print("Prêt ? C'est parti ! Allons-y !")
 
-        var.Pseudo = input ("Quel est votre pseudo ?")
-        var.Email = input("Quel est votre adresse email ?")
-        var.Motdepasse = input("Choisissez un mot de passe.")
+        var.Pseudo = input ("Quel est votre pseudo ?\n")
+        var.Email = input("Quel est votre adresse email ?\n")
+        var.Motdepasse = input("Choisissez un mot de passe.\n")
+        var.skin = input("1.annah  2.player 3.deadpool 4.angel (écrire en toutes lettres)\n")
         print("Je vous remercie. Je vous souhaite un bon moment dans ce monde merveilleux. ")
-        Query = "INSERT INTO data_joueur (mot_de_passe, email, Name) VALUES (%s, %s, %s)"
-        Values = (var.Motdepasse, var.Email, var.Pseudo)
+        Query = "INSERT INTO data_joueur (mot_de_passe, email, Name, Skin) VALUES (%s, %s, %s, %s)"
+        Values = (var.Motdepasse, var.Email, var.Pseudo, var.skin)
         DBUtil.ExecuteQuery(Query, Values)
         
 
@@ -35,7 +36,7 @@ def Menuconsole():
             
             if (var.Pseudo in itertools.chain(*list) and var.Motdepasse in itertools.chain(*list)):
                 print(f"Bienvenu {Pseudo} !" )
-                
+                var.skin = [player[4] for player in list if player[1]==var.Motdepasse and player[3]==var.Pseudo][0]
                 var.answer = True
             else:
                 print("mot de passe ou pseudo incorrect.")
@@ -52,5 +53,3 @@ if __name__ == "__main__":
     Menuconsole()
     pygame.init()
     Game().run()
-    
-    

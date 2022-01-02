@@ -30,7 +30,7 @@ class Game:
         pygame.display.set_caption("Home")
 
         # générer un joueur
-        self.player = Player()
+        self.player = Player(var.skin)
         self.map_manager = MapManager(self.screen, self.player)
 
         # génère une boite de dialogue.
@@ -153,7 +153,6 @@ class Game:
             self.chat_player.draw_chat(self.screen)
             
             
-            animate_sprite.get_name(self, surface = self.screen)
             pygame.display.flip()
 
             for event in pygame.event.get(): # recuperation des events
